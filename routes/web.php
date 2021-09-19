@@ -1,5 +1,6 @@
 <?php
 
+use App\Domains\Payments\Controllers\PaymentRequestsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +26,8 @@ Route::middleware(['auth:sanctum', 'verified'])
 
         Route::view('/payments', 'admin.payments.index')->name('payments.index');
         Route::view('/payments/create', 'admin.payments.create')->name('payments.create');
+        Route::post('/payments', [PaymentRequestsController::class, 'store'])
+            ->name('payments.store');
+        Route::get('/payments/{paymentRequest}', [PaymentRequestsController::class, 'show'])
+            ->name('payments.show');
     });
