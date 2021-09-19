@@ -17,6 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])
+    ->prefix('admin')
+    ->group(function () {
+
+        Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
+
+        Route::view('/payments', 'admin.payments.index')->name('payments.index');
+        Route::view('/payments/create', 'admin.payments.create')->name('payments.create');
+    });
