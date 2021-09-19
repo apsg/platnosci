@@ -1,0 +1,2 @@
+# platnosci
+System płatności
