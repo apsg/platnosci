@@ -15,14 +15,13 @@ class CreatePaymentRequestTable extends Migration
     {
         Schema::create('payment_requests', function (Blueprint $table) {
             $table->increments('id');
-
+            $table->string('slug')->nullable()->unique();
             $table->string('name');
             $table->string('description');
             $table->string('email');
             $table->float('amount', 10, 2);
-
+            $table->string('rules_url')->nullable();
             $table->timestamp('confirmed_at')->nullable();
-
             $table->timestamps();
         });
     }

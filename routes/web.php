@@ -1,6 +1,7 @@
 <?php
 
-use App\Domains\Payments\Controllers\PaymentRequestsController;
+use App\Domains\Payments\Controllers\Admin\PaymentRequestsController;
+use App\Domains\Payments\Controllers\PaymentRequestsController as FrontPaymentRequestsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,3 +32,6 @@ Route::middleware(['auth:sanctum', 'verified'])
         Route::get('/payments/{paymentRequest}', [PaymentRequestsController::class, 'show'])
             ->name('payments.show');
     });
+
+Route::get('/p/{paymentRequest:slug}', [FrontPaymentRequestsController::class, 'show'])
+    ->name('pay');

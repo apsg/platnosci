@@ -18,12 +18,20 @@ class NewPayment extends Component
     /** @var string */
     public $description = 'Zaliczka za pobyt';
 
+    /** @var string */
+    public $rulesUrl;
+
     protected $rules = [
         'name'        => 'required|string',
         'email'       => 'required|email',
         'amount'      => 'required|numeric|min:0.01',
         'description' => 'required|string',
     ];
+
+    public function mount()
+    {
+        $this->rulesUrl = config('app.rules_url');
+    }
 
     public function render()
     {
@@ -39,6 +47,7 @@ class NewPayment extends Component
             'email'       => $this->email,
             'amount'      => $this->amount,
             'description' => $this->description,
+            'rules_url'   => $this->rulesUrl,
         ]);
 
         return redirect(route('payments.show', $paymentRequest));
