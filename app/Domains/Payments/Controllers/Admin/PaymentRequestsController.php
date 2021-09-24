@@ -8,6 +8,6 @@ class PaymentRequestsController extends Controller
 {
     public function show(PaymentRequest $paymentRequest)
     {
-        return $paymentRequest;
+        return view('admin.payments.show')->with(compact('paymentRequest'));
     }
 }

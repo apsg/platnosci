@@ -2,7 +2,9 @@
 namespace App\Domains\Payments\Models;
 
 use Carbon\Carbon;
+use Database\Factories\PaymentRequestFactory;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -12,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string      description
  * @property string      email
  * @property float       amount
+ * @property string      rules_url
  * @property Carbon|null confirmed_at
  * @property Carbon      created_at
  * @property Carbon      updated_at
@@ -20,6 +23,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PaymentRequest extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'name',
         'description',
@@ -52,6 +57,11 @@ class PaymentRequest extends Model
     public function isConfirmed() : bool
     {
         return !empty($this->confirmed_at);
+    }
+
+    public function isEditable() : bool
+    {
+        return !$this->isConfirmed();
     }
 
     public function getUrlAttribute() : string

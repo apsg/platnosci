@@ -2,6 +2,7 @@
 namespace App\Http\Livewire\Tables;
 
 use App\Domains\Payments\Models\PaymentRequest;
+use Mediconesystems\LivewireDatatables\BooleanColumn;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 use Mediconesystems\LivewireDatatables\NumberColumn;
@@ -19,10 +20,12 @@ class PaymentRequests extends LivewireDatatable
     {
         return [
             NumberColumn::name('id')
-                ->label('ID'),
+                ->label('ID')
+                ->linkTo('admin/payments'),
 
             Column::name('slug')
-                ->label('Slug'),
+                ->label('Slug')
+                ->linkTo('p'),
 
             Column::name('name')
                 ->label('Klient')
@@ -32,15 +35,31 @@ class PaymentRequests extends LivewireDatatable
                 ->label('Email')
                 ->searchable(),
 
-            Column::callback(['confirmed_at'], function ($confirmed) {
-                return view('tables.payments.status', compact('confirmed'));
-            })
-                ->label('status')
-                ->filterable(null, 'filterHasLightSaber'),
+            Column::name('description')
+                ->label('Tytułem')
+                ->searchable(),
+
+            Column::name('amount')
+                ->label('Kwota (PLN)'),
+
+
+            BooleanColumn::name('confirmed_at')
+                ->label('Opłacone?')
+                ->filterable(),
 
             Column::callback(['id'], function ($id) {
                 return view('tables.payments.options', compact('id'));
             })->label('Opcje'),
         ];
+    }
+
+    public function sendEmail($id)
+    {
+
+    }
+
+    public function confirm($id)
+    {
+        PaymentRequest::find($id)->confirm();
     }
 }

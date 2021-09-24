@@ -22,15 +22,15 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])
     ->prefix('admin')
     ->group(function () {
-
         Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
-
         Route::view('/payments', 'admin.payments.index')->name('payments.index');
         Route::view('/payments/create', 'admin.payments.create')->name('payments.create');
         Route::post('/payments', [PaymentRequestsController::class, 'store'])
             ->name('payments.store');
         Route::get('/payments/{paymentRequest}', [PaymentRequestsController::class, 'show'])
             ->name('payments.show');
+        Route::patch('/payments/{paymentRequest}', [PaymentRequestsController::class, 'update'])
+            ->name('payments.update');
     });
 
 Route::get('/p/{paymentRequest:slug}', [FrontPaymentRequestsController::class, 'show'])
