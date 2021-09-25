@@ -2,7 +2,6 @@
 namespace App\Domains\Payments\Models;
 
 use Carbon\Carbon;
-use Database\Factories\PaymentRequestFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property float       amount
  * @property string      rules_url
  * @property Carbon|null confirmed_at
+ * @property Carbon|null last_email_sent_at
  * @property Carbon      created_at
  * @property Carbon      updated_at
  *
@@ -33,6 +33,7 @@ class PaymentRequest extends Model
         'confirmed_at',
         'slug',
         'rules_url',
+        'last_email_sent_at',
     ];
 
     protected $casts = [
