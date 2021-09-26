@@ -4,8 +4,66 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "341ec1847adee5b73baf2f38cdb197d0",
+    "content-hash": "7a9ef37f1c813e3bf2ddf9b35e82a1da",
     "packages": [
+        {
+            "name": "apsg/zenboxer",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apsg/zenboxer.git",
+                "reference": "e10a4a65986b8d499a6ecd0113f77d4b83b6a1ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apsg/zenboxer/zipball/e10a4a65986b8d499a6ecd0113f77d4b83b6a1ef",
+                "reference": "e10a4a65986b8d499a6ecd0113f77d4b83b6a1ef",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~7|~8"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~5|~6",
+                "phpunit/phpunit": "~9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Apsg\\Zenboxer\\ZenboxerServiceProvider"
+                    ],
+                    "aliases": {
+                        "Zenboxer": "Apsg\\Zenboxer\\Facades\\Zenboxer"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Apsg\\Zenboxer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "license"
+            ],
+            "authors": [
+                {
+                    "name": "author name"
+                }
+            ],
+            "description": ":package_description",
+            "homepage": "https://github.com/apsg/zenboxer",
+            "keywords": [
+                "Zenboxer",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/apsg/zenboxer/issues",
+                "source": "https://github.com/apsg/zenboxer/tree/1.0.0"
+            },
+            "time": "2020-12-31T13:43:16+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.0.3",
