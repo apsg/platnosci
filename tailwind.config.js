@@ -7,8 +7,8 @@ module.exports = {
         './vendor/laravel/jetstream/**/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './vendor/mediconesystems/livewire-datatables/resources/**/*.php'
     ],
-
     theme: {
         extend: {
             fontFamily: {
