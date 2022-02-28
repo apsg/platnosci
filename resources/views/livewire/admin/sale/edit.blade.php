@@ -7,7 +7,7 @@
     </div>
     <form
         wire:submit.prevent="update"
-        class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        class="bg-white px-8 pt-6 pb-8 mb-4"
         method="post">
         @csrf
 
@@ -15,20 +15,12 @@
             <input class="appearance-none" disabled value="{{ $sale->url() }}">
         </div>
 
-        <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
-                Nazwa sprzedaży (tylko do użytku wewnętrznego, ta nazwa nie pokaże się klientowi).
-            </label>
-            <input
-                wire:model.debounce.500ms="sale.name"
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="name"
-                type="text"
-                placeholder="np. dostęp do..., kampania X"
-                required
-            >
-            @error('sale.name') <span class="error text-red-700">{{ $message }}</span> @enderror
-        </div>
+        <x-input
+            label="Nazwa sprzedaży (tylko do użytku wewnętrznego, ta nazwa nie pokaże się klientowi)."
+            placeholder="your name"
+            wire:model="sale.name"
+        />
+
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
                 Opis sprzedaży (ten opis pokaże się klientowi jako produkt i będzie pozycją na fakturze).

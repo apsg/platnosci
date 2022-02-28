@@ -16,10 +16,21 @@ module.exports = {
             },
         },
     },
-
+    presets: [
+        require('./vendor/wireui/wireui/tailwind.config.js')
+    ],
+    content: [
+        './vendor/wireui/wireui/resources/**/*.blade.php',
+        './vendor/wireui/wireui/ts/**/*.ts',
+        './vendor/wireui/wireui/src/View/**/*.php'
+    ],
     variants: {
         opacity: ({after}) => after(['disabled'])
     },
 
-    plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+    plugins: [
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/typography'),
+        require('@tailwindcss/aspect-ratio'),
+    ],
 };
