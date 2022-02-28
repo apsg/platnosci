@@ -33,12 +33,12 @@ jobs:
           DB_DATABASE: database/database.sqlite
         run: vendor/bin/phpunit
 
-  build:
-    needs: [ laravel-tests ]
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v1
+#  build:
+#    needs: [ laravel-tests ]
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - uses: actions/checkout@v1
 #      - name: Install Node.js
 #        uses: actions/setup-node@v1
 #        with:
@@ -47,32 +47,32 @@ jobs:
 #        run: npm install
 #      - name: Build assets
 #        run: npm run dev
-      - name: Deploy to Server
-        uses: easingthemes/ssh-deploy@v2.1.6
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.KEY }}
-          ARGS: "-rltgoDzvO"
-          SOURCE: "/"
-          REMOTE_HOST: ${{ secrets.HOST }}
-          REMOTE_USER: ${{ secrets.USER }}
-          TARGET: ${{ secrets.TARGET }}
-          EXCLUDE: "/node_modules/, /.idea/, /.git/, /vendor/, /.github/"
-      - name: Creating .env file should go here
-        run: echo "Creating env file..."
-      - name: Composer and migrations
-        uses: JimCronqvist/action-ssh@master
-        with:
-          hosts: ${{ secrets.USER }}@${{ secrets.HOST }}
-          privateKey: ${{ secrets.KEY }}
-          command: |
-            cd ${{ secrets.TARGET }}
-            ln -s public public_html
-            ln -s public public_html
-            composer install
-            php80 artisan migrate --force
-            php80 artisan cache:clear
-            php80 artisan view:cache
-            php80 artisan config:cache
-            php80 artisan storage:link
+#      - name: Deploy to Server
+#        uses: easingthemes/ssh-deploy@v2.1.6
+#        env:
+#          SSH_PRIVATE_KEY: ${{ secrets.KEY }}
+#          ARGS: "-rltgoDzvO"
+#          SOURCE: "/"
+#          REMOTE_HOST: ${{ secrets.HOST }}
+#          REMOTE_USER: ${{ secrets.USER }}
+#          TARGET: ${{ secrets.TARGET }}
+#          EXCLUDE: "/node_modules/, /.idea/, /.git/, /vendor/, /.github/"
+#      - name: Creating .env file should go here
+#        run: echo "Creating env file..."
+#      - name: Composer and migrations
+#        uses: JimCronqvist/action-ssh@master
+#        with:
+#          hosts: ${{ secrets.USER }}@${{ secrets.HOST }}
+#          privateKey: ${{ secrets.KEY }}
+#          command: |
+#            cd ${{ secrets.TARGET }}
+#            ln -s public public_html
+#            ln -s public public_html
+#            composer install
+#            php80 artisan migrate --force
+#            php80 artisan cache:clear
+#            php80 artisan view:cache
+#            php80 artisan config:cache
+#            php80 artisan storage:link
 
 
