@@ -33,6 +33,8 @@
                 </header>
             @endif
 
+            <livewire:flash-container />
+
             <!-- Page Content -->
             <main>
                 {{ $slot }}

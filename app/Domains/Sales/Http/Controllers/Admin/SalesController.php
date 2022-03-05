@@ -21,4 +21,19 @@ class SalesController extends Controller
     {
         return view('admin.sales.edit')->with(compact('sale'));
     }
+
+    public function update(Sale $sale)
+    {
+
+        return back();
+    }
+
+    public function delete(Sale $sale)
+    {
+        $sale->delete();
+
+        flash('Usunięto');
+
+        return redirect(route('admin.sales.index'));
+    }
 }

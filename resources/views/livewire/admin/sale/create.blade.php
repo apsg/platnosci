@@ -42,7 +42,6 @@
                 type="number"
                 step="0.01"
                 min="0.01"
-                placeholder="100.90"
                 required
             >
         </div>
@@ -57,7 +56,6 @@
                 type="number"
                 step="0.01"
                 min="0.01"
-                placeholder="100.90"
             >
         </div>
 

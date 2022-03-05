@@ -5,4 +5,7 @@
         <x-icon name="pencil" class="w-5 h-5 inline"></x-icon>
         Edytuj
     </a>
+    <x-delete-form :action="route('admin.sales.delete', $id)">
+        Usuń
+    </x-delete-form>
 </div>

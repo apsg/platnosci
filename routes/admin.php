@@ -27,5 +27,6 @@ Route::middleware(['auth:sanctum', 'verified'])
                 Route::get('create', [SalesController::class, 'create'])->name('create');
                 Route::get('/{sale}', [SalesController::class, 'edit'])->name('edit');
                 Route::post('/{sale}', [SalesController::class, 'update'])->name('update');
+                Route::delete('/{sale}', [SalesController::class, 'delete'])->name('delete');
             });
     });

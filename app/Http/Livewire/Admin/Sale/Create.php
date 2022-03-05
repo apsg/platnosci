@@ -10,7 +10,7 @@ class Create extends Component
 {
     public string $name = '';
     public string $description = '';
-    public float $price = 0.0;
+    public ?float $price = null;
     public ?float $fullPrice = null;
     public ?string $rulesUrl = null;
 
