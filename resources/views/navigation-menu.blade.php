@@ -19,6 +19,10 @@
                                     :active="request()->routeIs('payments.index')">
                         Płatności
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('admin.sales.index') }}"
+                                    :active="request()->routeIs('sales.index')">
+                        Sprzedaże
+                    </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('admin.sales.create') }}"
                                     :active="request()->routeIs('payments.create')">
                         <span
