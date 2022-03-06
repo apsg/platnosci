@@ -22,8 +22,10 @@
 
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-3 flex">
-                    <div>
-                        <x-icon name="plus"/>
+                    <div class="p-5">
+                        <a href="" class="p-3 border-gray-300 border rounded bg-gray-50 hover:bg-blue-100">
+                            <x-icon name="plus" class="w-5 h-5 inline"/> Dostęp do kursu
+                        </a>
                     </div>
                 </div>
             </div>
