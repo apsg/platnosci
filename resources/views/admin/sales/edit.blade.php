@@ -33,6 +33,11 @@
                 </div>
             </div>
 
+            @foreach($sale->actions()->onSuccess()->get() as $action)
+                <x-action :action="$action" />
+            @endforeach
+
+
             <div class="text-center pt-6">
                 <p>Po nieudanej płatności:</p>
                 <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor"

@@ -32,4 +32,10 @@ Route::middleware(['auth:sanctum', 'verified'])
                 Route::get('/{sale}/addaction/{action}', [SaleActionsController::class, 'create'])
                     ->name('add_action');
             });
+
+        Route::prefix('actions')
+            ->as('actions.')
+            ->group(function () {
+                Route::delete('/{action}', [SaleActionsController::class, 'destroy'])->name('destroy');
+            });
     });

@@ -18,8 +18,8 @@ return new class extends Migration {
                 ->onDelete('cascade');
 
             $table->string('type', 10)->default(Action::TYPE_SUCCESS);
-            $table->string('job');
-            $table->text('parameters');
+            $table->string('job')->nullable();
+            $table->text('parameters')->nullable();
 
             $table->timestamps();
         });

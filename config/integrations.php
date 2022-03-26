@@ -1,6 +1,8 @@
 <?php
 
 use App\Domains\Actions\Jobs\AccessJob;
+use App\Domains\Actions\Jobs\InvoiceJob;
+use App\Domains\Actions\Jobs\MailerliteJob;
 
 return [
     'access' => [
@@ -17,13 +19,15 @@ return [
         ],
     ],
 
-    'invoices' => [
+    'invoice' => [
         'name'      => 'Wystawianie faktury',
+        'job'       => InvoiceJob::class,
         'providers' => [],
     ],
 
     'mailerlite' => [
         'name'      => 'Lista Mailerlite',
+        'job'       => MailerliteJob::class,
         'providers' => [
 
         ],

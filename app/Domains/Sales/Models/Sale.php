@@ -42,7 +42,7 @@ class Sale extends Model
 
     public function actions() : HasMany
     {
-        return $this->hasMany(Action::class);
+        return $this->hasMany(Action::class)->orderBy('job');
     }
 
     public static function newFactory() : SaleFactory

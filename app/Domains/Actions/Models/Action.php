@@ -1,7 +1,6 @@
 <?php
 namespace App\Domains\Actions\Models;
 
-use App\Domains\Actions\DTO\AccessParameters;
 use App\Domains\Sales\Models\Sale;
 use Carbon\Carbon;
 use Database\Factories\ActionFactory;
@@ -27,6 +26,10 @@ class Action extends Model
 
     const TYPE_SUCCESS = 'success';
     const TYPE_FAIL = 'fail';
+
+    const ACTION_ACCESS = 'access';
+    const ACTION_INVOICE = 'invoice';
+    const ACTION_MAILERLITE = 'mailerlite';
 
     protected $fillable = [
         'sale_id',
