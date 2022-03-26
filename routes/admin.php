@@ -1,6 +1,7 @@
 <?php
 
 use App\Domains\Payments\Controllers\Admin\PaymentRequestsController;
+use App\Domains\Sales\Http\Controllers\Admin\SaleActionsController;
 use App\Domains\Sales\Http\Controllers\Admin\SalesController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,5 +29,7 @@ Route::middleware(['auth:sanctum', 'verified'])
                 Route::get('/{sale}', [SalesController::class, 'edit'])->name('edit');
                 Route::post('/{sale}', [SalesController::class, 'update'])->name('update');
                 Route::delete('/{sale}', [SalesController::class, 'delete'])->name('delete');
+                Route::get('/{sale}/addaction/{action}', [SaleActionsController::class, 'create'])
+                    ->name('add_action');
             });
     });

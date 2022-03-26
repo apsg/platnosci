@@ -1,10 +1,12 @@
 <?php
 namespace App\Domains\Actions\Models;
 
-use App\Domains\Actions\Jobs\ActionJob;
+use App\Domains\Actions\DTO\AccessParameters;
 use App\Domains\Sales\Models\Sale;
 use Carbon\Carbon;
+use Database\Factories\ActionFactory;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -21,6 +23,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Action extends Model
 {
+    use HasFactory;
+
     const TYPE_SUCCESS = 'success';
     const TYPE_FAIL = 'fail';
 
@@ -40,11 +44,6 @@ class Action extends Model
         return $this->belongsTo(Sale::class);
     }
 
-    public function job() : ActionJob
-    {
-        return new ($this->job)($this->parameters);
-    }
-
     public function scopeOnSuccess(Builder $builder) : Builder
     {
         return $builder->where('type', static::TYPE_SUCCESS);
@@ -53,5 +52,10 @@ class Action extends Model
     public function scopeOnFail(Builder $builder) : Builder
     {
         return $builder->where('type', static::TYPE_FAIL);
+    }
+
+    public static function getFactory() : ActionFactory
+    {
+        return ActionFactory::new();
     }
 }

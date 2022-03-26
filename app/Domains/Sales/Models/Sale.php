@@ -3,6 +3,8 @@ namespace App\Domains\Sales\Models;
 
 use App\Domains\Actions\Models\Action;
 use Carbon\Carbon;
+use Database\Factories\SaleFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
@@ -22,6 +24,8 @@ use Illuminate\Support\Collection;
  */
 class Sale extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'hash',
         'name',
@@ -39,5 +43,10 @@ class Sale extends Model
     public function actions() : HasMany
     {
         return $this->hasMany(Action::class);
+    }
+
+    public static function newFactory() : SaleFactory
+    {
+        return SaleFactory::new();
     }
 }

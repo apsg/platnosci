@@ -22,11 +22,14 @@
 
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-3 flex">
-                    <div class="p-5">
-                        <a href="" class="p-3 border-gray-300 border rounded bg-gray-50 hover:bg-blue-100">
-                            <x-icon name="plus" class="w-5 h-5 inline"/> Dostęp do kursu
-                        </a>
-                    </div>
+                    @foreach(\App\Domains\Actions\ActionsHelper::list() as $action => $name)
+                        <div class="p-5">
+                            <a href="{{ route('admin.sales.add_action', [$sale, $action]) }}"
+                               class="p-3 border-gray-300 border rounded bg-gray-50 hover:bg-blue-100">
+                                <x-icon name="plus" class="w-5 h-5 inline"/> {{ $name }}
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
 
