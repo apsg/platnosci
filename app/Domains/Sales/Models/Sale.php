@@ -1,19 +1,24 @@
 <?php
 namespace App\Domains\Sales\Models;
 
+use App\Domains\Actions\Models\Action;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 
 /**
- * @property int         id
- * @property string      hash
- * @property string      name
- * @property string      description
- * @property string|null rules_url
- * @property double      price
- * @property double|null full_price
- * @property Carbon      created_at
- * @property Carbon      updated_at
+ * @property int                              id
+ * @property string                           hash
+ * @property string                           name
+ * @property string                           description
+ * @property string|null                      rules_url
+ * @property double                           price
+ * @property double|null                      full_price
+ * @property Carbon                           created_at
+ * @property Carbon                           updated_at
+ *
+ * @property-read Collection<Action>|Action[] actions
  */
 class Sale extends Model
 {
@@ -29,5 +34,10 @@ class Sale extends Model
     public function url() : string
     {
         return route('sales.show', $this);
+    }
+
+    public function actions() : HasMany
+    {
+        return $this->hasMany(Action::class);
     }
 }
