@@ -1,6 +1,10 @@
 <?php
 namespace App\Domains\Actions\Models;
 
+use App\Domains\Actions\Jobs\AccessJob;
+use App\Domains\Actions\Jobs\BaselinkerJob;
+use App\Domains\Actions\Jobs\InvoiceJob;
+use App\Domains\Actions\Jobs\MailerliteJob;
 use App\Domains\Sales\Models\Sale;
 use Carbon\Carbon;
 use Database\Factories\ActionFactory;
@@ -30,6 +34,7 @@ class Action extends Model
     const ACTION_ACCESS = 'access';
     const ACTION_INVOICE = 'invoice';
     const ACTION_MAILERLITE = 'mailerlite';
+    const ACTION_BASELINKER = 'baselinker';
 
     protected $fillable = [
         'sale_id',
@@ -60,5 +65,16 @@ class Action extends Model
     public static function getFactory() : ActionFactory
     {
         return ActionFactory::new();
+    }
+
+    public function getType() : string
+    {
+        return match ($this->job) {
+            AccessJob::class => static::ACTION_ACCESS,
+            BaselinkerJob::class => static::ACTION_BASELINKER,
+            MailerliteJob::class => static::ACTION_MAILERLITE,
+            InvoiceJob::class => static::ACTION_INVOICE,
+            default => '',
+        };
     }
 }

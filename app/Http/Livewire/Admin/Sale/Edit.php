@@ -30,5 +30,7 @@ class Edit extends Component
     {
         $this->validate();
         $this->sale->save();
+
+        session()->flash('message', 'Zapisano!');
     }
 }

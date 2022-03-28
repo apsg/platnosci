@@ -10,6 +10,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
+        "apsg/baselinker": "^0.1.2",
         "apsg/zenboxer": "^1.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.3",

@@ -4,8 +4,70 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "416d21d372a0908ba09d1f7d9e8b610d",
+    "content-hash": "a167e502740472072058ae0a7b910336",
     "packages": [
+        {
+            "name": "apsg/baselinker",
+            "version": "0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apsg/Baselinker.git",
+                "reference": "568599554e46de47c0e38ea23f9b4c1ab1af61a0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apsg/Baselinker/zipball/568599554e46de47c0e38ea23f9b4c1ab1af61a0",
+                "reference": "568599554e46de47c0e38ea23f9b4c1ab1af61a0",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5|~6|~7|~8|~9"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.1",
+                "orchestra/testbench": "~3|~4|~5|~6",
+                "phpunit/phpunit": "~8.0|~9.0",
+                "sempro/phpunit-pretty-print": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Apsg\\Baselinker\\BaselinkerServiceProvider"
+                    ],
+                    "aliases": {
+                        "Baselinker": "Apsg\\Baselinker\\Facades\\Baselinker"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Apsg\\Baselinker\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Szymon Gackowski",
+                    "email": "szymon@gackowski.edu.pl",
+                    "homepage": "https://gackowski.edu.pl"
+                }
+            ],
+            "description": "Baselinker Integration",
+            "homepage": "https://github.com/apsg/Baselinker",
+            "keywords": [
+                "baselinker",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/apsg/Baselinker/issues",
+                "source": "https://github.com/apsg/Baselinker/tree/0.1.2"
+            },
+            "time": "2022-03-28T10:42:38+00:00"
+        },
         {
             "name": "apsg/zenboxer",
             "version": "1.2.0",

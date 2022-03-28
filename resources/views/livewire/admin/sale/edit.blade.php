@@ -84,6 +84,11 @@
                 type="submit">
                 Zapisz
             </button>
+            @if (session()->has('message'))
+                <div class="alert alert-success text-green-700 inline">
+                    {{ session('message') }}
+                </div>
+            @endif
         </div>
     </form>
 </div>

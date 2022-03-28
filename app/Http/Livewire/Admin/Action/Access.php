@@ -1,31 +1,18 @@
 <?php
 namespace App\Http\Livewire\Admin\Action;
 
-use App\Domains\Actions\ActionsHelper;
-use App\Domains\Actions\Models\Action;
 use App\Domains\Integrations\Access\AccessProvider;
 use Illuminate\Support\Arr;
-use Livewire\Component;
 
-class Access extends Component
+class Access extends ActionComponent
 {
-    public Action $action;
-
-    public array $providers = [];
-    public ?string $selected;
-
     public array $courses = [];
     public int $courseId;
 
-    public function __construct($id = null)
+    public function mount() : void
     {
-        parent::__construct($id);
-        $this->providers = ActionsHelper::getProviders(Action::ACTION_ACCESS);
-    }
+        parent::mount();
 
-    public function mount()
-    {
-        $this->selected = Arr::get($this->action->parameters, 'provider', '');
         $this->loadCourses();
         $this->courseId = Arr::get($this->action->parameters, 'course_id', 0);
     }
