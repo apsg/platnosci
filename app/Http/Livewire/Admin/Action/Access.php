@@ -3,7 +3,7 @@ namespace App\Http\Livewire\Admin\Action;
 
 use App\Domains\Actions\ActionsHelper;
 use App\Domains\Actions\Models\Action;
-use App\Domains\Actions\Providers\AccessProvider;
+use App\Domains\Integrations\Access\AccessProvider;
 use Illuminate\Support\Arr;
 use Livewire\Component;
 

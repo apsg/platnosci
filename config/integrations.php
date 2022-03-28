@@ -22,7 +22,12 @@ return [
     'invoice' => [
         'name'      => 'Wystawianie faktury',
         'job'       => InvoiceJob::class,
-        'providers' => [],
+        'providers' => [
+            'tmgfv' => [
+                'url'   => env('FAKTUROWNIA_URL'),
+                'token' => env('FAKTUROWNIA_TOKEN'),
+            ],
+        ],
     ],
 
     'mailerlite' => [

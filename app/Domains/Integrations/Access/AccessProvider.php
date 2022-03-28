@@ -1,10 +1,11 @@
 <?php
-namespace App\Domains\Actions\Providers;
+namespace App\Domains\Integrations\Access;
 
 use App\Domains\Actions\Exceptions\InvalidProviderException;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use function config;
 
 class AccessProvider
 {

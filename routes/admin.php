@@ -19,7 +19,6 @@ Route::middleware(['auth:sanctum', 'verified'])
         Route::patch('/payments/{paymentRequest}', [PaymentRequestsController::class, 'update'])
             ->name('payments.update');
 
-
         Route::prefix('sales')
             ->as('sales.')
             ->group(function () {
