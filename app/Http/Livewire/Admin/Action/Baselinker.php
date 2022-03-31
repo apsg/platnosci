@@ -72,6 +72,5 @@ class Baselinker extends ActionComponent
             . '.providers.'
             . $this->selected
             . '.key';
-
     }
 }
