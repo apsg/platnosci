@@ -19,7 +19,7 @@ class Mailerlite extends ActionComponent
     {
         parent::mount();
 
-        if ($this->selected) {
+        if ($this->isSelectedValidProvider(Action::ACTION_MAILERLITE)) {
             $this->loadGroups();
             $this->groupId = Arr::get($this->action->parameters, 'group_id', '');
         }
@@ -30,7 +30,7 @@ class Mailerlite extends ActionComponent
         return view('livewire.admin.action.mailerlite');
     }
 
-    public function save()
+    public function save() : void
     {
         $this->validate();
 
@@ -44,8 +44,15 @@ class Mailerlite extends ActionComponent
         session()->flash('message', 'Zapisano!');
     }
 
-    public function loadGroups()
+    public function loadGroups() : void
     {
+        if (!$this->isSelectedValidProvider(Action::ACTION_MAILERLITE)) {
+            $this->groups = [];
+            $this->groupId = '';
+
+            return;
+        }
+
         $this->groups = collect((new MailerLiteApi($this->getProviderToken()))
             ->groups()
             ->get(['id', 'name'])

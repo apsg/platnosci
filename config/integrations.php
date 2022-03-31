@@ -37,7 +37,7 @@ return [
         'job'       => MailerliteJob::class,
         'providers' => [
             'itbt' => [
-                'token' => env('MAILERLITE_TOKEN'),
+                'token' => env('MAILERLITE_TOKEN')
             ],
         ],
     ],

@@ -1,6 +1,7 @@
 <?php
 namespace App\Domains\Actions\Models;
 
+use App\Domains\Actions\ActionEnum;
 use App\Domains\Actions\Jobs\AccessJob;
 use App\Domains\Actions\Jobs\BaselinkerJob;
 use App\Domains\Actions\Jobs\InvoiceJob;

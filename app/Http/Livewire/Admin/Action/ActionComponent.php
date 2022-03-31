@@ -13,14 +13,18 @@ class ActionComponent extends Component
     public array $providers = [];
     public ?string $selected;
 
-    public function __construct($id = null)
-    {
-        parent::__construct($id);
-    }
-
     public function mount() : void
     {
         $this->providers = ActionsHelper::getProviders($this->action->getType());
         $this->selected = Arr::get($this->action->parameters, 'provider', '');
+    }
+
+    protected function isSelectedValidProvider(string $action) : bool
+    {
+        if (empty($this->selected)) {
+            return false;
+        }
+
+        return config('integrations.' . $action . '.providers.' . $this->selected) !== null;
     }
 }
