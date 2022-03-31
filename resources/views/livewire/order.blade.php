@@ -26,19 +26,38 @@
         </div>
         @if(!empty($invoice))
             <div class="mb-5">
-                <x-inputs.maskable
+                <x-input
+                    type="number"
+                    min="100000000"
+                    max="999999999"
                     wire:model="nip"
                     label="NIP"
-                    mask="###-###-##-##"
                     placeholder="NIP"
                 />
             </div>
+            <div class="mb-5">
+                <x-input
+                    wire:model="address"
+                    label="Adres"
+                    placeholder="ulica, kod, miejscowość"
+                />
+            </div>
         @endif
-
-        <x-button
-            positive
-            icon="cash"
-            label="Zapłać {{ $sale->format('price') }} PLN"
-        />
+        <div class="flex justify-between content-center">
+            <div>
+                <x-checkbox
+                    wire:model="rules"
+                    label="Akceptuję regulamin sprzedaży"
+                />
+            </div>
+            <div>
+                <x-button
+                    positive
+                    icon="cash"
+                    wire:click="order"
+                    label="Zapłać {{ $sale->format('price') }} PLN"
+                />
+            </div>
+        </div>
     </form>
 </div>
