@@ -49,4 +49,9 @@ class Sale extends Model
     {
         return SaleFactory::new();
     }
+
+    public function format(string $parameter) : string
+    {
+        return number_format($this->getAttribute($parameter), 2);
+    }
 }

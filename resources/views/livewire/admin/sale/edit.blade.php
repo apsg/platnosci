@@ -11,8 +11,16 @@
         method="post">
         @csrf
 
-        <div class="mb-4">
-            <input class="appearance-none" disabled value="{{ $sale->url() }}">
+        <div class="mb-4 flex ">
+            <input class="appearance-none rounded bg-gray-100 p-3 mr-3"
+                   disabled
+                   value="{{ $sale->url() }}">
+            <a
+                target="_blank"
+                class="rounded bg-purple-500 hover:bg-purple-700 text-white p-3"
+                href="{{ $sale->url() }}">
+                <x-icon name="external-link" class="w-5 h-5 inline"></x-icon>
+            </a>
         </div>
 
         <x-input
