@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f373e372912402817fc589942fbc18ec",
+    "content-hash": "ee0348355e4f931713ab52dc994d2c90",
     "packages": [
         {
             "name": "apsg/baselinker",
@@ -10826,7 +10826,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.0"
+        "php": "^8.1"
     },
     "platform-dev": [],
     "plugin-api-version": "2.2.0"
