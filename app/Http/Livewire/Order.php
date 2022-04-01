@@ -51,4 +51,9 @@ class Order extends Component
 
         return true;
     }
+
+    public function order()
+    {
+
+    }
 }
