@@ -403,11 +403,13 @@
 </head>
 <body class="antialiased">
 <div
-    class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+    class="relative flex items-top justify-center min-h-screen sm:items-center py-4 sm:pt-0 bg-cover"
+    style="background-image: url('{{ asset('/images/bg.jpg') }}')"
+>
     @if (Route::has('login'))
         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
             @auth
-                <a href="{{ url('/dashboard') }}"
+                <a href="{{ url('/admin/dashboard') }}"
                    class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
             @else
                 <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
@@ -420,21 +422,10 @@
     @endif
 
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-        <div class="text-center">
-            <img src="https://skret.eu/wp-content/uploads/2020/05/logo.png" width="300"/>
-        </div>
 
         <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
             <div class="grid grid-cols-1 md:grid-cols-2">
-                <div class="p-6">
-                    <a href="https://skret.eu" alt="Ośrodek Jeździecki Skręt" target="_blank">
-                        <img src="https://skret.eu/wp-content/uploads/2020/05/skret-scaled.jpg" width="400">
-                    </a>
-                </div>
 
-                <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
-
-                </div>
             </div>
         </div>
     </div>
