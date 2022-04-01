@@ -43,6 +43,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '17.x'
+      - name: Legacy SSL
+        run: export NODE_OPTIONS=--openssl-legacy-provider
       - name: Install npm dependencies
         run: npm install
       - name: Build assets
