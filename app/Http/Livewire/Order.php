@@ -2,30 +2,33 @@
 namespace App\Http\Livewire;
 
 use App\Domains\Sales\Models\Sale;
-use App\Rules\NipRule;
+use App\Rules\AcceptedBoolRule;
+use App\Rules\PhoneRule;
 use Livewire\Component;
 
 class Order extends Component
 {
     public Sale $sale;
     public string $email = '';
-    public string $name = '';
-    public bool $invoice = false;
-    public string $nip = '';
-    public string $address = '';
-    public bool $rules = false;
+    public string $phone = '';
+    public bool $accept = false;
 
     public function rules() : array
     {
         return [
 
-            'name'    => 'required|string',
-            'email'   => 'required|email',
-            'nip'     => ['string', new NipRule()],
-            'address' => 'string',
-            'rules'   => 'required',
+            'email' => 'required|email',
+            'phone' => ['required', new PhoneRule()],
+            'accept' => ['required','boolean', new AcceptedBoolRule()],
         ];
     }
+
+    protected $messages = [
+        'email.required' => 'Podaj adres email.',
+        'email.email'    => 'Niepoprawny format adresu email.',
+        'phone.required' => 'Podaj numer telefonu.',
+        'accept.required' => 'Wymagana jest akceptacja regulaminu',
+    ];
 
     public function updated($propertyName) : void
     {
@@ -41,11 +44,15 @@ class Order extends Component
 
     public function isValid() : bool
     {
-        if (!$this->rules) {
+        if (!$this->accept) {
             return false;
         }
 
         if (empty($this->email)) {
+            return false;
+        }
+
+        if (empty($this->phone)) {
             return false;
         }
 
@@ -54,6 +61,8 @@ class Order extends Component
 
     public function order()
     {
+        $this->validate();
 
+        
     }
 }

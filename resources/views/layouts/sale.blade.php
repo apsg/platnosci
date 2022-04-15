@@ -19,7 +19,7 @@
     @livewireStyles
 
 </head>
-<body class="w-full h-full bg-cover bg-center" style='background-image: url("{{ asset('/images/bg.jpg') }}")'>
+<body class="w-full h-full bg-cover bg-center" style='background-image: url("{{ asset('/images/bg_aurora.webp') }}")'>
 <div class="min-h-screen flex">
     @if(isset($left))
         <div class="min-h-screen bg-gray-200 w-1/2 p-6 flex flex-col justify-center flex">

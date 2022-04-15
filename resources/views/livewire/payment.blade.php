@@ -4,7 +4,7 @@
         <!-- Col -->
         <div
             class="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg"
-            style="background-image: url('{{ url('/images/bg.webp') }}'); background-position: center center"
+            style="background-image: url('{{ url('/images/bg_green.webp') }}'); background-position: center center"
         ></div>
         <!-- Col -->
         <div class="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none">
