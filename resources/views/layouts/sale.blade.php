@@ -20,16 +20,16 @@
 
 </head>
 <body class="w-full h-full bg-cover bg-center" style='background-image: url("{{ asset('/images/bg_aurora.webp') }}")'>
-<div class="min-h-screen flex">
+<div class="md:min-h-screen md:flex">
     @if(isset($left))
-        <div class="min-h-screen bg-gray-200 w-1/2 p-6 flex flex-col justify-center flex">
+        <div class="md:min-h-screen bg-gray-200 md:w-1/2 p-6 flex flex-col justify-center flex">
             <aside class="mx-auto">
                 {{ $left }}
             </aside>
         </div>
     @endif
-    <main class="min-h-screen w-1/2 flex flex-col justify-center flex">
-        <div class="p-5 w-2/3 bg-gray-100 shadow rounded-r">
+    <main class="md:min-h-screen md:w-1/2 flex flex-col  justify-center">
+        <div class="p-5 sm:w-2/3 mx-auto md:mx-0 bg-gray-100 shadow rounded-r">
         {{ $slot }}
         </div>
     </main>

@@ -5,7 +5,7 @@
     </x-slot>
 
     <x-slot name="left">
-        <div class="min-h-[300px] flex flex-col justify-between">
+        <div class="min-h-[300px] flex-col justify-between">
             <div>
                 <h1 class="text-2xl font-bold mb-5">
                     {{ $sale->description }}
@@ -18,12 +18,6 @@
                 <div class="text-5xl text-green-700">
                     {{ $sale->format('price') }} PLN
                 </div>
-            </div>
-            <div>
-                <a href="{{ url($sale->rules_url) }}"
-                   class="text-gray-500"
-                   target="_blank"
-                >Regulamin i polityka prywatności</a>
             </div>
         </div>
     </x-slot>

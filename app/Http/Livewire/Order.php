@@ -63,6 +63,6 @@ class Order extends Component
     {
         $this->validate();
 
-        
+
     }
 }

@@ -3250,6 +3250,10 @@ select {
 		width: 33.333333%;
 	}
 
+	.sm\:w-2\/3 {
+		width: 66.666667%;
+	}
+
 	.sm\:max-w-md {
 		max-width: 28rem;
 	}
@@ -3401,6 +3405,16 @@ select {
 		grid-column: span 1 / span 1;
 	}
 
+	.md\:mx-auto {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.md\:mx-0 {
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+
 	.md\:mt-0 {
 		margin-top: 0px;
 	}
@@ -3421,12 +3435,28 @@ select {
 		display: grid;
 	}
 
+	.md\:min-h-screen {
+		min-height: 100vh;
+	}
+
+	.md\:w-1\/2 {
+		width: 50%;
+	}
+
 	.md\:grid-cols-3 {
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
 
 	.md\:grid-cols-2 {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.md\:flex-row {
+		flex-direction: row;
+	}
+
+	.md\:flex-col {
+		flex-direction: column;
 	}
 
 	.md\:justify-between {
