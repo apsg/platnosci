@@ -2504,6 +2504,10 @@ select {
 	--tw-text-opacity: 1;
 	color: rgba(185, 28, 28, var(--tw-text-opacity));
 }
+.text-pink-600 {
+	--tw-text-opacity: 1;
+	color: rgba(219, 39, 119, var(--tw-text-opacity));
+}
 .underline {
 	text-decoration: underline;
 }
@@ -3473,6 +3477,10 @@ select {
 
 	.md\:border-l {
 		border-left-width: 1px;
+	}
+
+	.md\:pb-5 {
+		padding-bottom: 1.25rem;
 	}
 }
 @media (min-width: 1024px) {
