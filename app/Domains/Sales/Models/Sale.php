@@ -17,6 +17,7 @@ use Illuminate\Support\Collection;
  * @property string|null                      rules_url
  * @property double                           price
  * @property double|null                      full_price
+ * @property int|null                         counter
  * @property Carbon                           created_at
  * @property Carbon                           updated_at
  *
@@ -33,6 +34,7 @@ class Sale extends Model
         'rules_url',
         'price',
         'full_price',
+        'counter',
     ];
 
     public function url() : string

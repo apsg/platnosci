@@ -73,6 +73,21 @@
             @error('sale.full_price') <span class="error text-red-700">{{ $message }}</span> @enderror
         </div>
 
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="full_price">
+                Licznik w sekundach (pozostaw puste, jeśli licznik ma być wyłączony)
+            </label>
+            <input
+                wire:model.debounce.500ms="sale.counter"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="full_price"
+                type="number"
+                step="1"
+                min="0"
+            >
+            @error('sale.full_price') <span class="error text-red-700">{{ $message }}</span> @enderror
+        </div>
+
         <div class="mb-6">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="rules">
                 Link do regulaminu

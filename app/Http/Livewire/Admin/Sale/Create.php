@@ -13,6 +13,7 @@ class Create extends Component
     public ?float $price = null;
     public ?float $fullPrice = null;
     public ?string $rulesUrl = null;
+    public ?int $counter = null;
 
     protected array $rules = [
         'name'        => 'required|string',
@@ -20,6 +21,7 @@ class Create extends Component
         'fullPrice'   => 'sometimes|numeric|min:0.01',
         'description' => 'required|string',
         'rulesUrl'    => 'sometimes|string',
+        'counter'     => 'sometimes|nullable|integer|min:0',
     ];
 
     public function render()
@@ -35,6 +37,7 @@ class Create extends Component
             'full_price'  => $this->fullPrice,
             'description' => $this->description,
             'rules_url'   => $this->rulesUrl,
+            'counter'     => $this->counter,
         ]);
 
         return redirect(route('admin.sales.edit', $sale));

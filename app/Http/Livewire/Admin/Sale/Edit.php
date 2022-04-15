@@ -23,6 +23,7 @@ class Edit extends Component
             'sale.price'       => 'required|numeric|min:0.01',
             'sale.full_price'  => 'nullable|numeric|min:0.01',
             'sale.rules_url'   => 'nullable|sometimes|string',
+            'sale.counter'     => 'nullable|sometimes|integer|min:0',
         ];
     }
 
