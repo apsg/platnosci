@@ -1,6 +1,7 @@
 <?php
 
-use App\Domains\Payments\Controllers\PaymentRequestsController as FrontPaymentRequestsController;
+use App\Domains\Payments\Controllers\OrdersController;
+use App\Domains\Payu\Controllers\PayuIpnController;
 use App\Domains\Sales\Http\Controllers\Front\SalesController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/p/{paymentRequest:slug}', [FrontPaymentRequestsController::class, 'show'])
-    ->name('pay');
-
 Route::get('/s/{sale:hash}', [SalesController::class, 'show'])->name('sales.show');
+Route::get('/o/{order:hash}', [OrdersController::class, 'continue'])->name('orders.continue');
+Route::any('/payu/ipn', PayuIpnController::class)->name('payu.ipn');

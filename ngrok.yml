@@ -1,0 +1,11 @@
+region: eu
+version: 2
+authtoken: 5NCk7JVNEv9ULH8Q2x29k_5KRwhqtkkVkgiKPBmfjKb
+
+tunnels:
+  web :
+    addr: 8888
+    schemes:
+      - https
+    inspect: false
+    proto: http

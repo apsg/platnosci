@@ -26,7 +26,7 @@
         </div>
     </x-slot>
 
-    <div>
+    <div class="p-5">
         <livewire:order :sale="$sale"/>
     </div>
 

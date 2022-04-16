@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Livewire;
 
+use App\Domains\Payments\Repositories\OrdersRepository;
+use App\Domains\Payu\PayuDriver;
 use App\Domains\Sales\Models\Sale;
 use App\Rules\AcceptedBoolRule;
 use App\Rules\PhoneRule;
@@ -17,16 +19,16 @@ class Order extends Component
     {
         return [
 
-            'email' => 'required|email',
-            'phone' => ['required', new PhoneRule()],
-            'accept' => ['required','boolean', new AcceptedBoolRule()],
+            'email'  => 'required|email',
+            'phone'  => ['required', new PhoneRule()],
+            'accept' => ['required', 'boolean', new AcceptedBoolRule()],
         ];
     }
 
     protected $messages = [
-        'email.required' => 'Podaj adres email.',
-        'email.email'    => 'Niepoprawny format adresu email.',
-        'phone.required' => 'Podaj numer telefonu.',
+        'email.required'  => 'Podaj adres email.',
+        'email.email'     => 'Niepoprawny format adresu email.',
+        'phone.required'  => 'Podaj numer telefonu.',
         'accept.required' => 'Wymagana jest akceptacja regulaminu',
     ];
 
@@ -63,6 +65,12 @@ class Order extends Component
     {
         $this->validate();
 
+        $order = app(OrdersRepository::class)->create($this->sale, $this->email, $this->phone);
 
+        $url = (new PayuDriver('platnosci'))
+            ->forOrder($order)
+            ->getUrl();
+
+        return redirect($url);
     }
 }

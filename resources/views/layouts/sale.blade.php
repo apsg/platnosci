@@ -29,7 +29,7 @@
         </div>
     @endif
     <main class="md:min-h-screen md:w-1/2 flex flex-col  justify-center">
-        <div class="p-5 sm:w-2/3 mx-auto md:mx-0 bg-gray-100 shadow rounded-r">
+        <div class="sm:w-2/3 mx-auto md:mx-0 bg-gray-100 shadow rounded-r">
         {{ $slot }}
         </div>
     </main>
