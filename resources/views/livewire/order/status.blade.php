@@ -20,7 +20,7 @@
                 <object type="image/svg+xml" width="300" data="{{ asset('/images/status.svg') }}">
                     <img src="{{ asset('/images/status.svg') }}"/>
                 </object>
-                <p class="font-bold rounded p-3 text-green-800 border border-green-800">
+                <p class="font-bold rounded p-3 text-green-800 border border-green-800 md:max-w-md">
                     Zamówienie opłacone. Na podany adres email otrzymasz dalsze informacje dotyczące zakupionych
                     produktów
                     oraz faktury za zakup.

@@ -13,6 +13,8 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
+    @wireUiScripts
+
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
 
@@ -28,15 +30,15 @@
             </aside>
         </div>
     @endif
-    <main class="md:min-h-screen md:w-1/2 flex flex-col  justify-center">
+    <main class="md:min-h-screen md:w-3/4 xl:w-2/3 flex flex-col  justify-center">
         <div class="sm:w-2/3 mx-auto md:mx-0 bg-gray-100 shadow rounded-r">
-        {{ $slot }}
+            {{ $slot }}
         </div>
     </main>
 </div>
 
 @stack('modals')
-
 @livewireScripts
+
 </body>
 </html>

@@ -5,21 +5,23 @@ use App\Domains\Sales\Models\Sale;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
- * @property int         id
- * @property string      hash
- * @property string      email
- * @property string|null phone
- * @property int         sale_id
- * @property int         price
- * @property string|null external_id
- * @property Carbon|null confirmed_at
- * @property Carbon|null cancelled_at
- * @property Carbon      created_at
- * @property Carbon      updated_at
+ * @property int                 id
+ * @property string              hash
+ * @property string              email
+ * @property string|null         phone
+ * @property int                 sale_id
+ * @property int                 price
+ * @property string|null         external_id
+ * @property Carbon|null         confirmed_at
+ * @property Carbon|null         cancelled_at
+ * @property Carbon              created_at
+ * @property Carbon              updated_at
  *
- * @property-read Sale   sale
+ * @property-read Sale           sale
+ * @property-read InvoiceRequest invoice_request
  */
 class Order extends Model
 {
@@ -37,6 +39,11 @@ class Order extends Model
     public function sale() : BelongsTo
     {
         return $this->belongsTo(Sale::class);
+    }
+
+    public function invoice_request() : HasOne
+    {
+        return $this->hasOne(InvoiceRequest::class);
     }
 
     public function isPaid() : bool

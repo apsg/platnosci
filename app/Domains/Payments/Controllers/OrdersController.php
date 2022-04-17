@@ -10,4 +10,9 @@ class OrdersController extends Controller
     {
         return view('orders.continue')->with(compact('order'));
     }
+
+    public function invoice(Order $order)
+    {
+        return view('orders.invoice')->with(compact('order'));
+    }
 }
