@@ -60,7 +60,7 @@ jobs:
             cd ${{ secrets.TARGET }}
             ln -s public public_html
             ln -s public private_html
-            composer install --ignore-platform-reqs
+            php81 composer.phar install --ignore-platform-reqs
             php81 artisan migrate --force
             php81 artisan cache:clear
             php81 artisan view:cache
