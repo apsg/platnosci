@@ -21,6 +21,10 @@ class DispatchSaleActionsListener implements ShouldQueue
             return;
         }
 
+        if (!$event->order->isPaid()) {
+            return;
+        }
+
         /** @var Action $action */
         foreach ($event->order->sale->actions as $action) {
             $jobClass = $action->job;

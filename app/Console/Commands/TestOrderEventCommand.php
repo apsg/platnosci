@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Console\Commands;
 
 use App\Domains\Payments\Events\OrderConfirmedEvent;
@@ -29,7 +28,7 @@ class TestOrderEventCommand extends Command
      */
     public function handle()
     {
-        $order = Order::first();
+        $order = Order::orderBy('id', 'desc')->first();
         event(new OrderConfirmedEvent($order));
 
         return 0;
