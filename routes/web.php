@@ -22,4 +22,6 @@ Route::get('/', function () {
 
 Route::get('/s/{sale:hash}', [SalesController::class, 'show'])->name('sales.show');
 Route::get('/o/{order:hash}', [OrdersController::class, 'continue'])->name('orders.continue');
+Route::get('/o/{order:hash}/invoice', [OrdersController::class, 'invoice'])->name('orders.invoice');
+
 Route::any('/payu/ipn', PayuIpnController::class)->name('payu.ipn');

@@ -1,7 +1,10 @@
 <?php
 namespace App\Providers;
 
+use App\Domains\Payments\Events\DispatchSaleActionsListener;
+use App\Domains\Payments\Events\OrderCancelledEvent;
 use App\Domains\Payments\Events\OrderConfirmedEvent;
+use App\Domains\Payments\Events\SendOrderEmailListener;
 use App\Domains\Sales\Models\Sale;
 use App\Domains\Sales\Models\SalesObserver;
 use Illuminate\Auth\Events\Registered;
@@ -15,6 +18,10 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         OrderConfirmedEvent::class => [
+            SendOrderEmailListener::class,
+            DispatchSaleActionsListener::class,
+        ],
+        OrderCancelledEvent::class => [
 
         ],
     ];
