@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class IpnRequest extends FormRequest
 {
     const COMPLETED = 'COMPLETED';
+    const SIGNATURE_HEADER = 'X-OpenPayU-Signature';
 
     public function rules()
     {
@@ -25,5 +26,20 @@ class IpnRequest extends FormRequest
     public function isStatusCompleted() : bool
     {
         return $this->input('order.status') === static::COMPLETED;
+    }
+
+    public function getSignature() : string
+    {
+        $signatureHeader = explode(';', $this->header(static::SIGNATURE_HEADER));
+
+        foreach ($signatureHeader as $item) {
+            [$key, $value] = explode('=', $item);
+
+            if ($key === 'signature') {
+                return $value;
+            }
+        }
+
+        return '';
     }
 }

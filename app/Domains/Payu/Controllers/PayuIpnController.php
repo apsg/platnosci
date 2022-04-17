@@ -2,6 +2,8 @@
 namespace App\Domains\Payu\Controllers;
 
 use App\Domains\Payments\Repositories\OrdersRepository;
+use App\Domains\Payu\Exceptions\SignatureMismatchException;
+use App\Domains\Payu\PayuDriver;
 use App\Domains\Payu\Requests\IpnRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
@@ -10,16 +12,31 @@ class PayuIpnController extends Controller
 {
     public function __invoke(IpnRequest $request, OrdersRepository $repository)
     {
+        $payu = new PayuDriver('platnosci');
+        $verifySignature = $payu->verifySignature($request->getContent(), $request->getSignature());
+
         Log::info(__CLASS__,
             [
-                'json'    => $request->json()->all(),
-                'headers' => $request->headers->all(),
+                'json'         => $request->json()->all(),
+                'headers'      => $request->headers->all(),
+                'verification' => $verifySignature,
             ]);
-//        Log::info(__CLASS__, $request->header());
+
+        if ($verifySignature !== true) {
+            throw new SignatureMismatchException($request->getContent());
+        };
 
         $extOrderId = $request->externalId();
         $order = $repository->findByHash($request->hash());
 
-        return response()->json('ok', 200);
+        if ($order === null) {
+            return response([], 404);
+        }
+
+        if ($request->isStatusCompleted()) {
+            $repository->confirm($order, $extOrderId);
+        }
+
+        return response('ok', 200);
     }
 }

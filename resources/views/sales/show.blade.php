@@ -7,10 +7,12 @@
     <x-slot name="left">
         <div class="min-h-[300px] flex-col justify-between">
             <div>
-                <div class="pb-3 md:pb-5 text-xl text-pink-600 font-bold">
-                    <p>Promocja dostępna tylko przez</p>
-                    <x-counter :counter="$sale->counter"></x-counter>
-                </div>
+                @if(!empty($sale->counter))
+                    <div class="pb-3 md:pb-5 text-xl text-pink-600 font-bold">
+                        <p>Promocja dostępna tylko przez</p>
+                        <x-counter :counter="$sale->counter"></x-counter>
+                    </div>
+                @endif
                 <h1 class="text-2xl font-bold mb-5">
                     {{ $sale->description }}
                 </h1>
