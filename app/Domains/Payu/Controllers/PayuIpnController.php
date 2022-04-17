@@ -17,7 +17,7 @@ class PayuIpnController extends Controller
 
         Log::info(__CLASS__,
             [
-                'json'         => $request->json()->all(),
+                'payload'      => $request->json()->all(),
                 'headers'      => $request->headers->all(),
                 'verification' => $verifySignature,
             ]);
@@ -31,6 +31,10 @@ class PayuIpnController extends Controller
 
         if ($order === null) {
             return response([], 404);
+        }
+
+        if ($request->isStatusCanceled()) {
+            $repository->cancel($order);
         }
 
         if ($request->isStatusCompleted()) {

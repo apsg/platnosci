@@ -1,6 +1,7 @@
 <?php
 namespace App\Domains\Payments\Repositories;
 
+use App\Domains\Payments\Events\OrderCancelledEvent;
 use App\Domains\Payments\Events\OrderConfirmedEvent;
 use App\Domains\Payments\Models\Order;
 use App\Domains\Sales\Models\Sale;
@@ -33,5 +34,15 @@ class OrdersRepository
         ]);
 
         event(new OrderConfirmedEvent($order));
+    }
+
+    public function cancel(Order $order)
+    {
+        $order->update([
+            'cancelled_at' => Carbon::now(),
+            'confirmed_at' => null,
+        ]);
+
+        event(new OrderCancelledEvent($order));
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class IpnRequest extends FormRequest
 {
     const COMPLETED = 'COMPLETED';
+    const CANCELLED = 'CANCELED';
     const SIGNATURE_HEADER = 'X-OpenPayU-Signature';
 
     public function rules()
@@ -26,6 +27,11 @@ class IpnRequest extends FormRequest
     public function isStatusCompleted() : bool
     {
         return $this->input('order.status') === static::COMPLETED;
+    }
+
+    public function isStatusCanceled() : bool
+    {
+        return $this->input('order.status') === static::CANCELLED;
     }
 
     public function getSignature() : string

@@ -5,7 +5,7 @@ use App\Domains\Payments\Models\Order;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class OrderConfirmedEvent
+class OrderCancelledEvent
 {
     use SerializesModels, Dispatchable;
 

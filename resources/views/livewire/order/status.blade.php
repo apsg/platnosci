@@ -21,7 +21,8 @@
                     <img src="{{ asset('/images/status.svg') }}"/>
                 </object>
                 <p class="font-bold rounded p-3 text-green-800 border border-green-800">
-                    Zamówienie opłacone. Na Twój adres email otrzymasz dalsze informacje dotyczące zakupionych produktów
+                    Zamówienie opłacone. Na podany adres email otrzymasz dalsze informacje dotyczące zakupionych
+                    produktów
                     oraz faktury za zakup.
                 </p>
             </div>

@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int         price
  * @property string|null external_id
  * @property Carbon|null confirmed_at
+ * @property Carbon|null cancelled_at
  * @property Carbon      created_at
  * @property Carbon      updated_at
  *
@@ -30,6 +31,7 @@ class Order extends Model
         'price',
         'external_id',
         'confirmed_at',
+        'cancelled_at',
     ];
 
     public function sale() : BelongsTo
@@ -40,5 +42,10 @@ class Order extends Model
     public function isPaid() : bool
     {
         return $this->confirmed_at !== null;
+    }
+
+    public function isCancelled() : bool
+    {
+        return $this->cancelled_at !== null;
     }
 }
