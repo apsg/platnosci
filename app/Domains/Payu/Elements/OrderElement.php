@@ -28,7 +28,7 @@ class OrderElement
         return [
                 'description' => $this->order->sale->description,
                 'totalAmount' => $this->price(),
-                'extOrderId'  => $this->order->id,
+                'extOrderId'  => $this->order->hash,
                 'buyer'       => $this->buyer->toArray(),
             ]
             + $this->productsToArray();
