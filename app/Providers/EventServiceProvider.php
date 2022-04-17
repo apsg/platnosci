@@ -1,8 +1,7 @@
 <?php
 namespace App\Providers;
 
-use App\Domains\Payments\Models\PaymentRequest;
-use App\Domains\Payments\Models\PaymentRequestObserver;
+use App\Domains\Payments\Events\OrderConfirmedEvent;
 use App\Domains\Sales\Models\Sale;
 use App\Domains\Sales\Models\SalesObserver;
 use Illuminate\Auth\Events\Registered;
@@ -12,8 +11,11 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 class EventServiceProvider extends ServiceProvider
 {
     protected $listen = [
-        Registered::class => [
+        Registered::class          => [
             SendEmailVerificationNotification::class,
+        ],
+        OrderConfirmedEvent::class => [
+
         ],
     ];
 
