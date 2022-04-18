@@ -1,6 +1,6 @@
 <?php
 
-use App\Domains\Payments\Controllers\Admin\PaymentRequestsController;
+use App\Domains\Payments\Controllers\Admin\OrdersController;
 use App\Domains\Sales\Http\Controllers\Admin\SaleActionsController;
 use App\Domains\Sales\Http\Controllers\Admin\SalesController;
 use Illuminate\Support\Facades\Route;
@@ -10,14 +10,6 @@ Route::middleware(['auth:sanctum', 'verified'])
     ->as('admin.')
     ->group(function () {
         Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
-        Route::view('/payments', 'admin.payments.index')->name('payments.index');
-        Route::view('/payments/create', 'admin.payments.create')->name('payments.create');
-        Route::post('/payments', [PaymentRequestsController::class, 'store'])
-            ->name('payments.store');
-        Route::get('/payments/{paymentRequest}', [PaymentRequestsController::class, 'show'])
-            ->name('payments.show');
-        Route::patch('/payments/{paymentRequest}', [PaymentRequestsController::class, 'update'])
-            ->name('payments.update');
 
         Route::prefix('sales')
             ->as('sales.')
@@ -36,5 +28,13 @@ Route::middleware(['auth:sanctum', 'verified'])
             ->as('actions.')
             ->group(function () {
                 Route::delete('/{action}', [SaleActionsController::class, 'destroy'])->name('destroy');
+            });
+
+        Route::prefix('orders')
+            ->as('orders.')
+            ->group(function () {
+                Route::get('/', [OrdersController::class, 'index'])->name('index');
+                Route::get('/{order}/resend', [OrdersController::class, 'resend'])->name('resend');
+                Route::delete('/{order}', [OrdersController::class, 'destroy'])->name('delete');
             });
     });

@@ -1,7 +1,7 @@
 <?php
 namespace App\Domains\Payments\Events;
 
-class OrderCancelledEvent extends BaseOrderEvent
+class ResendOrderMailingEvent extends BaseOrderEvent
 {
     //
 }

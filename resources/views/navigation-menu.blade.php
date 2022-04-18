@@ -15,16 +15,16 @@
                     <x-jet-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('admin.payments.index') }}"
-                                    :active="request()->routeIs('payments.index')">
-                        Płatności
+                    <x-jet-nav-link href="{{ route('admin.orders.index') }}"
+                                    :active="request()->routeIs('orders.index')">
+                        Zamówienia
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('admin.sales.index') }}"
                                     :active="request()->routeIs('sales.index')">
                         Sprzedaże
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('admin.sales.create') }}"
-                                    :active="request()->routeIs('payments.create')">
+                                    :active="request()->routeIs('sales.create')">
                         <span
                             class="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700">
                             + Dodaj nową sprzedaż
@@ -201,7 +201,7 @@
                                                :active="request()->routeIs('api-tokens.index')">
                         {{ __('API Tokens') }}
                     </x-jet-responsive-nav-link>
-                @endif
+            @endif
 
             <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">

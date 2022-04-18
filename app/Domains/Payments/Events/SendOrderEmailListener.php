@@ -10,12 +10,7 @@ class SendOrderEmailListener implements ShouldQueue
 {
     use InteractsWithQueue;
 
-    public function __construct()
-    {
-        //
-    }
-
-    public function handle(OrderConfirmedEvent $event)
+    public function handle(BaseOrderEvent $event)
     {
         Mail::to($event->order->email)
             ->send(new OrderConfirmationMail($event->order));

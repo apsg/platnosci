@@ -4,6 +4,7 @@ namespace App\Providers;
 use App\Domains\Payments\Events\DispatchSaleActionsListener;
 use App\Domains\Payments\Events\OrderCancelledEvent;
 use App\Domains\Payments\Events\OrderConfirmedEvent;
+use App\Domains\Payments\Events\ResendOrderMailingEvent;
 use App\Domains\Payments\Events\SendOrderEmailListener;
 use App\Domains\Sales\Models\Sale;
 use App\Domains\Sales\Models\SalesObserver;
@@ -14,15 +15,18 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 class EventServiceProvider extends ServiceProvider
 {
     protected $listen = [
-        Registered::class          => [
+        Registered::class              => [
             SendEmailVerificationNotification::class,
         ],
-        OrderConfirmedEvent::class => [
+        OrderConfirmedEvent::class     => [
             SendOrderEmailListener::class,
             DispatchSaleActionsListener::class,
         ],
-        OrderCancelledEvent::class => [
+        OrderCancelledEvent::class     => [
 
+        ],
+        ResendOrderMailingEvent::class => [
+            SendOrderEmailListener::class,
         ],
     ];
 
