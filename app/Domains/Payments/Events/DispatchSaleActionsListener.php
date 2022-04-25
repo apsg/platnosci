@@ -10,11 +10,6 @@ class DispatchSaleActionsListener implements ShouldQueue
 {
     use InteractsWithQueue;
 
-    public function __construct()
-    {
-        //
-    }
-
     public function handle(OrderConfirmedEvent $event)
     {
         if ($event->order === null || $event->order->sale === null) {

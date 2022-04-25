@@ -10,7 +10,10 @@ use function config;
 class AccessProvider
 {
     const COURSE_LIST = '/api/courses';
+    const ACCESS_URL = '/api/access';
+    const HEADER_NAME = 'X-INAUKA-KEY';
 
+    protected string $provider;
     protected string $baseUrl;
 
     public static function make(string $provider) : static
@@ -19,12 +22,13 @@ class AccessProvider
             throw new InvalidProviderException($provider);
         }
 
-        return new static(config("integrations.access.providers.{$provider}.url"));
+        return new static($provider);
     }
 
-    public function __construct(string $url)
+    public function __construct(string $provider)
     {
-        $this->baseUrl = $url;
+        $this->provider = $provider;
+        $this->baseUrl = config("integrations.access.providers.{$provider}.url");
     }
 
     public function courses() : array
@@ -34,5 +38,22 @@ class AccessProvider
                 ->get(static::COURSE_LIST)
                 ->json('data');
         });
+    }
+
+    public function grantAccess(string $email, int $courseId) : void
+    {
+        Http::baseUrl($this->baseUrl)
+            ->withHeaders([
+                static::HEADER_NAME => $this->getHeaderKey(),
+            ])
+            ->post(static::ACCESS_URL, [
+                'email'     => $email,
+                'course_id' => $courseId,
+            ]);
+    }
+
+    protected function getHeaderKey() : string
+    {
+        return config("integrations.access.providers.{$this->provider}.key");
     }
 }

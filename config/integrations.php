@@ -13,10 +13,12 @@ return [
         'providers' => [
             'inauka' => [
                 'url' => env('INTEGRATIONS_INAUKA_URL', 'https://inauka.pl'),
+                'key' => env('INAUKA_KEY'),
             ],
 
             'projekt30' => [
                 'url' => env('INTEGRATIONS_PROJEKT30_URL', 'https://projekt30.pl'),
+                'key' => env('PROJEKT30_KEY'),
             ],
         ],
     ],

@@ -79,10 +79,6 @@ class PayuDriver
 
     protected function getNotifyUrl() : string
     {
-        if (app()->environment('local')) {
-            return env('NGROK_URL') . '/payu/ipn';
-        }
-
         return route('payu.ipn');
     }
 
