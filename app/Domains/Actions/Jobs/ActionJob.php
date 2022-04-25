@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Arr;
 
 abstract class ActionJob implements ShouldQueue
 {
@@ -22,4 +23,9 @@ abstract class ActionJob implements ShouldQueue
     }
 
     abstract public function handle() : void;
+
+    public function provider() : string
+    {
+        return Arr::get($this->parameters,'provider');
+    }
 }
