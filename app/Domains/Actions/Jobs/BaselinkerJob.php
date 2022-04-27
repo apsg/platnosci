@@ -6,17 +6,13 @@ use App\Domains\Actions\Models\Action;
 use Apsg\Baselinker\Baselinker\Orders;
 use GuzzleHttp\Client;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Log;
 
 class BaselinkerJob extends ActionJob
 {
     public function handle() : void
     {
-        $orderData = $this->getOrderPayload();
-        $token = $this->getProviderKey();
-        $response = (new Orders(new Client(), $token))
-            ->addOrder($orderData);
-        Log::info(__CLASS__, compact('orderData', 'token', 'response'));
+        (new Orders(new Client(), $this->getProviderKey()))
+            ->addOrder($this->getOrderPayload());
     }
 
     protected function getOrderPayload() : array
