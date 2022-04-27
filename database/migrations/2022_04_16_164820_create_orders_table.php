@@ -24,7 +24,7 @@ return new class extends Migration {
                 ->on('sales')
                 ->restrictOnDelete();
 
-            $table->unsignedInteger('price');
+            $table->unsignedFloat('price');
             $table->string('external_id')->nullable();
             $table->timestamp('confirmed_at')->nullable();
             $table->timestamps();

@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string              email
  * @property string|null         phone
  * @property int                 sale_id
- * @property int                 price
+ * @property float               price
  * @property string|null         external_id
  * @property Carbon|null         confirmed_at
  * @property Carbon|null         cancelled_at
