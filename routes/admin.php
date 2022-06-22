@@ -1,6 +1,6 @@
 <?php
 
-use App\Domains\Payments\Controllers\Admin\InvoicesController;
+use App\Domains\Invoices\Controllers\Admin\InvoicesController;
 use App\Domains\Payments\Controllers\Admin\OrdersController;
 use App\Domains\Sales\Http\Controllers\Admin\SaleActionsController;
 use App\Domains\Sales\Http\Controllers\Admin\SalesController;

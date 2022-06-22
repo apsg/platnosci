@@ -25,7 +25,8 @@
         "openpayu/openpayu": "^2.3",
         "sentry/sentry-laravel": "^2.11",
         "vladimir-yuldashev/laravel-queue-rabbitmq": "^12.0",
-        "wireui/wireui": "^1.0"
+        "wireui/wireui": "^1.0",
+        "ext-curl": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

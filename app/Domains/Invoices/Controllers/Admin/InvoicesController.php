@@ -1,6 +1,7 @@
 <?php
-namespace App\Domains\Payments\Controllers\Admin;
+namespace App\Domains\Invoices\Controllers\Admin;
 
+use App\Domains\Invoices\Repositories\InvoicesRepository;
 use App\Domains\Payments\Models\InvoiceRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
@@ -21,8 +22,9 @@ class InvoicesController extends Controller
         return back();
     }
 
-    public function accept(InvoiceRequest $invoice)
+    public function accept(InvoiceRequest $invoice, InvoicesRepository $repository)
     {
+        $repository->accept($invoice);
 
         return back();
     }

@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string      ip
  * @property string      name
  * @property string      address
+ * @property string      nip
+ * @property string|null external_id
  * @property Carbon      created_at
  * @property Carbon      updated_at
  * @property Carbon|null accepted_at
@@ -42,5 +44,10 @@ class InvoiceRequest extends Model
     public function scopePending(Builder $builder): Builder
     {
         return $builder->whereNull('accepted_at');
+    }
+
+    public function hasInvoice(): bool
+    {
+        return !empty($this->external_id);
     }
 }

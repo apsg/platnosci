@@ -34,14 +34,18 @@ class Index extends LivewireDatatable
                 ->round(2),
 
             Column::name('nip')
-                ->searchable(),
+                ->searchable()
+                ->editable(),
 
             Column::name('name')
-                ->searchable(),
+                ->searchable()
+                ->editable(),
 
-            Column::name('address'),
+            Column::name('address')
+                ->editable(),
 
-            DateColumn::name('created_at'),
+            DateColumn::name('created_at')
+                ->label('Data sprzedaży'),
 
             Column::callback(['id'], function ($id) {
                 return view('livewire.admin.invoices.tables.options', compact('id'));
