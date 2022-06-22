@@ -2098,6 +2098,9 @@ select {
 .bg-opacity-25 {
 	--tw-bg-opacity: 0.25;
 }
+.bg-opacity-60 {
+	--tw-bg-opacity: 0.6;
+}
 .bg-opacity-20 {
 	--tw-bg-opacity: 0.2;
 }
@@ -2464,6 +2467,14 @@ select {
 	--tw-text-opacity: 1;
 	color: rgba(209, 213, 219, var(--tw-text-opacity));
 }
+.text-blue-600 {
+	--tw-text-opacity: 1;
+	color: rgba(37, 99, 235, var(--tw-text-opacity));
+}
+.text-purple-700 {
+	--tw-text-opacity: 1;
+	color: rgba(109, 40, 217, var(--tw-text-opacity));
+}
 .text-pink-600 {
 	--tw-text-opacity: 1;
 	color: rgba(219, 39, 119, var(--tw-text-opacity));
@@ -2483,10 +2494,6 @@ select {
 .text-blue-400 {
 	--tw-text-opacity: 1;
 	color: rgba(96, 165, 250, var(--tw-text-opacity));
-}
-.text-blue-600 {
-	--tw-text-opacity: 1;
-	color: rgba(37, 99, 235, var(--tw-text-opacity));
 }
 .text-purple-600 {
 	--tw-text-opacity: 1;
@@ -2725,6 +2732,10 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(185, 28, 28, var(--tw-bg-opacity));
 }
+.hover\:bg-blue-600:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(37, 99, 235, var(--tw-bg-opacity));
+}
 .hover\:bg-blue-700:hover {
 	--tw-bg-opacity: 1;
 	background-color: rgba(29, 78, 216, var(--tw-bg-opacity));
@@ -2745,10 +2756,6 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(30, 64, 175, var(--tw-bg-opacity));
 }
-.hover\:bg-blue-600:hover {
-	--tw-bg-opacity: 1;
-	background-color: rgba(37, 99, 235, var(--tw-bg-opacity));
-}
 .hover\:bg-blue-100:hover {
 	--tw-bg-opacity: 1;
 	background-color: rgba(219, 234, 254, var(--tw-bg-opacity));
@@ -2765,9 +2772,9 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(109, 40, 217, var(--tw-bg-opacity));
 }
-.hover\:bg-indigo-400:hover {
+.hover\:bg-indigo-200:hover {
 	--tw-bg-opacity: 1;
-	background-color: rgba(129, 140, 248, var(--tw-bg-opacity));
+	background-color: rgba(199, 210, 254, var(--tw-bg-opacity));
 }
 .hover\:bg-blue-200:hover {
 	--tw-bg-opacity: 1;
@@ -2776,10 +2783,6 @@ select {
 .hover\:bg-white:hover {
 	--tw-bg-opacity: 1;
 	background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
-}
-.hover\:bg-indigo-200:hover {
-	--tw-bg-opacity: 1;
-	background-color: rgba(199, 210, 254, var(--tw-bg-opacity));
 }
 .hover\:bg-opacity-20:hover {
 	--tw-bg-opacity: 0.2;
@@ -3136,6 +3139,9 @@ select {
 .dark .dark\:bg-negative-700 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(185, 28, 28, var(--tw-bg-opacity));
+}
+.dark .dark\:bg-opacity-60 {
+	--tw-bg-opacity: 0.6;
 }
 .dark .dark\:text-negative-600 {
 	--tw-text-opacity: 1;

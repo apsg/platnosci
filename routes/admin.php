@@ -1,5 +1,6 @@
 <?php
 
+use App\Domains\Payments\Controllers\Admin\InvoicesController;
 use App\Domains\Payments\Controllers\Admin\OrdersController;
 use App\Domains\Sales\Http\Controllers\Admin\SaleActionsController;
 use App\Domains\Sales\Http\Controllers\Admin\SalesController;
@@ -36,5 +37,13 @@ Route::middleware(['auth:sanctum', 'verified'])
                 Route::get('/', [OrdersController::class, 'index'])->name('index');
                 Route::get('/{order}/resend', [OrdersController::class, 'resend'])->name('resend');
                 Route::delete('/{order}', [OrdersController::class, 'destroy'])->name('delete');
+            });
+
+        Route::prefix('invoices')
+            ->as('invoices.')
+            ->group(function () {
+                Route::get('/', [InvoicesController::class, 'index'])->name('index');
+                Route::delete('/{invoice}', [InvoicesController::class, 'destroy'])->name('delete');
+                Route::get('/{invoice}/accept', [InvoicesController::class, 'accept'])->name('accept');
             });
     });

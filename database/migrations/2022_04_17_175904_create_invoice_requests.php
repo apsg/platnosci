@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->string('nip');
             $table->string('name');
             $table->string('address');
-
+            $table->dateTime('accepted_at')->nullable();
             $table->timestamps();
         });
     }
