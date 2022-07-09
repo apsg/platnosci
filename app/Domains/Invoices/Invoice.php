@@ -5,6 +5,7 @@ use App\Domains\Payments\Models\InvoiceRequest;
 use App\Domains\Invoices\Client\InvoiceOceanClient;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Support\Arr;
 use InvalidArgumentException;
 
 class Invoice
@@ -49,24 +50,19 @@ class Invoice
         $now = Carbon::now()->format('Y-m-d');
 
         return [
-            'kind'             => 'vat',
-            'number'           => null,
-            'sell_date'        => $this->request->order->created_at->format('Y-m-d'),
-            'issue_date'       => $now,
-            'payment_to'       => $this->request->order->created_at->format('Y-m-d'),
-            'seller_name'      => 'IT&Business Training Mateusz Grabowski',
-            'seller_street'    => 'ul. Zygmunta Starego 1/3',
-            'seller_post_code' => '44-100',
-            'seller_city'      => 'Gliwice',
-            'seller_tax_no'    => '631-227-39-46',
-            'buyer_name'       => $this->getName(),
-            'buyer_email'      => $this->request->order->email,
-            'buyer_tax_no'     => $this->request->nip,
-            'positions'        => $this->getPositions(),
-            'paid_date'        => $this->request->order->created_at->format('Y-m-d'),
-            'status'           => 'paid',
-            'gtu_codes'        => ['GTU_12'],
-        ];
+                'kind'         => 'vat',
+                'number'       => null,
+                'sell_date'    => $this->request->order->created_at->format('Y-m-d'),
+                'issue_date'   => $now,
+                'payment_to'   => $this->request->order->created_at->format('Y-m-d'),
+                'buyer_name'   => $this->getName(),
+                'buyer_email'  => $this->request->order->email,
+                'buyer_tax_no' => $this->request->nip,
+                'positions'    => $this->getPositions(),
+                'paid_date'    => $this->request->order->created_at->format('Y-m-d'),
+                'status'       => 'paid',
+                'gtu_codes'    => ['GTU_12'],
+            ] + $this->getSellerData();
     }
 
     protected function getPositions(): array
@@ -104,5 +100,18 @@ class Invoice
         }
 
         return false;
+    }
+
+    protected function getSellerData(): array
+    {
+        $data = config("invoice.providers.{$this->request->provider}");
+
+        return [
+            'seller_name'      => Arr::get($data, 'name'),
+            'seller_street'    => Arr::get($data, 'address'),
+            'seller_post_code' => Arr::get($data, 'postcode'),
+            'seller_city'      => Arr::get($data, 'city'),
+            'seller_tax_no'    => Arr::get($data, 'nip'),
+        ];
     }
 }
