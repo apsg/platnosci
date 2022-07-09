@@ -15,10 +15,9 @@ class Order extends Component
     public string $phone = '';
     public bool $accept = false;
 
-    public function rules() : array
+    public function rules(): array
     {
         return [
-
             'email'  => 'required|email',
             'phone'  => ['required', new PhoneRule()],
             'accept' => ['required', 'boolean', new AcceptedBoolRule()],
@@ -32,7 +31,7 @@ class Order extends Component
         'accept.required' => 'Wymagana jest akceptacja regulaminu',
     ];
 
-    public function updated($propertyName) : void
+    public function updated($propertyName): void
     {
         $this->validateOnly($propertyName);
     }
@@ -44,7 +43,7 @@ class Order extends Component
         ]);
     }
 
-    public function isValid() : bool
+    public function isValid(): bool
     {
         if (!$this->accept) {
             return false;
@@ -67,7 +66,7 @@ class Order extends Component
 
         $order = app(OrdersRepository::class)->create($this->sale, $this->email, $this->phone);
 
-        $url = (new PayuDriver('platnosci'))
+        $url = (new PayuDriver($this->sale->payments_provider))
             ->forOrder($order)
             ->getUrl();
 
