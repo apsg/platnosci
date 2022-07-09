@@ -18,6 +18,7 @@ use Illuminate\Support\Collection;
  * @property double                           price
  * @property double|null                      full_price
  * @property int|null                         counter
+ * @property string|null                      payments_provider
  * @property Carbon                           created_at
  * @property Carbon                           updated_at
  *
@@ -35,24 +36,25 @@ class Sale extends Model
         'price',
         'full_price',
         'counter',
+        'payments_provider',
     ];
 
-    public function url() : string
+    public function url(): string
     {
         return route('sales.show', $this);
     }
 
-    public function actions() : HasMany
+    public function actions(): HasMany
     {
         return $this->hasMany(Action::class)->orderBy('job');
     }
 
-    public static function newFactory() : SaleFactory
+    public static function newFactory(): SaleFactory
     {
         return SaleFactory::new();
     }
 
-    public function format(string $parameter) : string
+    public function format(string $parameter): string
     {
         return number_format($this->getAttribute($parameter), 2);
     }

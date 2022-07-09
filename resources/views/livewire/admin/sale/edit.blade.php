@@ -101,6 +101,28 @@
             @error('sale.rules_url') <span class="error text-red-700">{{ $message }}</span> @enderror
         </div>
 
+        <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="provider">
+                Konto systemu płatności
+            </label>
+            <select
+                wire:model.debounce.500ms="sale.payments_provider"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="provider"
+                type="text"
+            >
+                <option value="">--</option>
+                @foreach(config('payu') as $name => $data)
+                    <option
+                        value="{{ $name }}"
+                        @if($sale->payments_provider === $name)
+                            selected
+                        @endif
+                    >{{ $data['name'] }}</option>
+                @endforeach
+            </select>
+        </div>
+
         <div class="flex items-center justify-between">
             <button
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"

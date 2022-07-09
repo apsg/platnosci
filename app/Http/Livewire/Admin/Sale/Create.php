@@ -2,6 +2,7 @@
 namespace App\Http\Livewire\Admin\Sale;
 
 use App\Domains\Sales\Models\Sale;
+use App\Rules\PaymentsProviderRule;
 use Livewire\Component;
 use function redirect;
 use function view;
@@ -14,15 +15,21 @@ class Create extends Component
     public ?float $fullPrice = null;
     public ?string $rulesUrl = null;
     public ?int $counter = null;
+    public ?string $paymentsProvider = null;
 
-    protected array $rules = [
-        'name'        => 'required|string',
-        'price'       => 'required|numeric|min:0.01',
-        'fullPrice'   => 'sometimes|numeric|min:0.01',
-        'description' => 'required|string',
-        'rulesUrl'    => 'sometimes|string',
-        'counter'     => 'sometimes|nullable|integer|min:0',
-    ];
+    public function rules(): array
+    {
+        return [
+            'name'              => 'required|string',
+            'price'             => 'required|numeric|min:0.01',
+            'fullPrice'         => 'sometimes|numeric|min:0.01',
+            'description'       => 'required|string',
+            'rulesUrl'          => 'sometimes|string',
+            'counter'           => 'sometimes|nullable|integer|min:0',
+            'payments_provider' => ['nullable', new PaymentsProviderRule()],
+
+        ];
+    }
 
     public function render()
     {
@@ -32,12 +39,13 @@ class Create extends Component
     public function store()
     {
         $sale = Sale::create([
-            'name'        => $this->name,
-            'price'       => $this->price,
-            'full_price'  => $this->fullPrice,
-            'description' => $this->description,
-            'rules_url'   => $this->rulesUrl,
-            'counter'     => $this->counter,
+            'name'              => $this->name,
+            'price'             => $this->price,
+            'full_price'        => $this->fullPrice,
+            'description'       => $this->description,
+            'rules_url'         => $this->rulesUrl,
+            'counter'           => $this->counter,
+            'payments_provider' => $this->paymentsProvider,
         ]);
 
         return redirect(route('admin.sales.edit', $sale));

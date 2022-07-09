@@ -2,6 +2,7 @@
 namespace App\Http\Livewire\Admin\Sale;
 
 use App\Domains\Sales\Models\Sale;
+use App\Rules\PaymentsProviderRule;
 use Livewire\Component;
 
 class Edit extends Component
@@ -15,15 +16,16 @@ class Edit extends Component
         ]);
     }
 
-    public function rules() : array
+    public function rules(): array
     {
         return [
-            'sale.name'        => 'required|string',
-            'sale.description' => 'required|string',
-            'sale.price'       => 'required|numeric|min:0.01',
-            'sale.full_price'  => 'nullable|numeric|min:0.01',
-            'sale.rules_url'   => 'nullable|sometimes|string',
-            'sale.counter'     => 'nullable|sometimes|integer|min:0',
+            'sale.name'              => 'required|string',
+            'sale.description'       => 'required|string',
+            'sale.price'             => 'required|numeric|min:0.01',
+            'sale.full_price'        => 'nullable|numeric|min:0.01',
+            'sale.rules_url'         => 'nullable|sometimes|string',
+            'sale.counter'           => 'nullable|sometimes|integer|min:0',
+            'sale.payments_provider' => ['nullable', new PaymentsProviderRule()],
         ];
     }
 
