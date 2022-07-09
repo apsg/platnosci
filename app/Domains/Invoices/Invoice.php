@@ -5,6 +5,7 @@ use App\Domains\Payments\Models\InvoiceRequest;
 use App\Domains\Invoices\Client\InvoiceOceanClient;
 use Carbon\Carbon;
 use Exception;
+use InvalidArgumentException;
 
 class Invoice
 {
@@ -14,7 +15,16 @@ class Invoice
     public function __construct(InvoiceRequest $request)
     {
         $this->request = $request;
-        $this->client = app(InvoiceOceanClient::class);
+        $provider = $request->provider;
+
+        if (empty($provider)) {
+            throw new InvalidArgumentException('No invoice provider selected');
+        }
+
+        $this->client = new InvoiceOceanClient(
+            config("invoice.providers.{$provider}.url"),
+            config("invoice.providers.{$provider}.token")
+        );
     }
 
     public function generate(): int|string

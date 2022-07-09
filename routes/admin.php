@@ -43,6 +43,7 @@ Route::middleware(['auth:sanctum', 'verified'])
             ->as('invoices.')
             ->group(function () {
                 Route::get('/', [InvoicesController::class, 'index'])->name('index');
+                Route::get('/{invoice{', [InvoicesController::class, 'show'])->name('show');
                 Route::delete('/{invoice}', [InvoicesController::class, 'destroy'])->name('delete');
                 Route::get('/{invoice}/accept', [InvoicesController::class, 'accept'])->name('accept');
             });

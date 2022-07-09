@@ -47,11 +47,28 @@ class Index extends LivewireDatatable
             DateColumn::name('created_at')
                 ->label('Data sprzedaży'),
 
+            Column::callback(['id', 'external_id', 'provider'], function (int $id, $externalId, ?string $provider) {
+                return view(
+                    'livewire.admin.invoices.tables.accept',
+                    compact('id', 'externalId', 'provider')
+                );
+            })
+                ->label('Zatwierdzanie'),
+
             Column::callback(['id'], function ($id) {
                 return view('livewire.admin.invoices.tables.options', compact('id'));
             })
                 ->label('Opcje')
                 ->unsortable(),
         ];
+    }
+
+    public function saveProvider(int $id, ?string $provider)
+    {
+        $invoice = InvoiceRequest::findOrFail($id);
+
+        $invoice->update([
+            'provider' => $provider,
+        ]);
     }
 }

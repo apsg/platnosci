@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string      address
  * @property string      nip
  * @property string|null external_id
+ * @property string|null provider
  * @property Carbon      created_at
  * @property Carbon      updated_at
  * @property Carbon|null accepted_at
@@ -30,6 +31,7 @@ class InvoiceRequest extends Model
         'name',
         'address',
         'accepted_at',
+        'provider',
     ];
 
     protected $dates = [

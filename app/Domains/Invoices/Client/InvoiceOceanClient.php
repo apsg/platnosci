@@ -9,11 +9,14 @@ class InvoiceOceanClient extends InvoiceOcean
      * @param $username
      * @param $api_token
      */
-    public function __construct()
+    public function __construct(string $url = null, string $token = null)
     {
+        $url ??= config('services.fakturownia.url');
+        $token ??= config('services.fakturownia.token');
+
         parent::__construct(
-            Str::finish(config('services.fakturownia.url'), '/'),
-            config('services.fakturownia.token')
+            Str::finish($url, '/'),
+            $token
         );
 
         $this->_debug = app()->environment('local');
@@ -166,7 +169,7 @@ class InvoiceOceanClient extends InvoiceOcean
         return $result;
     }
 
-    public function getInvoiceUrl(int $invoiceId = null) : ?string
+    public function getInvoiceUrl(int $invoiceId = null): ?string
     {
         if ($invoiceId === null) {
             return null;

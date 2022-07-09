@@ -28,4 +28,9 @@ class InvoicesController extends Controller
 
         return back();
     }
+
+    public function show(InvoiceRequest $invoice)
+    {
+        return view('admin.invoices.show')->with(compact('invoice'));
+    }
 }

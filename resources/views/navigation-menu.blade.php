@@ -16,15 +16,19 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('admin.orders.index') }}"
-                                    :active="request()->routeIs('orders.index')">
+                                    :active="request()->routeIs('admin.orders.index')">
                         Zamówienia
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('admin.sales.index') }}"
-                                    :active="request()->routeIs('sales.index')">
+                                    :active="request()->routeIs('admin.sales.index')">
                         Sprzedaże
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('admin.invoices.index') }}"
+                                    :active="request()->routeIs('admin.invoices.index')">
+                        Faktury
+                    </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('admin.sales.create') }}"
-                                    :active="request()->routeIs('sales.create')">
+                                    :active="request()->routeIs('admin.sales.create')">
                         <span
                             class="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700">
                             + Dodaj nową sprzedaż
@@ -87,9 +91,9 @@
                             </x-slot>
                         </x-jet-dropdown>
                     </div>
-            @endif
+                @endif
 
-            <!-- Settings Dropdown -->
+                <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
                     <x-jet-dropdown align="right" width="48">
                         <x-slot name="trigger">
@@ -201,9 +205,9 @@
                                                :active="request()->routeIs('api-tokens.index')">
                         {{ __('API Tokens') }}
                     </x-jet-responsive-nav-link>
-            @endif
+                @endif
 
-            <!-- Authentication -->
+                <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
