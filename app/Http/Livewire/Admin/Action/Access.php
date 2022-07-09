@@ -7,9 +7,10 @@ use Illuminate\Support\Arr;
 class Access extends ActionComponent
 {
     public array $courses = [];
+
     public int $courseId;
 
-    public function mount() : void
+    public function mount(): void
     {
         parent::mount();
 

@@ -7,7 +7,7 @@ use MailerLiteApi\MailerLite;
 
 class MailerliteJob extends ActionJob
 {
-    public function handle() : void
+    public function handle(): void
     {
         $token = config(
             'integrations.'

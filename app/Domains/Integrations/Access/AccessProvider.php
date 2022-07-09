@@ -2,10 +2,10 @@
 namespace App\Domains\Integrations\Access;
 
 use App\Domains\Actions\Exceptions\InvalidProviderException;
+use function config;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
-use function config;
 
 class AccessProvider
 {
@@ -14,9 +14,10 @@ class AccessProvider
     const HEADER_NAME = 'X-INAUKA-KEY';
 
     protected string $provider;
+
     protected string $baseUrl;
 
-    public static function make(string $provider) : static
+    public static function make(string $provider): static
     {
         if (config("integrations.access.providers.{$provider}") === null) {
             throw new InvalidProviderException($provider);
@@ -31,7 +32,7 @@ class AccessProvider
         $this->baseUrl = config("integrations.access.providers.{$provider}.url");
     }
 
-    public function courses() : array
+    public function courses(): array
     {
         return Cache::remember(Str::slug($this->baseUrl) . 'courses', 60, function () {
             return Http::baseUrl($this->baseUrl)
@@ -40,7 +41,7 @@ class AccessProvider
         });
     }
 
-    public function grantAccess(string $email, int $courseId) : void
+    public function grantAccess(string $email, int $courseId): void
     {
         Http::baseUrl($this->baseUrl)
             ->withHeaders([
@@ -52,7 +53,7 @@ class AccessProvider
             ]);
     }
 
-    protected function getHeaderKey() : string
+    protected function getHeaderKey(): string
     {
         return config("integrations.access.providers.{$this->provider}.key");
     }

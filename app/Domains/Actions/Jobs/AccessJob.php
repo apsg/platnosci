@@ -6,7 +6,7 @@ use Illuminate\Support\Arr;
 
 class AccessJob extends ActionJob
 {
-    public function handle() : void
+    public function handle(): void
     {
         $courseId = Arr::get($this->parameters, 'course_id');
         $email = $this->order->email;

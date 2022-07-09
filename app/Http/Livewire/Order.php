@@ -11,8 +11,11 @@ use Livewire\Component;
 class Order extends Component
 {
     public Sale $sale;
+
     public string $email = '';
+
     public string $phone = '';
+
     public bool $accept = false;
 
     public function rules(): array

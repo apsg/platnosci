@@ -51,7 +51,6 @@ class EditPayment extends Component
     public function update()
     {
         $this->validate();
-
     }
 
     public function mail()

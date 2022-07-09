@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class ActionsHelper
 {
-    public static function list() : Collection
+    public static function list(): Collection
     {
         return collect(config('integrations'))
             ->map(function (array $integration) {
@@ -15,18 +15,18 @@ class ActionsHelper
             });
     }
 
-    public static function isValidAction(string $action) : bool
+    public static function isValidAction(string $action): bool
     {
         return array_key_exists($action, config('integrations'));
     }
 
-    public static function getProviders(string $action) : array
+    public static function getProviders(string $action): array
     {
         return array_keys(config("integrations.{$action}.providers", []));
     }
 
-    public static function emailToName(string $email) : string
+    public static function emailToName(string $email): string
     {
-        return Str::studly(str_replace(['.', '-', '_',], [' '], explode('@', $email)[0]));
+        return Str::studly(str_replace(['.', '-', '_'], [' '], explode('@', $email)[0]));
     }
 }

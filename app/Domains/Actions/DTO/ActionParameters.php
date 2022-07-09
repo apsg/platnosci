@@ -1,7 +1,6 @@
 <?php
 namespace App\Domains\Actions\DTO;
 
-use ArrayAccess;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Support\Collection;
 
@@ -26,7 +25,7 @@ abstract class ActionParameters implements CastsAttributes
         ];
     }
 
-    public function toArray() : array
+    public function toArray(): array
     {
         return $this->parameters->toArray();
     }

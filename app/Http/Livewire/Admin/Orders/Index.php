@@ -3,7 +3,6 @@ namespace App\Http\Livewire\Admin\Orders;
 
 use App\Domains\Payments\Models\Order;
 use App\Domains\Sales\Models\Sale;
-use Mediconesystems\LivewireDatatables\BooleanColumn;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 use Mediconesystems\LivewireDatatables\NumberColumn;

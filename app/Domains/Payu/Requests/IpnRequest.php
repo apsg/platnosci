@@ -14,27 +14,27 @@ class IpnRequest extends FormRequest
         return [];
     }
 
-    public function hash() : string
+    public function hash(): string
     {
         return $this->input('order.extOrderId', '');
     }
 
-    public function externalId() : string
+    public function externalId(): string
     {
         return $this->input('order.orderId', '');
     }
 
-    public function isStatusCompleted() : bool
+    public function isStatusCompleted(): bool
     {
         return $this->input('order.status') === static::COMPLETED;
     }
 
-    public function isStatusCanceled() : bool
+    public function isStatusCanceled(): bool
     {
         return $this->input('order.status') === static::CANCELLED;
     }
 
-    public function getSignature() : string
+    public function getSignature(): string
     {
         $signatureHeader = explode(';', $this->header(static::SIGNATURE_HEADER));
 

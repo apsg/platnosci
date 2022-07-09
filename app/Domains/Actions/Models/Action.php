@@ -1,7 +1,6 @@
 <?php
 namespace App\Domains\Actions\Models;
 
-use App\Domains\Actions\ActionEnum;
 use App\Domains\Actions\Jobs\AccessJob;
 use App\Domains\Actions\Jobs\BaselinkerJob;
 use App\Domains\Actions\Jobs\InvoiceJob;
@@ -22,7 +21,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property array     parameters
  * @property Carbon    created_at
  * @property Carbon    updated_at
- *
  * @property-read Sale sale
  */
 class Action extends Model
@@ -31,7 +29,6 @@ class Action extends Model
 
     const TYPE_SUCCESS = 'success';
     const TYPE_FAIL = 'fail';
-
     const ACTION_ACCESS = 'access';
     const ACTION_INVOICE = 'invoice';
     const ACTION_MAILERLITE = 'mailerlite';
@@ -48,34 +45,34 @@ class Action extends Model
         'parameters' => 'array',
     ];
 
-    public function sale() : BelongsTo
+    public function sale(): BelongsTo
     {
         return $this->belongsTo(Sale::class);
     }
 
-    public function scopeOnSuccess(Builder $builder) : Builder
+    public function scopeOnSuccess(Builder $builder): Builder
     {
         return $builder->where('type', static::TYPE_SUCCESS);
     }
 
-    public function scopeOnFail(Builder $builder) : Builder
+    public function scopeOnFail(Builder $builder): Builder
     {
         return $builder->where('type', static::TYPE_FAIL);
     }
 
-    public static function getFactory() : ActionFactory
+    public static function getFactory(): ActionFactory
     {
         return ActionFactory::new();
     }
 
-    public function getType() : string
+    public function getType(): string
     {
         return match ($this->job) {
-            AccessJob::class => static::ACTION_ACCESS,
+            AccessJob::class     => static::ACTION_ACCESS,
             BaselinkerJob::class => static::ACTION_BASELINKER,
             MailerliteJob::class => static::ACTION_MAILERLITE,
-            InvoiceJob::class => static::ACTION_INVOICE,
-            default => '',
+            InvoiceJob::class    => static::ACTION_INVOICE,
+            default              => '',
         };
     }
 }

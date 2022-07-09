@@ -14,6 +14,7 @@ abstract class ActionJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected array $parameters;
+
     protected Order $order;
 
     public function __construct(Order $order, array $parameters = [])
@@ -22,10 +23,10 @@ abstract class ActionJob implements ShouldQueue
         $this->order = $order;
     }
 
-    abstract public function handle() : void;
+    abstract public function handle(): void;
 
-    public function provider() : string
+    public function provider(): string
     {
-        return Arr::get($this->parameters,'provider');
+        return Arr::get($this->parameters, 'provider');
     }
 }

@@ -10,7 +10,7 @@ class PhoneRule implements Rule
         //
     }
 
-    public function passes($attribute, $value) : bool
+    public function passes($attribute, $value): bool
     {
         if (!preg_match('/\+\d{11}|\d{9}/', str_replace([' ', '-'], '', $value))) {
             return false;
@@ -19,7 +19,7 @@ class PhoneRule implements Rule
         return true;
     }
 
-    public function message() : string
+    public function message(): string
     {
         return 'Nieprawidłowy numer telefonu';
     }

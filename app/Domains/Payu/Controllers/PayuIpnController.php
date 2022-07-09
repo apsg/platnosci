@@ -24,7 +24,7 @@ class PayuIpnController extends Controller
 
         if ($verifySignature !== true) {
             throw new SignatureMismatchException($request->getContent());
-        };
+        }
 
         $extOrderId = $request->externalId();
         $order = $repository->findByHash($request->hash());

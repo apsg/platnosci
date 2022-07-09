@@ -9,6 +9,7 @@ use Illuminate\Support\Arr;
 class Baselinker extends ActionComponent
 {
     public array $products = [];
+
     public string $productId;
 
     protected array $rules = [
@@ -16,7 +17,7 @@ class Baselinker extends ActionComponent
         'productId' => 'required|string',
     ];
 
-    public function mount() : void
+    public function mount(): void
     {
         parent::mount();
 
@@ -29,7 +30,7 @@ class Baselinker extends ActionComponent
         return view('livewire.admin.action.baselinker');
     }
 
-    public function loadProducts() : void
+    public function loadProducts(): void
     {
         if (empty($this->selected)) {
             $this->productId = '';
@@ -65,7 +66,7 @@ class Baselinker extends ActionComponent
         session()->flash('message', 'Zapisano');
     }
 
-    private function getProviderKey() : string
+    private function getProviderKey(): string
     {
         return 'integrations.'
             . Action::ACTION_BASELINKER

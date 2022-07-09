@@ -19,7 +19,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property Carbon|null         cancelled_at
  * @property Carbon              created_at
  * @property Carbon              updated_at
- *
  * @property-read Sale           sale
  * @property-read InvoiceRequest invoice_request
  */
@@ -36,22 +35,22 @@ class Order extends Model
         'cancelled_at',
     ];
 
-    public function sale() : BelongsTo
+    public function sale(): BelongsTo
     {
         return $this->belongsTo(Sale::class);
     }
 
-    public function invoice_request() : HasOne
+    public function invoice_request(): HasOne
     {
         return $this->hasOne(InvoiceRequest::class);
     }
 
-    public function isPaid() : bool
+    public function isPaid(): bool
     {
         return $this->confirmed_at !== null;
     }
 
-    public function isCancelled() : bool
+    public function isCancelled(): bool
     {
         return $this->cancelled_at !== null;
     }

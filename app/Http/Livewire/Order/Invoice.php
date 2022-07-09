@@ -9,9 +9,13 @@ use Livewire\Component;
 class Invoice extends Component
 {
     public Order $order;
+
     public string $nip = '';
+
     public string $name = '';
+
     public string $address = '';
+
     public bool $isSent = false;
 
     public function rules()
@@ -36,7 +40,7 @@ class Invoice extends Component
         return view('livewire.order.invoice');
     }
 
-    public function updated($propertyName) : void
+    public function updated($propertyName): void
     {
         $this->validateOnly($propertyName);
     }

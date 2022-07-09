@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 
 class OrdersRepository
 {
-    public function create(Sale $sale, string $email, ?string $phone = null) : Order
+    public function create(Sale $sale, string $email, ?string $phone = null): Order
     {
         return Order::create([
             'sale_id' => $sale->id,
@@ -21,7 +21,7 @@ class OrdersRepository
         ]);
     }
 
-    public function findByHash(string $hash) : ?Order
+    public function findByHash(string $hash): ?Order
     {
         return Order::where('hash', $hash)->first();
     }

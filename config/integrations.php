@@ -23,23 +23,23 @@ return [
         ],
     ],
 
-//    Action::ACTION_INVOICE => [
-//        'name'      => 'Wystawianie faktury',
-//        'job'       => InvoiceJob::class,
-//        'providers' => [
-//            'tmgfv' => [
-//                'url'   => env('FAKTUROWNIA_URL'),
-//                'token' => env('FAKTUROWNIA_TOKEN'),
-//            ],
-//        ],
-//    ],
+    //    Action::ACTION_INVOICE => [
+    //        'name'      => 'Wystawianie faktury',
+    //        'job'       => InvoiceJob::class,
+    //        'providers' => [
+    //            'tmgfv' => [
+    //                'url'   => env('FAKTUROWNIA_URL'),
+    //                'token' => env('FAKTUROWNIA_TOKEN'),
+    //            ],
+    //        ],
+    //    ],
 
     Action::ACTION_MAILERLITE => [
         'name'      => 'Lista Mailerlite',
         'job'       => MailerliteJob::class,
         'providers' => [
             'itbt' => [
-                'token' => env('MAILERLITE_TOKEN')
+                'token' => env('MAILERLITE_TOKEN'),
             ],
         ],
     ],

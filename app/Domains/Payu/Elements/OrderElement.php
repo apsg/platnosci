@@ -7,7 +7,9 @@ use App\Domains\Payu\PayuHelper;
 class OrderElement
 {
     protected array $products = [];
+
     protected Order $order;
+
     protected Buyer $buyer;
 
     public function __construct(Order $order)
@@ -23,23 +25,23 @@ class OrderElement
         );
     }
 
-    public function toArray() : array
+    public function toArray(): array
     {
         return [
-                'description' => $this->order->sale->description,
-                'totalAmount' => $this->price(),
-                'extOrderId'  => $this->order->hash,
-                'buyer'       => $this->buyer->toArray(),
-            ]
+            'description' => $this->order->sale->description,
+            'totalAmount' => $this->price(),
+            'extOrderId'  => $this->order->hash,
+            'buyer'       => $this->buyer->toArray(),
+        ]
             + $this->productsToArray();
     }
 
-    protected function price() : int
+    protected function price(): int
     {
         return PayuHelper::priceToCents($this->order->price);
     }
 
-    protected function productsToArray() : array
+    protected function productsToArray(): array
     {
         return [
             'products' => array_map(function (Product $product) {

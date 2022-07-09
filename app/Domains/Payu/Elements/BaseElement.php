@@ -6,7 +6,7 @@ use ReflectionProperty;
 
 abstract class BaseElement
 {
-    public function toArray() : array
+    public function toArray(): array
     {
         $reflect = new ReflectionClass($this);
         $props = $reflect->getProperties(ReflectionProperty::IS_PROTECTED | ReflectionProperty::IS_PUBLIC);
@@ -19,7 +19,7 @@ abstract class BaseElement
         return array_filter($array);
     }
 
-    protected function itemToValue(mixed $item) : mixed
+    protected function itemToValue(mixed $item): mixed
     {
         if ($item instanceof BaseElement) {
             return $item->toArray();

@@ -1,7 +1,6 @@
 <?php
 namespace Database\Factories;
 
-use App\Domains\Actions\DTO\AccessParameters;
 use App\Domains\Actions\Jobs\AccessJob;
 use App\Domains\Actions\Models\Action;
 use App\Domains\Sales\Models\Sale;

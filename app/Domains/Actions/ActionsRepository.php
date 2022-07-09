@@ -7,7 +7,7 @@ use App\Domains\Sales\Models\Sale;
 
 class ActionsRepository
 {
-    public function create(Sale $sale, string $action) : Action
+    public function create(Sale $sale, string $action): Action
     {
         if (!ActionsHelper::isValidAction($action)) {
             throw  new InvalidActionException($action);

@@ -8,6 +8,7 @@ use MailerLiteApi\MailerLite as MailerLiteApi;
 class Mailerlite extends ActionComponent
 {
     public array $groups = [];
+
     public string $groupId = '';
 
     protected array $rules = [
@@ -15,7 +16,7 @@ class Mailerlite extends ActionComponent
         'groupId'  => 'required|string',
     ];
 
-    public function mount() : void
+    public function mount(): void
     {
         parent::mount();
 
@@ -30,7 +31,7 @@ class Mailerlite extends ActionComponent
         return view('livewire.admin.action.mailerlite');
     }
 
-    public function save() : void
+    public function save(): void
     {
         $this->validate();
 
@@ -44,7 +45,7 @@ class Mailerlite extends ActionComponent
         session()->flash('message', 'Zapisano!');
     }
 
-    public function loadGroups() : void
+    public function loadGroups(): void
     {
         if (!$this->isSelectedValidProvider(Action::ACTION_MAILERLITE)) {
             $this->groups = [];
@@ -65,7 +66,7 @@ class Mailerlite extends ActionComponent
             })->toArray();
     }
 
-    private function getProviderToken() : string
+    private function getProviderToken(): string
     {
         return config('integrations.'
             . Action::ACTION_MAILERLITE

@@ -11,15 +11,16 @@ class ActionComponent extends Component
     public Action $action;
 
     public array $providers = [];
+
     public ?string $selected;
 
-    public function mount() : void
+    public function mount(): void
     {
         $this->providers = ActionsHelper::getProviders($this->action->getType());
         $this->selected = Arr::get($this->action->parameters, 'provider', '');
     }
 
-    protected function isSelectedValidProvider(string $action) : bool
+    protected function isSelectedValidProvider(string $action): bool
     {
         if (empty($this->selected)) {
             return false;

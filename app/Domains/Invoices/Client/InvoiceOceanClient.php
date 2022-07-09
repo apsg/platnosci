@@ -37,8 +37,7 @@ class InvoiceOceanClient extends InvoiceOcean
     /**
      * Return specific client info.
      *
-     * @param int $client_id
-     *
+     * @param  int   $client_id
      * @return array
      */
     public function getClient($client_id = 0)
@@ -51,7 +50,7 @@ class InvoiceOceanClient extends InvoiceOcean
     /**
      * Create a client.
      *
-     * @param array $client
+     * @param  array $client
      * @return array
      */
     public function addClient($client = [])
@@ -70,8 +69,8 @@ class InvoiceOceanClient extends InvoiceOcean
     /**
      * Update a client.
      *
-     * @param int   $client_id
-     * @param array $client
+     * @param  int   $client_id
+     * @param  array $client
      * @return array
      */
     public function updateClient($client_id = 0, $client = [])
@@ -90,8 +89,7 @@ class InvoiceOceanClient extends InvoiceOcean
     /**
      * Get specific invoice information.
      *
-     * @param int $invoice_id
-     *
+     * @param  int   $invoice_id
      * @return array
      */
     public function getInvoice($invoice_id = 0)
@@ -105,7 +103,7 @@ class InvoiceOceanClient extends InvoiceOcean
     /**
      * Create an invoice.
      *
-     * @param array $invoice
+     * @param  array $invoice
      * @return array
      */
     public function addInvoice($invoice = [])
@@ -124,8 +122,8 @@ class InvoiceOceanClient extends InvoiceOcean
     /**
      * Update an invoice.
      *
-     * @param int   $invoice_id
-     * @param array $invoice
+     * @param  int   $invoice_id
+     * @param  array $invoice
      * @return array
      */
     public function updateInvoice($invoice_id = 0, $invoice = [])
@@ -144,7 +142,7 @@ class InvoiceOceanClient extends InvoiceOcean
     /**
      * Delete an invoice.
      *
-     * @param int $invoice_id
+     * @param  int   $invoice_id
      * @return array
      */
     public function deleteInvoice($invoice_id = 0)
@@ -158,7 +156,7 @@ class InvoiceOceanClient extends InvoiceOcean
     /**
      * Email an invoice.
      *
-     * @param int $invoice_id
+     * @param  int   $invoice_id
      * @return array
      */
     public function sendInvoice($invoice_id = 0)

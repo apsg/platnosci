@@ -7,8 +7,11 @@ namespace App\Domains\Invoices\Client;
  * API class to communicate with the InvoiceOcean API
  *
  * @abstract
+ *
  * @author Chris Schalenborgh <chris@schalenborgh.be>
+ *
  * @version 1.0
+ *
  * @link https://github.com/InvoiceOcean/api
  */
 abstract class InvoiceOcean
@@ -95,13 +98,12 @@ abstract class InvoiceOcean
     /**
      * return API method url if found in available methods array.
      *
-     * @param string $api_method_name
-     *
+     * @param  string      $api_method_name
      * @return bool|string
      */
     protected function getApiMethod($api_method_name = '')
     {
-        if (! empty($api_method_name) && array_key_exists($api_method_name, $this->_api_methods)) {
+        if (!empty($api_method_name) && array_key_exists($api_method_name, $this->_api_methods)) {
             return $this->getApiUrl() . $this->_api_methods[$api_method_name];
         }
 
@@ -111,7 +113,7 @@ abstract class InvoiceOcean
     /**
      * Returns the HTTP method based on the first verb of the method name.
      *
-     * @param string $verb
+     * @param  string $verb
      * @return string
      */
     private function verbToHttpMethod($verb = '')
@@ -143,9 +145,9 @@ abstract class InvoiceOcean
     /**
      * Send a RESTful request to the API via cURL.
      *
-     * @param string $api_method
-     * @param array  $body
-     * @param int    $id
+     * @param  string $api_method
+     * @param  array  $body
+     * @param  int    $id
      * @return array
      */
     protected function request($api_method = '', $body = [], $id = 0)

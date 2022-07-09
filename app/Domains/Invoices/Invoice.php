@@ -1,8 +1,8 @@
 <?php
 namespace App\Domains\Invoices;
 
-use App\Domains\Payments\Models\InvoiceRequest;
 use App\Domains\Invoices\Client\InvoiceOceanClient;
+use App\Domains\Payments\Models\InvoiceRequest;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Arr;
@@ -11,6 +11,7 @@ use InvalidArgumentException;
 class Invoice
 {
     protected InvoiceRequest $request;
+
     protected InvoiceOceanClient $client;
 
     public function __construct(InvoiceRequest $request)
@@ -50,19 +51,19 @@ class Invoice
         $now = Carbon::now()->format('Y-m-d');
 
         return [
-                'kind'         => 'vat',
-                'number'       => null,
-                'sell_date'    => $this->request->order->created_at->format('Y-m-d'),
-                'issue_date'   => $now,
-                'payment_to'   => $this->request->order->created_at->format('Y-m-d'),
-                'buyer_name'   => $this->getName(),
-                'buyer_email'  => $this->request->order->email,
-                'buyer_tax_no' => $this->request->nip,
-                'positions'    => $this->getPositions(),
-                'paid_date'    => $this->request->order->created_at->format('Y-m-d'),
-                'status'       => 'paid',
-                'gtu_codes'    => ['GTU_12'],
-            ] + $this->getSellerData();
+            'kind'         => 'vat',
+            'number'       => null,
+            'sell_date'    => $this->request->order->created_at->format('Y-m-d'),
+            'issue_date'   => $now,
+            'payment_to'   => $this->request->order->created_at->format('Y-m-d'),
+            'buyer_name'   => $this->getName(),
+            'buyer_email'  => $this->request->order->email,
+            'buyer_tax_no' => $this->request->nip,
+            'positions'    => $this->getPositions(),
+            'paid_date'    => $this->request->order->created_at->format('Y-m-d'),
+            'status'       => 'paid',
+            'gtu_codes'    => ['GTU_12'],
+        ] + $this->getSellerData();
     }
 
     protected function getPositions(): array

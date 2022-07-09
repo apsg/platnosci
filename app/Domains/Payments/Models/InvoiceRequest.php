@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Carbon      created_at
  * @property Carbon      updated_at
  * @property Carbon|null accepted_at
- *
  * @property-read Order  order
  *
  * @method static Builder pending()

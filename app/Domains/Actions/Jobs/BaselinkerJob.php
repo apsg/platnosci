@@ -9,13 +9,13 @@ use Illuminate\Support\Arr;
 
 class BaselinkerJob extends ActionJob
 {
-    public function handle() : void
+    public function handle(): void
     {
         (new Orders(new Client(), $this->getProviderKey()))
             ->addOrder($this->getOrderPayload());
     }
 
-    protected function getOrderPayload() : array
+    protected function getOrderPayload(): array
     {
         return [
             'email'            => $this->order->email,
@@ -37,7 +37,7 @@ class BaselinkerJob extends ActionJob
         ];
     }
 
-    private function getProviderKey() : string
+    private function getProviderKey(): string
     {
         return config('integrations.'
             . Action::ACTION_BASELINKER

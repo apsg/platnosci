@@ -24,7 +24,6 @@ class SalesController extends Controller
 
     public function update(Sale $sale)
     {
-
         return back();
     }
 

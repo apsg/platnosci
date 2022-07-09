@@ -15,13 +15,12 @@ use Illuminate\Support\Collection;
  * @property string                           name
  * @property string                           description
  * @property string|null                      rules_url
- * @property double                           price
- * @property double|null                      full_price
+ * @property float                           price
+ * @property float|null                      full_price
  * @property int|null                         counter
  * @property string|null                      payments_provider
  * @property Carbon                           created_at
  * @property Carbon                           updated_at
- *
  * @property-read Collection<Action>|Action[] actions
  */
 class Sale extends Model
