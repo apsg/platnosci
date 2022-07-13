@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Livewire\Admin\Sale;
 
+use App\Domains\Payments\PaymentsManager;
 use App\Domains\Sales\Models\Sale;
 use App\Rules\PaymentsProviderRule;
 use Livewire\Component;
@@ -16,6 +17,13 @@ class Create extends Component
     public ?string $rulesUrl = null;
     public ?int $counter = null;
     public ?string $paymentsProvider = null;
+
+    public array $paymentSystems;
+
+    public function mount()
+    {
+        $this->paymentSystems = PaymentsManager::listAvailableSystems();
+    }
 
     public function rules(): array
     {
