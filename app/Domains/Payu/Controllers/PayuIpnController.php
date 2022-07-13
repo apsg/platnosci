@@ -12,7 +12,7 @@ class PayuIpnController extends Controller
 {
     public function __invoke(IpnRequest $request, OrdersRepository $repository)
     {
-        $payu = new PayuDriver('platnosci');
+        $payu = new PayuDriver('payu');
         $verifySignature = $payu->verifySignature($request->getContent(), $request->getSignature());
 
         Log::info(__CLASS__,
