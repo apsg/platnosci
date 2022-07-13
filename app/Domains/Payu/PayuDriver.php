@@ -1,13 +1,14 @@
 <?php
 namespace App\Domains\Payu;
 
+use App\Domains\Payments\AbstractPaymentsDriver;
 use App\Domains\Payments\Models\Order;
 use App\Domains\Payu\Elements\OrderElement;
 use App\Domains\Payu\Exceptions\MissingOrderException;
 use OpenPayU_Configuration;
 use OpenPayU_Order;
 
-class PayuDriver
+class PayuDriver extends AbstractPaymentsDriver
 {
     protected string $provider;
     protected Order $order;
@@ -53,14 +54,14 @@ class PayuDriver
         return config("payu.{$this->provider}.env");
     }
 
-    public function forOrder(Order $order) : self
+    public function forOrder(Order $order): self
     {
         $this->order = $order;
 
         return $this;
     }
 
-    public function getUrl() : string
+    public function getUrl(): string
     {
         if ($this->order === null) {
             throw new MissingOrderException();
@@ -72,27 +73,27 @@ class PayuDriver
         return $response->getResponse()->redirectUri;
     }
 
-    protected function getContinueUrl() : string
+    protected function getContinueUrl(): string
     {
         return route('orders.continue', $this->order);
     }
 
-    protected function getNotifyUrl() : string
+    protected function getNotifyUrl(): string
     {
         return route('payu.ipn');
     }
 
-    protected function getMerchantPosId() : string
+    protected function getMerchantPosId(): string
     {
         return config('payu.');
     }
 
-    protected function getCurrencyCode() : string
+    protected function getCurrencyCode(): string
     {
         return Currency::PLN;
     }
 
-    protected function getDriverParameters() : array
+    protected function getDriverParameters(): array
     {
         return [
             'continueUrl'   => $this->getContinueUrl(),
@@ -103,7 +104,7 @@ class PayuDriver
         ];
     }
 
-    public function verifySignature(string $payload, string $signature) : bool
+    public function verifySignature(string $payload, string $signature): bool
     {
         $expectedSignature = md5($payload . $this->getSecondKey());
 

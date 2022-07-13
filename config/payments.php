@@ -19,6 +19,6 @@ return [
         'name'   => 'P24 Darek',
         'posid'  => env('P24_POSID'),
         'token'  => env('P24_TOKEN'),
-        'live'   => env('P24_LIVE', false),
+        'live'   => env('P24_LIVE', true),
     ],
 ];

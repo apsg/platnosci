@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Livewire;
 
+use App\Domains\Payments\PaymentsManager;
 use App\Domains\Payments\Repositories\OrdersRepository;
 use App\Domains\Payu\PayuDriver;
 use App\Domains\Sales\Models\Sale;
@@ -66,7 +67,7 @@ class Order extends Component
 
         $order = app(OrdersRepository::class)->create($this->sale, $this->email, $this->phone);
 
-        $url = (new PayuDriver($this->sale->payments_provider))
+        $url = PaymentsManager::resolve($this->sale->payments_provider)
             ->forOrder($order)
             ->getUrl();
 

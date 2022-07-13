@@ -25,3 +25,4 @@ Route::get('/o/{order:hash}', [OrdersController::class, 'continue'])->name('orde
 Route::get('/o/{order:hash}/invoice', [OrdersController::class, 'invoice'])->name('orders.invoice');
 
 Route::any('/payu/ipn', PayuIpnController::class)->name('payu.ipn');
+Route::any('/p24/ipn', PayuIpnController::class)->name('p24.ipn');
