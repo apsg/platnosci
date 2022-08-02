@@ -8,22 +8,21 @@ use Illuminate\Support\Facades\Log;
 
 class P24IpnController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(string $provider, Request $request)
     {
         // TODO change this hardcoded provider
-        $p24Driver = new P24Driver('p24');
+        $p24Driver = new P24Driver($provider);
         $p24Client = $p24Driver->getClient();
 
         $webhook = $p24Client->handleWebhook();
         $orderId = $webhook->orderId();
-        $p24Client->verify();
-
 
         Log::info(__CLASS__,
             [
-                'payload' => $request->json()->all(),
-                'headers' => $request->headers->all(),
-                'webhook' => $webhook,
+                'payload'  => $request->json()->all(),
+                'headers'  => $request->headers->all(),
+                'webhook'  => $webhook,
+                'provider' => $provider,
             ]);
 
         return response()->json(['ok'], 200);
