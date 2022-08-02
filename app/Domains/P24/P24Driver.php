@@ -38,7 +38,7 @@ class P24Driver extends AbstractPaymentsDriver
         return [
             'session_id'  => $this->order->id,
             'url_return'  => route('orders.continue', $this->order),
-            'url_status'  => route('p24.ipn'),
+            'url_status'  => route('p24.ipn', $this->order->sale->payments_provider),
             'amount'      => $this->getPrice(),
             'description' => $this->order->sale->name,
             'email'       => $this->order->email,
