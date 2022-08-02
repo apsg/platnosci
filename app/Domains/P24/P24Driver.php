@@ -49,4 +49,9 @@ class P24Driver extends AbstractPaymentsDriver
     {
         return floor(100 * $this->order->price);
     }
+
+    public function getClient(): Przelewy24
+    {
+        return $this->client;
+    }
 }
