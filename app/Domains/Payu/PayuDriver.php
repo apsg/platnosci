@@ -1,13 +1,14 @@
 <?php
 namespace App\Domains\Payu;
 
+use App\Domains\Payments\AbstractPaymentsDriver;
 use App\Domains\Payments\Models\Order;
 use App\Domains\Payu\Elements\OrderElement;
 use App\Domains\Payu\Exceptions\MissingOrderException;
 use OpenPayU_Configuration;
 use OpenPayU_Order;
 
-class PayuDriver
+class PayuDriver extends AbstractPaymentsDriver
 {
     protected string $provider;
 

@@ -96,13 +96,14 @@
                 type="text"
             >
                 <option value="">--</option>
-                @foreach(config('payu') as $name => $data)
+                @foreach($paymentSystems as $system)
                     <option
-                        value="{{ $name }}"
-                        @if($paymentsProvider === $name)
-                            selected
+                        value="{{ $system['provider'] }}"
+                        @if($paymentsProvider === $system['provider'])
+                        selected
                         @endif
-                    >{{ $data['name'] }}</option>
+                    >{{ $system['name'] }} ({{ $system['driver'] }})
+                    </option>
                 @endforeach
             </select>
         </div>
