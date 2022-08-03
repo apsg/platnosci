@@ -13,7 +13,7 @@ return [
 //        ],
         'bitraining'   => [
             'name'     => 'Professional Office Training Dariusz Skórniewski, Mateusz Grabowski Spółka Cywilna',
-            'nip'      => '9691646441',
+            'nip'      => '9691646458',
             'address'  => 'Brzozowa 10/3',
             'postcode' => '44-177',
             'city'     => 'Paniówki',
