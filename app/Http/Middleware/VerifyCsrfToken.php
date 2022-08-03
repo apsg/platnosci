@@ -14,5 +14,7 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         'payu/*',
         'payu/ipn',
+        'p24/ipn',
+        'p24/ipn/*',
     ];
 }
