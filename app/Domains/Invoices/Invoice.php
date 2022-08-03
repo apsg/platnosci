@@ -14,6 +14,8 @@ class Invoice
 
     protected InvoiceOceanClient $client;
 
+    protected $invoiceId = null;
+
     public function __construct(InvoiceRequest $request)
     {
         $this->request = $request;
@@ -41,7 +43,9 @@ class Invoice
             throw new Exception('Invalid invoice data');
         }
 
-        return data_get($response, 'response.id');
+        $this->invoiceId = data_get($response, 'response.id');
+
+        return $this->invoiceId;
     }
 
     protected function getAttributes(): array
@@ -49,19 +53,19 @@ class Invoice
         $now = Carbon::now()->format('Y-m-d');
 
         return [
-            'kind'         => 'vat',
-            'number'       => null,
-            'sell_date'    => $this->request->order->created_at->format('Y-m-d'),
-            'issue_date'   => $now,
-            'payment_to'   => $this->request->order->created_at->format('Y-m-d'),
-            'buyer_name'   => $this->getName(),
-            'buyer_email'  => $this->request->order->email,
-            'buyer_tax_no' => $this->request->nip,
-            'positions'    => $this->getPositions(),
-            'paid_date'    => $this->request->order->created_at->format('Y-m-d'),
-            'status'       => 'paid',
-            'gtu_codes'    => ['GTU_12'],
-        ] + $this->getSellerData();
+                'kind'         => 'vat',
+                'number'       => null,
+                'sell_date'    => $this->request->order->created_at->format('Y-m-d'),
+                'issue_date'   => $now,
+                'payment_to'   => $this->request->order->created_at->format('Y-m-d'),
+                'buyer_name'   => $this->getName(),
+                'buyer_email'  => $this->request->order->email,
+                'buyer_tax_no' => $this->request->nip,
+                'positions'    => $this->getPositions(),
+                'paid_date'    => $this->request->order->created_at->format('Y-m-d'),
+                'status'       => 'paid',
+                'gtu_codes'    => ['GTU_12'],
+            ] + $this->getSellerData();
     }
 
     protected function getPositions(): array
@@ -112,5 +116,12 @@ class Invoice
             'seller_city'      => Arr::get($data, 'city'),
             'seller_tax_no'    => Arr::get($data, 'nip'),
         ];
+    }
+
+    public function sendByEmail(): self
+    {
+        $this->client->sendInvoice($this->invoiceId);
+
+        return $this;
     }
 }

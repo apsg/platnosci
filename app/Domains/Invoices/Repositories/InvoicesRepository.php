@@ -8,13 +8,16 @@ class InvoicesRepository
 {
     public function accept(InvoiceRequest $invoiceRequest): int|string
     {
-        $invoiceId = (new Invoice($invoiceRequest))->generate();
+        $invoice = new Invoice($invoiceRequest);
+        $invoiceId = $invoice->generate();
 
         if (!empty($invoiceId)) {
             $invoiceRequest->update([
                 'accepted_at' => now(),
                 'external_id' => $invoiceId,
             ]);
+
+            $invoice->sendByEmail();
         }
 
         return $invoiceId;
