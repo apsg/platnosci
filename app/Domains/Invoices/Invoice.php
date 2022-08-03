@@ -37,8 +37,6 @@ class Invoice
 
         $response = $this->client->addInvoice($this->getAttributes());
 
-        dd($response);
-
         if ($this->isInvalidResponse($response)) {
             throw new Exception('Invalid invoice data');
         }
