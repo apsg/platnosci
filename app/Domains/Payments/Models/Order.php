@@ -54,4 +54,9 @@ class Order extends Model
     {
         return $this->cancelled_at !== null;
     }
+
+    public function getPriceInCents(): int
+    {
+        return floor(100 * $this->price);
+    }
 }

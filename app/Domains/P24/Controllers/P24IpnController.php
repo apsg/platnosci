@@ -7,6 +7,7 @@ use App\Domains\Payments\Repositories\OrdersRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Przelewy24\Exceptions\ApiResponseException;
 
 class P24IpnController extends Controller
 {
@@ -17,9 +18,26 @@ class P24IpnController extends Controller
 
         $webhook = $p24Client->handleWebhook();
         $externalId = $webhook->orderId();
+        $sessionId = $webhook->sessionId();
 
-        $order = Order::findOrFail($webhook->sessionId());
-        $repository->confirm($order, $externalId);
+        /** @var Order $order */
+        $order = Order::findOrFail($sessionId);
+
+        try {
+            $p24Client->verify([
+                'session_id' => $sessionId,
+                'order_id'   => $webhook->orderId(),   // przelewy24 order id
+                'amount'     => $order->getPriceInCents(),
+            ]);
+
+            $repository->confirm($order, $externalId);
+
+        } catch (ApiResponseException $exception) {
+            Log::error('Verification failed', [
+                'message' => $exception->getMessage(),
+            ]);
+            $repository->cancel($order);
+        }
 
         Log::info(__CLASS__,
             [
@@ -27,7 +45,7 @@ class P24IpnController extends Controller
                 'webhook'       => $webhook,
                 'provider'      => $provider,
                 'p24order'      => $externalId,
-                'order_session' => $webhook->sessionId(),
+                'order_session' => $sessionId,
                 'statement'     => $webhook->statement(),
             ]);
 

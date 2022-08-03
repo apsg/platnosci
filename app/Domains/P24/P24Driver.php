@@ -39,15 +39,10 @@ class P24Driver extends AbstractPaymentsDriver
             'session_id'  => $this->order->id,
             'url_return'  => route('orders.continue', $this->order),
             'url_status'  => route('p24.ipn', $this->order->sale->payments_provider),
-            'amount'      => $this->getPrice(),
+            'amount'      => $this->order->getPriceInCents(),
             'description' => $this->order->sale->name,
             'email'       => $this->order->email,
         ];
-    }
-
-    protected function getPrice(): int
-    {
-        return floor(100 * $this->order->price);
     }
 
     public function getClient(): Przelewy24
