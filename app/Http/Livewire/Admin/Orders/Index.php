@@ -35,8 +35,8 @@ class Index extends LivewireDatatable
                 ->label('Telefon')
                 ->searchable(),
 
-            Column::callback(['confirmed_at', 'cancelled_at'], function ($confirmedAt, $cancelledAt) {
-                return view('livewire.admin.orders.tables.status', compact('confirmedAt', 'cancelledAt'));
+            Column::callback(['confirmed_at', 'cancelled_at'], function ($confirmed_at, $cancelled_at) {
+                return view('livewire.admin.orders.tables.status', compact('confirmed_at', 'cancelled_at'));
             })
                 ->label('Status'),
 
