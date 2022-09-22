@@ -12,7 +12,7 @@ return [
 //            'token'    => env('FAKTUROWNIA_TOKEN_MATEUSZ'),
 //        ],
         'bitraining'   => [
-            'name'     => 'Professional Office Training Dariusz Skórniewski, Mateusz Grabowski Spółka Cywilna',
+            'name'     => 'Business Intelligence Training Dariusz Skórniewski, Mateusz Grabowski Spółka Cywilna',
             'nip'      => '9691646458',
             'address'  => 'Brzozowa 10/3',
             'postcode' => '44-177',
