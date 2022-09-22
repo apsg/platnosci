@@ -16,7 +16,7 @@ return [
     ],
     'p24'  => [
         'driver' => PaymentsManager::P24,
-        'name'   => 'P24 Darek',
+        'name'   => 'P24 BI',
         'posid'  => env('P24_POSID'),
         'token'  => env('P24_TOKEN'),
         'live'   => env('P24_LIVE', true),
