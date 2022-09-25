@@ -2,7 +2,8 @@
 namespace App\Domains\Integrations\Access;
 
 use App\Domains\Actions\Exceptions\InvalidProviderException;
-use function config;
+use GuzzleHttp\Promise\PromiseInterface;
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
@@ -43,14 +44,27 @@ class AccessProvider
 
     public function grantAccess(string $email, int $courseId): void
     {
-        Http::baseUrl($this->baseUrl)
+        $this->request([
+            'email'     => $email,
+            'course_id' => $courseId,
+        ]);
+    }
+
+    public function grantFullAccess(string $email): void
+    {
+        $this->request([
+            'email'          => $email,
+            'is_full_access' => true,
+        ]);
+    }
+
+    protected function request(array $payload): PromiseInterface|Response
+    {
+        return Http::baseUrl($this->baseUrl)
             ->withHeaders([
                 static::HEADER_NAME => $this->getHeaderKey(),
             ])
-            ->post(static::ACCESS_URL, [
-                'email'     => $email,
-                'course_id' => $courseId,
-            ]);
+            ->post(static::ACCESS_URL, $payload);
     }
 
     protected function getHeaderKey(): string

@@ -2,6 +2,7 @@
 
 use App\Domains\Actions\Jobs\AccessJob;
 use App\Domains\Actions\Jobs\BaselinkerJob;
+use App\Domains\Actions\Jobs\FullAccessJob;
 use App\Domains\Actions\Jobs\InvoiceJob;
 use App\Domains\Actions\Jobs\MailerliteJob;
 use App\Domains\Actions\Models\Action;
@@ -11,11 +12,25 @@ return [
         'name'      => 'Dostęp do kursu',
         'job'       => AccessJob::class,
         'providers' => [
-            'inauka' => [
+            'inauka'    => [
                 'url' => env('INTEGRATIONS_INAUKA_URL', 'https://inauka.pl'),
                 'key' => env('INAUKA_KEY'),
             ],
+            'projekt30' => [
+                'url' => env('INTEGRATIONS_PROJEKT30_URL', 'https://projekt30.pl'),
+                'key' => env('PROJEKT30_KEY'),
+            ],
+        ],
+    ],
 
+    Action::ACTION_FULLACCESS => [
+        'name'      => 'Pełen roczny dostęp do platformy',
+        'job'       => FullAccessJob::class,
+        'providers' => [
+            'inauka'    => [
+                'url' => env('INTEGRATIONS_INAUKA_URL', 'https://inauka.pl'),
+                'key' => env('INAUKA_KEY'),
+            ],
             'projekt30' => [
                 'url' => env('INTEGRATIONS_PROJEKT30_URL', 'https://projekt30.pl'),
                 'key' => env('PROJEKT30_KEY'),

@@ -3,6 +3,7 @@ namespace App\Domains\Actions\Models;
 
 use App\Domains\Actions\Jobs\AccessJob;
 use App\Domains\Actions\Jobs\BaselinkerJob;
+use App\Domains\Actions\Jobs\FullAccessJob;
 use App\Domains\Actions\Jobs\InvoiceJob;
 use App\Domains\Actions\Jobs\MailerliteJob;
 use App\Domains\Sales\Models\Sale;
@@ -30,6 +31,7 @@ class Action extends Model
     const TYPE_SUCCESS = 'success';
     const TYPE_FAIL = 'fail';
     const ACTION_ACCESS = 'access';
+    const ACTION_FULLACCESS = 'fullaccess';
     const ACTION_INVOICE = 'invoice';
     const ACTION_MAILERLITE = 'mailerlite';
     const ACTION_BASELINKER = 'baselinker';
@@ -69,6 +71,7 @@ class Action extends Model
     {
         return match ($this->job) {
             AccessJob::class     => static::ACTION_ACCESS,
+            FullAccessJob::class => static::ACTION_FULLACCESS,
             BaselinkerJob::class => static::ACTION_BASELINKER,
             MailerliteJob::class => static::ACTION_MAILERLITE,
             InvoiceJob::class    => static::ACTION_INVOICE,
