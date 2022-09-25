@@ -2,6 +2,7 @@
 namespace App\Domains\Payments\Events;
 
 use App\Domains\Actions\Models\Action;
+use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
@@ -25,7 +26,7 @@ class DispatchSaleActionsListener implements ShouldQueue
             $jobClass = $action->job;
             try {
                 dispatch(new $jobClass($event->order, $action->parameters));
-            } catch (\Exception $exception) {
+            } catch (Exception $exception) {
                 Log::error($exception->getMessage(), [
                     'job'   => $jobClass,
                     'order' => $event->order,
