@@ -10,8 +10,9 @@ return [
 //            'city'     => 'Paniówki',
 //            'url'      => env('FAKTUROWNIA_URL_MATEUSZ', 'https://tmgfv.fakturownia.pl'),
 //            'token'    => env('FAKTUROWNIA_TOKEN_MATEUSZ'),
+//            'tax'      => 23
 //        ],
-        'bitraining'   => [
+        'bitraining' => [
             'name'     => 'Business Intelligence Training Dariusz Skórniewski, Mateusz Grabowski Spółka Cywilna',
             'nip'      => '9691646458',
             'address'  => 'Brzozowa 10/3',
@@ -19,6 +20,7 @@ return [
             'city'     => 'Paniówki',
             'url'      => env('FAKTUROWNIA_URL_DARIUSZ'),
             'token'    => env('FAKTUROWNIA_TOKEN_DARIUSZ'),
+            'tax'      => 0,
         ],
     ],
 ];

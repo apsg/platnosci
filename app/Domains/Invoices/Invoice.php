@@ -73,7 +73,7 @@ class Invoice
         return [
             [
                 'name'              => $this->request->order->sale->description,
-                'tax'               => 23,
+                'tax'               => $this->getTaxRate(),
                 'total_price_gross' => $this->request->order->price,
                 'quantity'          => 1,
             ],
@@ -123,5 +123,10 @@ class Invoice
         $this->client->sendInvoice($this->invoiceId);
 
         return $this;
+    }
+
+    protected function getTaxRate(): int
+    {
+        return config("invoice.providers.{$this->request->provider}.tax", 23);
     }
 }
