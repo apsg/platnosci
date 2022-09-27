@@ -50,9 +50,10 @@ class Invoice extends Component
         $this->validate();
 
         $this->order->invoice_request()->create([
-            'name'    => $this->name,
-            'nip'     => $this->nip,
-            'address' => $this->address,
+            'name'     => $this->name,
+            'nip'      => $this->nip,
+            'address'  => $this->address,
+            'provider' => $this->order->sale->default_invoice_provider,
         ]);
 
         $this->isSent = true;

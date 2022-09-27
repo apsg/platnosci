@@ -123,6 +123,29 @@
             </select>
         </div>
 
+        <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="provider">
+                Domyślne konto fakturowania
+            </label>
+            <select
+                wire:model.debounce.500ms="sale.default_invoice_provider"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="provider"
+                type="text"
+            >
+                <option value="">--</option>
+                @foreach($invoiceSystems as $system)
+                    <option
+                        value="{{ $system['provider'] }}"
+                        @if($sale->default_invoice_provider === $system['provider'])
+                            selected
+                        @endif
+                    >{{ $system['name'] }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
         <div class="flex items-center justify-between">
             <button
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"

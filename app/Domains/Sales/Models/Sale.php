@@ -15,10 +15,11 @@ use Illuminate\Support\Collection;
  * @property string                           name
  * @property string                           description
  * @property string|null                      rules_url
- * @property float                           price
- * @property float|null                      full_price
+ * @property float                            price
+ * @property float|null                       full_price
  * @property int|null                         counter
  * @property string|null                      payments_provider
+ * @property string|null                      default_invoice_provider
  * @property Carbon                           created_at
  * @property Carbon                           updated_at
  * @property-read Collection<Action>|Action[] actions
@@ -36,6 +37,7 @@ class Sale extends Model
         'full_price',
         'counter',
         'payments_provider',
+        'default_invoice_provider',
     ];
 
     public function url(): string
