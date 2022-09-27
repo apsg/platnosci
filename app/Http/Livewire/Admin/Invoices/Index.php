@@ -33,6 +33,9 @@ class Index extends LivewireDatatable
                 ->label('Cena')
                 ->round(2),
 
+            Column::name('order.email')
+                ->searchable(),
+
             Column::name('nip')
                 ->searchable()
                 ->editable(),
