@@ -2,6 +2,7 @@
 namespace App\Domains\Invoices;
 
 use App\Domains\Invoices\Client\InvoiceOceanClient;
+use App\Domains\Invoices\Config\Provider;
 use App\Domains\Payments\Models\InvoiceRequest;
 use Carbon\Carbon;
 use Exception;
@@ -16,6 +17,8 @@ class Invoice
 
     protected $invoiceId = null;
 
+    protected ?Provider $provider;
+
     public function __construct(InvoiceRequest $request)
     {
         $this->request = $request;
@@ -29,6 +32,8 @@ class Invoice
             config("invoice.providers.{$provider}.url"),
             config("invoice.providers.{$provider}.token")
         );
+
+        $this->provider = new Provider(config("invoice.providers.{$provider}"));
     }
 
     public function generate(): int|string
@@ -65,18 +70,19 @@ class Invoice
                 'paid_date'    => $this->request->order->created_at->format('Y-m-d'),
                 'status'       => 'paid',
                 'gtu_codes'    => ['GTU_12'],
-            ] + $this->getSellerData();
+            ] + $this->provider->getSellerData();
     }
 
     protected function getPositions(): array
     {
         return [
-            [
+            array_filter([
                 'name'              => $this->request->order->sale->description,
-                'tax'               => $this->getTaxRate(),
+                'tax'               => $this->provider->getTaxRate(),
                 'total_price_gross' => $this->request->order->price,
                 'quantity'          => 1,
-            ],
+                'lump_sum_tax'      => $this->provider->getLumpSum(),
+            ]),
         ];
     }
 
@@ -105,28 +111,10 @@ class Invoice
         return false;
     }
 
-    protected function getSellerData(): array
-    {
-        $data = config("invoice.providers.{$this->request->provider}");
-
-        return [
-            'seller_name'      => Arr::get($data, 'name'),
-            'seller_street'    => Arr::get($data, 'address'),
-            'seller_post_code' => Arr::get($data, 'postcode'),
-            'seller_city'      => Arr::get($data, 'city'),
-            'seller_tax_no'    => Arr::get($data, 'nip'),
-        ];
-    }
-
     public function sendByEmail(): self
     {
         $this->client->sendInvoice($this->invoiceId);
 
         return $this;
-    }
-
-    protected function getTaxRate(): int|string
-    {
-        return config("invoice.providers.{$this->request->provider}.tax", 23);
     }
 }
