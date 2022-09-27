@@ -47,6 +47,12 @@ class Index extends LivewireDatatable
             Column::name('address')
                 ->editable(),
 
+            Column::name('postcode')
+                ->editable(),
+
+            Column::name('city')
+                ->editable(),
+
             DateColumn::name('created_at')
                 ->label('Data sprzedaży'),
 

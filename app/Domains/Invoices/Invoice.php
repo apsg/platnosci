@@ -7,6 +7,7 @@ use App\Domains\Payments\Models\InvoiceRequest;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use InvalidArgumentException;
 
 class Invoice
@@ -45,6 +46,7 @@ class Invoice
         $response = $this->client->addInvoice($this->getAttributes());
 
         if ($this->isInvalidResponse($response)) {
+            Log::error(__CLASS__, $response);
             throw new Exception('Invalid invoice data');
         }
 
