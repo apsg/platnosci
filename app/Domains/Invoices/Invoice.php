@@ -125,7 +125,7 @@ class Invoice
         return $this;
     }
 
-    protected function getTaxRate(): int
+    protected function getTaxRate(): int|string
     {
         return config("invoice.providers.{$this->request->provider}.tax", 23);
     }

@@ -20,7 +20,7 @@ return [
             'city'     => 'Paniówki',
             'url'      => env('FAKTUROWNIA_URL_DARIUSZ'),
             'token'    => env('FAKTUROWNIA_TOKEN_DARIUSZ'),
-            'tax'      => 0,
+            'tax'      => 'zw',
         ],
     ],
 ];
