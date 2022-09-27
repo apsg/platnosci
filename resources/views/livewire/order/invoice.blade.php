@@ -12,7 +12,8 @@
     @elseif($order->invoice_request)
         <div class="p-3 bg-blue-100 ">
             <x-icon name="information-circle" class="w-5 h-5 inline"/>
-            Do tego zamówienia wygenerowano już prośbę o fakturę. Poczekaj na jego weryfikację lub skontaktuj się z nami w
+            Do tego zamówienia wygenerowano już prośbę o fakturę. Poczekaj na jego weryfikację lub skontaktuj się z nami
+            w
             celu uzyskania pomocy.
         </div>
     @else
@@ -43,7 +44,22 @@
                     label="Adres"
                     placeholder="Adres"/>
             </div>
-
+            <div class="mb-5">
+                <x-input
+                    wire:model.debounce.1s="postcode"
+                    class="pr-28"
+                    type="text"
+                    label="Kod pocztowy"
+                    placeholder="kod pocztowy"/>
+            </div>
+            <div class="mb-5">
+                <x-input
+                    wire:model.debounce.1s="city"
+                    class="pr-28"
+                    type="text"
+                    label="Miejscowość"
+                    placeholder="Miejscowość"/>
+            </div>
             <div>
                 <x-button
                     positive

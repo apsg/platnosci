@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Order;
 
 use App\Domains\Payments\Models\Order;
 use App\Rules\NipRule;
+use App\Rules\ZipRule;
 use Livewire\Component;
 
 class Invoice extends Component
@@ -11,28 +12,32 @@ class Invoice extends Component
     public Order $order;
 
     public string $nip = '';
-
     public string $name = '';
-
     public string $address = '';
+    public string $postcode = '';
+    public string $city = '';
 
     public bool $isSent = false;
 
     public function rules()
     {
         return [
-            'nip'     => ['required', new NipRule()],
-            'name'    => ['required', 'string', 'min:3'],
-            'address' => ['required', 'string', 'min:3'],
+            'nip'      => ['required', new NipRule()],
+            'name'     => ['required', 'string', 'min:3'],
+            'address'  => ['required', 'string', 'min:3'],
+            'postcode' => ['required', new ZipRule()],
+            'city'     => ['required', 'string', 'min:3'],
         ];
     }
 
     protected $messages = [
-        'nip.required'     => 'Numer NIP jest wymagany',
-        'name.required'    => 'Podaj nazwę',
-        'name.min'         => 'Nazwa zbyt krótka',
-        'address.required' => 'Adres jest wymagany',
-        'address.min'      => 'Adres jest zbyt krótki',
+        'nip.required'      => 'Numer NIP jest wymagany',
+        'name.required'     => 'Podaj nazwę',
+        'name.min'          => 'Nazwa zbyt krótka',
+        'address.required'  => 'Adres jest wymagany',
+        'address.min'       => 'Adres jest zbyt krótki',
+        'postcode.required' => 'Kod pocztowy wymagany',
+        'city.required'     => 'Podaj miejscowość',
     ];
 
     public function render()
@@ -53,6 +58,8 @@ class Invoice extends Component
             'name'     => $this->name,
             'nip'      => $this->nip,
             'address'  => $this->address,
+            'postcode' => $this->postcode,
+            'city'     => $this->city,
             'provider' => $this->order->sale->default_invoice_provider,
         ]);
 
