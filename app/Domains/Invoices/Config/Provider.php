@@ -12,7 +12,7 @@ class Provider
         $this->data = $data;
     }
 
-    public function getLumpSum(): ?float
+    public function getLumpSum(): string|float|null
     {
         return Arr::get($this->data, 'lump_sum_tax');
     }
