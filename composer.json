@@ -25,6 +25,7 @@
         "mediconesystems/livewire-datatables": "dev-master",
         "mnastalski/przelewy24-php": "^0.1.1",
         "openpayu/openpayu": "^2.3",
+        "psr/simple-cache": "^2.0",
         "sentry/sentry-laravel": "^2.11",
         "vladimir-yuldashev/laravel-queue-rabbitmq": "^12.0",
         "wireui/wireui": "^1.0"
