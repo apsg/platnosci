@@ -27,6 +27,7 @@ class Provider
             'seller_tax_no'    => Arr::get($this->data, 'nip'),
             'place'            => Arr::get($this->data, 'place'),
             'exempt_tax_kind'  => Arr::get($this->data, 'exempt_tax_kind'),
+            'description'      => Arr::get($this->data, 'description'),
         ]);
     }
 
