@@ -46,8 +46,6 @@ jobs:
           REMOTE_USER: ${{ secrets.USER }}
           TARGET: ${{ secrets.TARGET }}
           EXCLUDE: "/node_modules/, /.idea/, /.git/, /vendor/, /.github/"
-      - name: Creating .env file should go here
-        run: echo "Creating env file..."
       - name: Composer and migrations
         uses: JimCronqvist/action-ssh@master
         with:
@@ -58,6 +56,7 @@ jobs:
             ln -s public public_html
             ln -s public private_html
             php81 composer.phar install --ignore-platform-reqs
+            php81 artisan env:decrypt --key=${{ secrets.ENCRYPT_KEY }} --env=production --force --filename=.env
             php81 artisan migrate --force
             php81 artisan cache:clear
             php81 artisan view:cache
