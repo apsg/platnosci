@@ -87,7 +87,6 @@ class Invoice
                 'total_price_gross' => $this->request->order->price,
                 'quantity'          => 1,
                 'quantity_unit'     => 'szt',
-                'lump_sum_tax'      => $this->provider->getLumpSum(),
             ]),
         ];
     }
