@@ -21,4 +21,11 @@ return [
         'token'  => env('P24_TOKEN'),
         'live'   => env('P24_LIVE', true),
     ],
+    'p24_pot'  => [
+        'driver' => PaymentsManager::P24,
+        'name'   => 'P24 OT',
+        'posid'  => env('P24_OT_POSID'),
+        'token'  => env('P24_OT_TOKEN'),
+        'live'   => env('P24_OT_LIVE', true),
+    ],
 ];
