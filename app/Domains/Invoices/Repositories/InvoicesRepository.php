@@ -17,7 +17,7 @@ class InvoicesRepository
                 'external_id' => $invoiceId,
             ]);
 
-//            $invoice->sendByEmail();
+            $invoice->sendByEmail();
         }
 
         return $invoiceId;
