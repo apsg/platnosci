@@ -20,8 +20,7 @@ class Index extends LivewireDatatable
     {
         return [
             NumberColumn::name('id')
-                ->label('ID')
-                ->linkTo('admin/orders'),
+                ->label('ID'),
 
             Column::name('sale.name')
                 ->filterable($this->sales->pluck('name'))
