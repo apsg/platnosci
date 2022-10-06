@@ -54,10 +54,16 @@ class Mailerlite extends ActionComponent
             return;
         }
 
-        $this->groups = collect((new MailerLiteApi($this->getProviderToken()))
+        $response = (new MailerLiteApi($this->getProviderToken()))
             ->groups()
             ->get(['id', 'name'])
-            ->toArray())
+            ->toArray();
+
+        if ($this->isError($response)) {
+            throw new \Exception('Mailerlite error: ' . $response[0]->error->message);
+        }
+
+        $this->groups = collect($response)
             ->map(function ($item) {
                 return [
                     'id'   => $item->id,
@@ -73,5 +79,18 @@ class Mailerlite extends ActionComponent
             . '.providers.'
             . $this->selected
             . '.token');
+    }
+
+    protected function isError(array $response): bool
+    {
+        if (!isset($response[0])) {
+            return false;
+        }
+
+        if (isset($response[0]->error)) {
+            return true;
+        }
+
+        return false;
     }
 }
