@@ -6,6 +6,7 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class AccessProvider
@@ -60,6 +61,8 @@ class AccessProvider
 
     protected function request(array $payload): PromiseInterface|Response
     {
+        Log::info(__CLASS__, $payload);
+
         return Http::baseUrl($this->baseUrl)
             ->withHeaders([
                 static::HEADER_NAME => $this->getHeaderKey(),
