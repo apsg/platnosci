@@ -53,7 +53,7 @@ class Index extends LivewireDatatable
             Column::name('city')
                 ->editable(),
 
-            DateColumn::name('created_at')
+            DateColumn::name('order.created_at')
                 ->label('Data sprzedaży'),
 
             Column::callback(['id', 'external_id', 'provider'], function (int $id, $externalId, ?string $provider) {
