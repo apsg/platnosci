@@ -15,7 +15,7 @@ class Index extends LivewireDatatable
     public function builder(): Builder
     {
         return InvoiceRequest::with(['order.sale'])
-            ->orderBy('created_at', 'desc')
+            ->orderBy('invoice_requests.created_at', 'desc')
             ->pending();
     }
 
