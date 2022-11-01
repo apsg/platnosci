@@ -15,7 +15,7 @@ class SalePolicy
 
     public function view(User $user, Sale $sale): bool
     {
-        return $sale->user_id === $user->id;
+        return $sale->user_id == $user->id;
     }
 
     public function create(User $user)
@@ -25,21 +25,21 @@ class SalePolicy
 
     public function update(User $user, Sale $sale): bool
     {
-        return $sale->user_id === $user->id;
+        return $sale->user_id == $user->id;
     }
 
     public function delete(User $user, Sale $sale): bool
     {
-        return $sale->user_id === $user->id;
+        return $sale->user_id == $user->id;
     }
 
     public function restore(User $user, Sale $sale): bool
     {
-        return $sale->user_id === $user->id;
+        return $sale->user_id == $user->id;
     }
 
     public function forceDelete(User $user, Sale $sale): bool
     {
-        return $sale->user_id === $user->id;
+        return $sale->user_id == $user->id;
     }
 }
