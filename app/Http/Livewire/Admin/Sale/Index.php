@@ -2,6 +2,7 @@
 namespace App\Http\Livewire\Admin\Sale;
 
 use App\Domains\Sales\Models\Sale;
+use Illuminate\Support\Facades\Auth;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 use Mediconesystems\LivewireDatatables\NumberColumn;
@@ -12,7 +13,7 @@ class Index extends LivewireDatatable
 
     public function builder()
     {
-        return Sale::query();
+        return Auth::user()->sales();
     }
 
     public function columns()

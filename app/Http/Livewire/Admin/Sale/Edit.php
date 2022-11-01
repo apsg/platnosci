@@ -6,6 +6,8 @@ use App\Domains\Payments\PaymentsManager;
 use App\Domains\Sales\Models\Sale;
 use App\Rules\InvoiceProviderRule;
 use App\Rules\PaymentsProviderRule;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Edit extends Component
@@ -44,6 +46,10 @@ class Edit extends Component
 
     public function update()
     {
+        if (Auth::user()->cannot('update', $this->sale)) {
+            throw new AuthorizationException('Nie możesz tego zrobić');
+        }
+
         $this->validate();
         $this->sale->save();
 

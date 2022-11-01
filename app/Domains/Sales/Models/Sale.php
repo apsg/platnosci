@@ -2,15 +2,19 @@
 namespace App\Domains\Sales\Models;
 
 use App\Domains\Actions\Models\Action;
+use App\Models\User;
 use Carbon\Carbon;
 use Database\Factories\SaleFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 
 /**
  * @property int                              id
+ * @property int                              user_id
  * @property string                           hash
  * @property string                           name
  * @property string                           description
@@ -38,7 +42,13 @@ class Sale extends Model
         'counter',
         'payments_provider',
         'default_invoice_provider',
+        'user_id',
     ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function url(): string
     {
@@ -58,5 +68,10 @@ class Sale extends Model
     public function format(string $parameter): string
     {
         return number_format($this->getAttribute($parameter), 2);
+    }
+
+    public function scopeForUser(Builder $builder, User $user): Builder
+    {
+        return $builder->where('user_id', $user->id);
     }
 }

@@ -15,6 +15,8 @@ class InvoicesController extends Controller
 
     public function destroy(InvoiceRequest $invoice)
     {
+        $this->authorize('delete', $invoice);
+
         if ($invoice->accepted_at === null) {
             $invoice->delete();
         }
@@ -24,6 +26,8 @@ class InvoicesController extends Controller
 
     public function accept(InvoiceRequest $invoice, InvoicesRepository $repository)
     {
+        $this->authorize('update', $invoice);
+
         $repository->accept($invoice);
 
         return back();
@@ -31,6 +35,8 @@ class InvoicesController extends Controller
 
     public function show(InvoiceRequest $invoice)
     {
+        $this->authorize('view', $invoice);
+
         return view('admin.invoices.show')->with(compact('invoice'));
     }
 }

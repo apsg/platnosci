@@ -19,6 +19,8 @@ class SalesController extends Controller
 
     public function edit(Sale $sale)
     {
+        $this->authorize('view', $sale);
+
         return view('admin.sales.edit')->with(compact('sale'));
     }
 
@@ -29,6 +31,8 @@ class SalesController extends Controller
 
     public function delete(Sale $sale)
     {
+        $this->authorize('delete', $sale);
+
         $sale->delete();
 
         flash('Usunięto');

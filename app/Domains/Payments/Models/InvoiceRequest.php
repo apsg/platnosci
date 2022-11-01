@@ -1,6 +1,7 @@
 <?php
 namespace App\Domains\Payments\Models;
 
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -54,5 +55,12 @@ class InvoiceRequest extends Model
     public function hasInvoice(): bool
     {
         return !empty($this->external_id);
+    }
+
+    public function scopeForUser(Builder $builder, User $user): Builder
+    {
+        return $builder->whereHas('order.sale', function (Builder $query) use ($user) {
+            return $query->where('user_id', $user->id);
+        });
     }
 }

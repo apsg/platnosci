@@ -11,6 +11,8 @@ class SaleActionsController extends Controller
 {
     public function create(Sale $sale, string $action, ActionsRepository $repository)
     {
+        $this->authorize('update', $sale);
+
         $actionModel = $repository->create($sale, $action);
 
         flash('Dodano akcję');
@@ -20,6 +22,8 @@ class SaleActionsController extends Controller
 
     public function destroy(Action $action)
     {
+        $this->authorize('update', $action->sale);
+
         $action->delete();
 
         flash('Usunięto');
