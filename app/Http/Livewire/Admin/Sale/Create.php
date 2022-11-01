@@ -4,8 +4,11 @@ namespace App\Http\Livewire\Admin\Sale;
 use App\Domains\Invoices\InvoicesManager;
 use App\Domains\Payments\PaymentsManager;
 use App\Domains\Sales\Models\Sale;
+use App\Models\User;
 use App\Rules\InvoiceProviderRule;
 use App\Rules\PaymentsProviderRule;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use function redirect;
 use function view;
@@ -51,7 +54,15 @@ class Create extends Component
 
     public function store()
     {
+        /** @var User $user */
+        $user = Auth::user();
+
+        if ($user->cannot('create', Sale::class)) {
+            throw new AuthorizationException('Nie możesz tego zrobić');
+        }
+
         $sale = Sale::create([
+            'user_id'                  => $user->id,
             'name'                     => $this->name,
             'price'                    => $this->price,
             'full_price'               => $this->fullPrice,

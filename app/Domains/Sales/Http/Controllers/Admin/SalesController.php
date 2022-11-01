@@ -3,6 +3,7 @@ namespace App\Domains\Sales\Http\Controllers\Admin;
 
 use App\Domains\Sales\Models\Sale;
 use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 use function view;
 
 class SalesController extends Controller
@@ -19,6 +20,8 @@ class SalesController extends Controller
 
     public function edit(Sale $sale)
     {
+        $this->authorize('view', $sale);
+
         return view('admin.sales.edit')->with(compact('sale'));
     }
 

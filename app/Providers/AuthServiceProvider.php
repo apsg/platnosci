@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Domains\Sales\Models\Sale;
+use App\Domains\Sales\Models\SalePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -12,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Sale::class => SalePolicy::class,
     ];
 
     /**
