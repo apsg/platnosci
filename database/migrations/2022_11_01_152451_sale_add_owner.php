@@ -9,7 +9,7 @@ return new class extends Migration {
     public function up()
     {
         Schema::table('sales', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')

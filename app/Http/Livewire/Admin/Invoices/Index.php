@@ -2,7 +2,9 @@
 namespace App\Http\Livewire\Admin\Invoices;
 
 use App\Domains\Payments\Models\InvoiceRequest;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\DateColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
@@ -14,7 +16,8 @@ class Index extends LivewireDatatable
 
     public function builder(): Builder
     {
-        return InvoiceRequest::with(['order.sale'])
+        return InvoiceRequest::forUser(Auth::user())
+            ->with(['order.sale'])
             ->orderBy('invoice_requests.created_at', 'desc')
             ->pending();
     }
@@ -23,8 +26,7 @@ class Index extends LivewireDatatable
     {
         return [
             NumberColumn::name('id')
-                ->label('ID')
-                ->linkTo('admin/invoices'),
+                ->label('ID'),
 
             Column::name('order.sale.name')
                 ->label('Nazwa sprzedaży'),
@@ -75,6 +77,10 @@ class Index extends LivewireDatatable
     public function saveProvider(int $id, ?string $provider)
     {
         $invoice = InvoiceRequest::findOrFail($id);
+
+        if (Auth::user()->cannot('update', $invoice)) {
+            throw new AuthorizationException('Nie możesz tego zrobić');
+        }
 
         $invoice->update([
             'provider' => $provider,

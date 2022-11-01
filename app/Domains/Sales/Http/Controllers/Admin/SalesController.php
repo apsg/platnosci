@@ -3,7 +3,6 @@ namespace App\Domains\Sales\Http\Controllers\Admin;
 
 use App\Domains\Sales\Models\Sale;
 use App\Http\Controllers\Controller;
-use Illuminate\View\View;
 use function view;
 
 class SalesController extends Controller
@@ -32,6 +31,8 @@ class SalesController extends Controller
 
     public function delete(Sale $sale)
     {
+        $this->authorize('delete', $sale);
+
         $sale->delete();
 
         flash('Usunięto');

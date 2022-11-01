@@ -2,7 +2,9 @@
 namespace App\Domains\Payments\Models;
 
 use App\Domains\Sales\Models\Sale;
+use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -21,6 +23,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property Carbon              updated_at
  * @property-read Sale           sale
  * @property-read InvoiceRequest invoice_request
+ *
+ * @method static Builder forUser(User $user)
  */
 class Order extends Model
 {
@@ -58,5 +62,12 @@ class Order extends Model
     public function getPriceInCents(): int
     {
         return floor(100 * $this->price);
+    }
+
+    public function scopeForUser(Builder $builder, User $user): Builder
+    {
+        return $builder->whereHas('sale', function (Builder $query) use ($user) {
+            return $query->where('user_id', $user->id);
+        });
     }
 }
