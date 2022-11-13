@@ -5,7 +5,7 @@ use App\Domains\Payments\Models\Order;
 
 abstract class AbstractPaymentsDriver
 {
-    public abstract function forOrder(Order $order): self;
+    abstract public function forOrder(Order $order): self;
 
-    public abstract function getUrl(): string;
+    abstract public function getUrl(): string;
 }

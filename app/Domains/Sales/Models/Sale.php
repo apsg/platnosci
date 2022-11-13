@@ -45,6 +45,11 @@ class Sale extends Model
         'user_id',
     ];
 
+    protected $casts = [
+        'id'      => 'integer',
+        'user_id' => 'integer',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

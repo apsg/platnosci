@@ -16,6 +16,6 @@ class ZipRule implements Rule
 
     public function message()
     {
-        return "Podaj prawidłowy kod pocztowy";
+        return 'Podaj prawidłowy kod pocztowy';
     }
 }

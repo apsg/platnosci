@@ -2,7 +2,6 @@
 namespace App\Console\Commands;
 
 use App\Domains\Actions\Jobs\MailerliteJob;
-use App\Domains\Payments\Events\OrderConfirmedEvent;
 use App\Domains\Payments\Models\Order;
 use Illuminate\Console\Command;
 
@@ -30,6 +29,6 @@ class FixQueueOrdersCommand extends Command
             }
         }
 
-        $this->info("Fixed");
+        $this->info('Fixed');
     }
 }

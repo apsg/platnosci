@@ -16,7 +16,6 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string                 name
  * @property string                 email
  * @property string                 password
- *
  * @property-read Collection|Sale[] sales
  */
 class User extends Authenticatable
@@ -41,6 +40,7 @@ class User extends Authenticatable
     ];
 
     protected $casts = [
+        'id'                => 'integer',
         'email_verified_at' => 'datetime',
     ];
 

@@ -12,6 +12,6 @@ class InvoiceProviderRule implements Rule
 
     public function message(): string
     {
-        return "Invalid invoice provider";
+        return 'Invalid invoice provider';
     }
 }

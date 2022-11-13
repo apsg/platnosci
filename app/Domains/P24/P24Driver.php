@@ -8,6 +8,7 @@ use Przelewy24\Przelewy24;
 class P24Driver extends AbstractPaymentsDriver
 {
     protected Przelewy24 $client;
+
     protected Order $order;
 
     public function __construct(string $provider)

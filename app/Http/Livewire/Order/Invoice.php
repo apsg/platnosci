@@ -12,9 +12,13 @@ class Invoice extends Component
     public Order $order;
 
     public string $nip = '';
+
     public string $name = '';
+
     public string $address = '';
+
     public string $postcode = '';
+
     public string $city = '';
 
     public bool $isSent = false;

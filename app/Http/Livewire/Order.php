@@ -3,7 +3,6 @@ namespace App\Http\Livewire;
 
 use App\Domains\Payments\PaymentsManager;
 use App\Domains\Payments\Repositories\OrdersRepository;
-use App\Domains\Payu\PayuDriver;
 use App\Domains\Sales\Models\Sale;
 use App\Rules\AcceptedBoolRule;
 use App\Rules\PhoneRule;

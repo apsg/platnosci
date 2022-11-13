@@ -16,15 +16,23 @@ use function view;
 class Create extends Component
 {
     public string $name = '';
+
     public string $description = '';
+
     public ?float $price = null;
+
     public ?float $fullPrice = null;
+
     public ?string $rulesUrl = null;
+
     public ?int $counter = null;
+
     public ?string $paymentsProvider = null;
+
     public ?string $defaultInvoiceProvider = null;
 
     public array $paymentSystems;
+
     public array $invoiceSystems;
 
     public function mount()

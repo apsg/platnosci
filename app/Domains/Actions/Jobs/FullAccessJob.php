@@ -13,4 +13,3 @@ class FullAccessJob extends ActionJob
             ->grantFullAccess($email);
     }
 }
-

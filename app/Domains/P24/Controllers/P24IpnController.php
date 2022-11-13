@@ -31,7 +31,6 @@ class P24IpnController extends Controller
             ]);
 
             $repository->confirm($order, $externalId);
-
         } catch (ApiResponseException $exception) {
             Log::error('Verification failed', [
                 'message' => $exception->getMessage(),

@@ -152,7 +152,6 @@ abstract class InvoiceOcean
      */
     protected function request($api_method = '', $body = [], $id = 0)
     {
-
         // construct API url
         $location = $this->getApiMethod($api_method);
         $http_method = $this->verbToHttpMethod($api_method);

@@ -13,7 +13,9 @@ use Livewire\Component;
 class Edit extends Component
 {
     public Sale $sale;
+
     public array $paymentSystems;
+
     public array $invoiceSystems;
 
     public function mount()
