@@ -1,20 +1,23 @@
 <?php
 namespace App\Console\Commands;
 
+use App\Domains\Actions\Jobs\ActionJob;
 use App\Domains\Actions\Jobs\MailerliteJob;
 use App\Domains\Payments\Models\Order;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class FixQueueOrdersCommand extends Command
 {
-    protected $signature = 'orders:fix';
+    protected $signature = 'orders:fix {date?}';
 
     public function handle()
     {
+        $date = $this->argument('date') ?? $this->ask('Starting date');
+        $fromDate = Carbon::parse($date)->startOfDay();
+
         $orders = Order::whereNotNull('confirmed_at')
-            ->whereHas('sale.actions', function ($q) {
-                $q->where('job', MailerliteJob::class);
-            })
+            ->where('confirmed_at', '>', $fromDate)
             ->with('sale.actions')
             ->get();
 
@@ -23,8 +26,13 @@ class FixQueueOrdersCommand extends Command
         /** @var Order $order */
         foreach ($orders as $order) {
             foreach ($order->sale->actions as $action) {
-                if ($action->job === MailerliteJob::class) {
-                    dispatch(new MailerliteJob($order, $action->parameters));
+                try {
+                    /** @var ActionJob $job */
+                    $job = $action->job;
+                    dispatch(new $job($order, $action->parameters));
+                } catch (\Exception $exception) {
+                    $this->error("Order: {$order->id}, action: {$action->id}");
+                    $this->error($exception->getMessage());
                 }
             }
         }

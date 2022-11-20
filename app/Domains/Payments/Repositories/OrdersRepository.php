@@ -29,8 +29,9 @@ class OrdersRepository
     public function confirm(Order $order, string $externalId)
     {
         $order->update([
-            'confirmed_at' => Carbon::now(),
-            'external_id'  => $externalId,
+            'confirmed_at'  => Carbon::now(),
+            'external_id'   => $externalId,
+            'actions_count' => $order->sale->actions()->count(),
         ]);
 
         event(new OrderConfirmedEvent($order));
