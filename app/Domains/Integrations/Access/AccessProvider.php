@@ -51,9 +51,9 @@ class AccessProvider
         ]);
     }
 
-    public function grantFullAccess(string $email): void
+    public function grantFullAccess(string $email): PromiseInterface|Response
     {
-        $this->request([
+        return $this->request([
             'email'          => $email,
             'is_full_access' => true,
         ]);
@@ -67,7 +67,14 @@ class AccessProvider
             ->withHeaders([
                 static::HEADER_NAME => $this->getHeaderKey(),
             ])
-            ->post(static::ACCESS_URL, $payload);
+            ->post(static::ACCESS_URL, $payload)
+            ->onError(function (Response $error) {
+                Log::error(__CLASS__, [
+                    'provider' => $this->provider,
+                    'payload'  => $this->payload,
+                    'error'    => $error->json(),
+                ]);
+            });
     }
 
     protected function getHeaderKey(): string
