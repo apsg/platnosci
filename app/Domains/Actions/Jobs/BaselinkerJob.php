@@ -13,6 +13,8 @@ class BaselinkerJob extends ActionJob
     {
         (new Orders(new Client(), $this->getProviderKey()))
             ->addOrder($this->getOrderPayload());
+
+        $this->incrementActionsCount();
     }
 
     protected function getOrderPayload(): array

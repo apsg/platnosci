@@ -11,5 +11,7 @@ class FullAccessJob extends ActionJob
 
         AccessProvider::make($this->provider())
             ->grantFullAccess($email);
+
+        $this->incrementActionsCount();
     }
 }

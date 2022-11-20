@@ -21,6 +21,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property Carbon|null         cancelled_at
  * @property Carbon              created_at
  * @property Carbon              updated_at
+ * @property int|null            actions_count
+ * @property int|null            delivered_count
  * @property-read Sale           sale
  * @property-read InvoiceRequest invoice_request
  *
@@ -37,6 +39,8 @@ class Order extends Model
         'external_id',
         'confirmed_at',
         'cancelled_at',
+        'actions_count',
+        'delivered_count',
     ];
 
     public function sale(): BelongsTo

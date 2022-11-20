@@ -13,5 +13,7 @@ class AccessJob extends ActionJob
 
         AccessProvider::make($this->provider())
             ->grantAccess($email, $courseId);
+
+        $this->incrementActionsCount();
     }
 }
