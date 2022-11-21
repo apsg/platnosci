@@ -38,5 +38,18 @@ return [
             'lump_sum_tax' => '8,5',
             'description'  => 'Zwolnienie ze względu na nieprzekroczenie 200 000 PLN obrotu (art. 113 ust 1 i 9 ustawy o VAT)',
         ],
+        'imd' => [
+            'name'         => 'IMD Dariusz Skórniewski',
+            'nip'          => '9691395217',
+            'address'      => 'Brzozowa 10/3',
+            'postcode'     => '44-177',
+            'city'         => 'Paniówki',
+            'place'        => 'Paniówki',
+            'url'          => env('FAKTUROWNIA_URL_IMD'),
+            'token'        => env('FAKTUROWNIA_TOKEN_IMD'),
+            'tax'          => 'zw',
+            'lump_sum_tax' => '8,5',
+            'description'  => 'Zwolnienie ze względu na nieprzekroczenie 200 000 PLN obrotu (art. 113 ust 1 i 9 ustawy o VAT)',
+        ]
     ],
 ];
