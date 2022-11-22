@@ -21,7 +21,7 @@
     @livewireStyles
 
 </head>
-<body class="w-full h-full bg-cover bg-center" style='background-image: url("{{ asset('/images/bg_aurora.webp') }}")'>
+<body class="w-full h-full bg-cover bg-center" style='background-image: url("{{ asset('/images/tlo-inauka-platnosc.png') }}")'>
 <div class="md:min-h-screen md:flex">
     @if(isset($left))
         <div class="md:min-h-screen bg-gray-200 md:w-1/2 p-6 flex flex-col justify-center flex">
