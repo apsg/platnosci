@@ -25,6 +25,13 @@
                     produktów
                     oraz faktury za zakup.
                 </p>
+                @if($order->hasRedirect())
+                    <script type="text/javascript">
+                        setTimeout(function () {
+                            window.location.replace("{{ $order->sale->redirect_url }}");
+                        }, 1000);
+                    </script>
+                @endif
             </div>
         @else
             <div class="p-3 bg-indigo-200 rounded border-indigo-300 border flex">

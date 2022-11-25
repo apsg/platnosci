@@ -102,6 +102,19 @@
         </div>
 
         <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="redirect">
+                Link przekierowania po udanej płatności
+            </label>
+            <input
+                wire:model.debounce.500ms="sale.redirect_url"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="redirect"
+                type="text"
+            >
+            @error('sale.redirect_url') <span class="error text-red-700">{{ $message }}</span> @enderror
+        </div>
+
+        <div class="mb-6">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="provider">
                 Konto systemu płatności
             </label>
@@ -118,7 +131,8 @@
                         @if($sale->payments_provider === $system['provider'])
                             selected
                         @endif
-                    >{{ $system['name'] }} ({{ $system['driver'] }})</option>
+                    >{{ $system['name'] }} ({{ $system['driver'] }})
+                    </option>
                 @endforeach
             </select>
         </div>
