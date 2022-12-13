@@ -20,7 +20,6 @@ class InvoiceCredentialsTestCommand extends Command
             config("invoice.providers.{$provider}.token")
         );
 
-
         $response = $client->getClients();
         $this->info('Connection correct');
 

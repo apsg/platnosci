@@ -2,7 +2,6 @@
 namespace App\Console\Commands;
 
 use App\Domains\Actions\Jobs\AccessJob;
-use App\Domains\Actions\Jobs\ActionJob;
 use App\Domains\Payments\Models\Order;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -26,7 +25,6 @@ class FixQueueOrdersCommand extends Command
         /** @var Order $order */
         foreach ($orders as $order) {
             foreach ($order->sale->actions as $action) {
-
                 if ($action->job !== AccessJob::class) {
                     continue;
                 }
