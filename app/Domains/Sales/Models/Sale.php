@@ -19,6 +19,7 @@ use Illuminate\Support\Collection;
  * @property string                           name
  * @property string                           description
  * @property string|null                      rules_url
+ * @property string|null                      redirect_url
  * @property float                            price
  * @property float|null                       full_price
  * @property int|null                         counter
@@ -37,6 +38,7 @@ class Sale extends Model
         'name',
         'description',
         'rules_url',
+        'redirect_url',
         'price',
         'full_price',
         'counter',

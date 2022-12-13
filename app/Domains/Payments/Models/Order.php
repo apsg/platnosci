@@ -58,6 +58,11 @@ class Order extends Model
         return $this->confirmed_at !== null;
     }
 
+    public function hasRedirect(): bool
+    {
+        return !empty($this->sale->redirect_url);
+    }
+
     public function isCancelled(): bool
     {
         return $this->cancelled_at !== null;
