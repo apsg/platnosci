@@ -25,7 +25,7 @@
                     produktów
                     oraz faktury za zakup.
                 </p>
-                @if($order->hasRedirect())
+                @if( \Illuminate\Support\Facades\Route::is('orders.continue') && $order->hasRedirect())
                     <script type="text/javascript">
                         setTimeout(function () {
                             window.location.replace("{{ $order->sale->redirect_url }}");
