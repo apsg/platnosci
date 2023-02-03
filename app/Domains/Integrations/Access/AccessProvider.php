@@ -68,10 +68,10 @@ class AccessProvider
                 static::HEADER_NAME => $this->getHeaderKey(),
             ])
             ->post(static::ACCESS_URL, $payload)
-            ->onError(function (Response $error) {
+            ->onError(function (Response $error) use ($payload) {
                 Log::error(__CLASS__, [
                     'provider' => $this->provider,
-                    'payload'  => $this->payload,
+                    'payload'  => $payload,
                     'error'    => $error->json(),
                 ]);
             });
