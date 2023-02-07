@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Providers;
 
 use App\Domains\Payments\Models\InvoiceRequest;

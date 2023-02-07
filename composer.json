@@ -12,6 +12,7 @@
         "php": "^8.1",
         "ext-curl": "*",
         "apsg/baselinker": "^0.1.2",
+        "apsg/coding-standards": "dev-master",
         "apsg/zenboxer": "^1.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.3",

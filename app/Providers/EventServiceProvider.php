@@ -23,7 +23,6 @@ class EventServiceProvider extends ServiceProvider
             DispatchSaleActionsListener::class,
         ],
         OrderCancelledEvent::class     => [
-
         ],
         ResendOrderMailingEvent::class => [
             SendOrderEmailListener::class,

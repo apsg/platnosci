@@ -34,7 +34,6 @@ class PaymentsManager
             case static::PAYU:
 
                 return new PayuDriver($provider);
-
             case static::P24:
 
                 return new P24Driver($provider);

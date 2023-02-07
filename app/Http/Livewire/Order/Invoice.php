@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Livewire\Order;
 
 use App\Domains\Payments\Models\Order;

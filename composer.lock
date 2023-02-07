@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "38428f10c98a5d0af9644793762bcb2e",
+    "content-hash": "bd9fa618ff68a758d80409566dcc786c",
     "packages": [
         {
             "name": "apsg/baselinker",
@@ -67,6 +67,39 @@
                 "source": "https://github.com/apsg/Baselinker/tree/0.1.3"
             },
             "time": "2022-04-27T16:58:21+00:00"
+        },
+        {
+            "name": "apsg/coding-standards",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apsg/coding-standards.git",
+                "reference": "7e149d6da4721b4e96f41a7676bdc53f834a862c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apsg/coding-standards/zipball/7e149d6da4721b4e96f41a7676bdc53f834a862c",
+                "reference": "7e149d6da4721b4e96f41a7676bdc53f834a862c",
+                "shasum": ""
+            },
+            "require-dev": {
+                "laravel/pint": "^1.4"
+            },
+            "default-branch": true,
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Gacek",
+                    "email": "szymon.gackowski@gmail.com"
+                }
+            ],
+            "description": "Coding standardsfor PINT",
+            "support": {
+                "issues": "https://github.com/apsg/coding-standards/issues",
+                "source": "https://github.com/apsg/coding-standards/tree/master"
+            },
+            "time": "2023-02-07T11:41:07+00:00"
         },
         {
             "name": "apsg/zenboxer",

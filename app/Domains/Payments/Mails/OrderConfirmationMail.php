@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Domains\Payments\Mails;
 
 use App\Domains\Payments\Models\Order;
@@ -9,7 +8,8 @@ use Illuminate\Queue\SerializesModels;
 
 class OrderConfirmationMail extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     public Order $order;
 

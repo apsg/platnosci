@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Queue Connection Name
@@ -29,13 +28,11 @@ return [
     */
 
     'connections' => [
-
         'sync' => [
             'driver' => 'sync',
         ],
 
         'rabbitmq' => [
-
             'driver'     => 'rabbitmq',
             'queue'      => env('RABBITMQ_QUEUE', 'prod'),
             'connection' => PhpAmqpLib\Connection\AMQPLazyConnection::class,
@@ -67,7 +64,6 @@ return [
              * Set to "horizon" if you wish to use Laravel Horizon.
              */
             'worker'  => env('RABBITMQ_WORKER', 'default'),
-
         ],
 
         'database' => [
@@ -106,7 +102,6 @@ return [
             'block_for'    => null,
             'after_commit' => false,
         ],
-
     ],
 
     /*
@@ -125,5 +120,4 @@ return [
         'database' => env('DB_CONNECTION', 'mysql'),
         'table'    => 'failed_jobs',
     ],
-
 ];

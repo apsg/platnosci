@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http;
 
 use Apsg\Zenboxer\Middlewares\HttpToHttpsRedirectMiddleware;

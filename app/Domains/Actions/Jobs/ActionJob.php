@@ -11,7 +11,10 @@ use Illuminate\Support\Arr;
 
 abstract class ActionJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     protected array $parameters;
 

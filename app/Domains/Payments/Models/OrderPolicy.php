@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Domains\Payments\Models;
 
 use App\Models\Order;
