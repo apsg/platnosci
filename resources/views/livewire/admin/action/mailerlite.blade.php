@@ -22,9 +22,9 @@
             class="block appearance-none w-full mt-2 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             wire:model="groupId"
         >
-            <option value="">Wybierz grupę</option>
+            <option value="" disabled>Wybierz grupę</option>
             @foreach($groups as $group)
-                <option value="{{ $group['id']  }}">{{ $group['name'] }}</option>
+                <option value="{{ $group['id']  }}" wire:key="group-{{ $group['id'] }}">{{ $group['name'] }}</option>
             @endforeach
         </select>
     @endif
@@ -40,7 +40,7 @@
                 @endif
                 <button
                     @if(empty($selected) || empty($groupId)) disabled @endif
-                wire:click="save"
+                    wire:click="save"
                     class="inline bg-blue-500 hover:bg-blue-700 disabled:bg-blue-300 text-white font-bold py-2 px-4 rounded">
                     Zapisz
                 </button>

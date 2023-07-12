@@ -7,7 +7,7 @@ use MailerLiteApi\MailerLite as MailerLiteApi;
 
 class Mailerlite extends ActionComponent
 {
-    public array $groups = [];
+    protected array $groups = [];
 
     public string $groupId = '';
 
@@ -28,7 +28,11 @@ class Mailerlite extends ActionComponent
 
     public function render()
     {
-        return view('livewire.admin.action.mailerlite');
+        $this->loadGroups();
+
+        return view('livewire.admin.action.mailerlite')->with([
+            'groups' => $this->groups
+        ]);
     }
 
     public function save(): void
