@@ -51,5 +51,18 @@ return [
             'lump_sum_tax' => '8,5',
             'description'  => 'Zwolnienie ze względu na nieprzekroczenie 200 000 PLN obrotu (art. 113 ust 1 i 9 ustawy o VAT)',
         ],
+        'eduinf' => [
+            'name'         => 'Edukacja Informatyczna Sp. z o.o.',
+            'nip'          => '6351867012',
+            'address'      => 'ul. Rynek 2',
+            'postcode'     => '43-190',
+            'city'         => 'Mikołów',
+            'place'        => 'Mikołów',
+            'url'          => env('FAKTUROWNIA_URL_EI'),
+            'token'        => env('FAKTUROWNIA_TOKEN_EI'),
+            'tax'          => 'zw',
+            'lump_sum_tax' => '8,5',
+            'description'  => 'Zwolnienie ze względu na nieprzekroczenie 200 000 PLN obrotu (art. 113 ust 1 i 9 ustawy o VAT)',
+        ],
     ],
 ];
