@@ -20,14 +20,16 @@ class Provider
     public function getSellerData(): array
     {
         return array_filter([
-            'seller_name'      => Arr::get($this->data, 'name'),
-            'seller_street'    => Arr::get($this->data, 'address'),
-            'seller_post_code' => Arr::get($this->data, 'postcode'),
-            'seller_city'      => Arr::get($this->data, 'city'),
-            'seller_tax_no'    => Arr::get($this->data, 'nip'),
-            'place'            => Arr::get($this->data, 'place'),
-            'exempt_tax_kind'  => Arr::get($this->data, 'exempt_tax_kind'),
-            'description'      => Arr::get($this->data, 'description'),
+            'seller_name'         => Arr::get($this->data, 'name'),
+            'seller_street'       => Arr::get($this->data, 'address'),
+            'seller_post_code'    => Arr::get($this->data, 'postcode'),
+            'seller_city'         => Arr::get($this->data, 'city'),
+            'seller_tax_no'       => Arr::get($this->data, 'nip'),
+            'place'               => Arr::get($this->data, 'place'),
+            'exempt_tax_kind'     => Arr::get($this->data, 'exempt_tax_kind'),
+            'description'         => Arr::get($this->data, 'description'),
+            'seller_bank_account' => Arr::get($this->data, 'bank_account'),
+            'seller_bank'         => Arr::get($this->data, 'bank'),
         ]);
     }
 

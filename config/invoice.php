@@ -50,6 +50,7 @@ return [
             'tax'          => 'zw',
             'lump_sum_tax' => '8,5',
             'description'  => 'Zwolnienie ze względu na nieprzekroczenie 200 000 PLN obrotu (art. 113 ust 1 i 9 ustawy o VAT)',
+            'bank_account' => '21 1050 1298 1000 0097 4030 0059',
         ],
         'eduinf' => [
             'name'         => 'Edukacja Informatyczna Sp. z o.o.',
