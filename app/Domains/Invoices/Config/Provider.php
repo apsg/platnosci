@@ -30,6 +30,7 @@ class Provider
             'description'         => Arr::get($this->data, 'description'),
             'seller_bank_account' => Arr::get($this->data, 'bank_account'),
             'seller_bank'         => Arr::get($this->data, 'bank'),
+            'department_id'       => Arr::get($this->data, 'department_id'),
         ]);
     }
 
