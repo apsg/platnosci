@@ -40,7 +40,7 @@ return [
         ],
         'imd'        => [
             'name'          => 'IMD Dariusz Skórniewski',
-            'department_id' => 755066,
+            'department_id' => '755066',
 //            'nip'          => '9691395217',
 //            'address'      => 'Brzozowa 10/3',
 //            'postcode'     => '44-177',
