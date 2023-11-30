@@ -42,7 +42,11 @@ class Invoice
             return $this->request->external_id;
         }
 
-        $response = $this->client->addInvoice($this->getAttributes());
+        $attributes = $this->getAttributes();
+
+        Log::info(__CLASS__, compact('attributes'));
+
+        $response = $this->client->addInvoice($attributes);
 
         if ($this->isInvalidResponse($response)) {
             Log::error(__CLASS__, $response);
