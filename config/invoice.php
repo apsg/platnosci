@@ -39,7 +39,7 @@ return [
             'description'  => 'Zwolnienie ze względu na nieprzekroczenie 200 000 PLN obrotu (art. 113 ust 1 i 9 ustawy o VAT)',
         ],
         'imd'        => [
-//            'name'          => 'IMD Dariusz Skórniewski',
+            'name'          => 'IMD Dariusz Skórniewski',
             'department_id' => '755066',
 //            'nip'          => '9691395217',
 //            'address'      => 'Brzozowa 10/3',

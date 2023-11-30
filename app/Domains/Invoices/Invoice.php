@@ -62,7 +62,7 @@ class Invoice
     {
         $now = Carbon::now()->format('Y-m-d');
 
-        return [
+        $attributes = [
             'kind'            => 'vat',
             'number'          => null,
             'sell_date'       => $this->request->order->created_at->format('Y-m-d'),
@@ -79,6 +79,12 @@ class Invoice
             'status'          => 'paid',
             'gtu_codes'       => ['GTU_12'],
         ] + $this->provider->getSellerData();
+
+        if (isset($attributes['department_id'])){
+            unset($attributes['seller_name']);
+        }
+
+        return $attributes;
     }
 
     protected function getPositions(): array
