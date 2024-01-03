@@ -3,7 +3,6 @@
 use App\Domains\Actions\Jobs\AccessJob;
 use App\Domains\Actions\Jobs\BaselinkerJob;
 use App\Domains\Actions\Jobs\FullAccessJob;
-use App\Domains\Actions\Jobs\InvoiceJob;
 use App\Domains\Actions\Jobs\MailerliteJob;
 use App\Domains\Actions\Models\Action;
 
@@ -20,6 +19,10 @@ return [
                 'url' => env('INTEGRATIONS_PROJEKT30_URL', 'https://projekt30.pl'),
                 'key' => env('PROJEKT30_KEY'),
             ],
+            'techniczni' => [
+                'url' => env('INTEGRATIONS_TECHNICZNI_URL', 'https://techniczni.pro'),
+                'key' => env('TECHNICZNI_KEY'),
+            ]
         ],
     ],
 
