@@ -35,13 +35,28 @@
                     label=""
                     value="1"
                 />
-                <div class="ml-3">
-                    Akceptuję
-                    <a href="{{ url($sale->rules_url) }}"
-                       class="text-gray-500"
-                       target="_blank"
-                    >Regulamin i politykę prywatności</a>
-                </div>
+                @if(empty($sale->policy_url))
+                    <div class="ml-3">
+                        Akceptuję
+                        <a href="{{ url($sale->rules_url) }}"
+                           class="text-gray-500"
+                           target="_blank"
+                        >Regulamin i politykę prywatności</a>
+                    </div>
+                @else
+                    <div class="ml-3">
+                        Akceptuję
+                        <a href="{{ url($sale->rules_url) }}"
+                           class="text-gray-500"
+                           target="_blank"
+                        >Regulamin </a>
+                        i
+                        <a href="{{ url($sale->policy_url) }}"
+                           class="text-gray-500"
+                           target="_blank"
+                        > politykę prywatności</a>
+                    </div>
+                @endif
             </div>
             <div>
                 <x-button
@@ -52,7 +67,7 @@
                 />
             </div>
         </div>
-        <x-errors only="rules" />
+        <x-errors only="rules"/>
 
     </form>
 </div>

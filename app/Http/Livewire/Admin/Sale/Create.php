@@ -25,6 +25,8 @@ class Create extends Component
 
     public ?string $rulesUrl = null;
 
+    public ?string $policyUrl = null;
+
     public ?string $redirectUrl = null;
 
     public ?int $counter = null;
@@ -51,6 +53,7 @@ class Create extends Component
             'fullPrice'                => 'sometimes|numeric|min:0.01',
             'description'              => 'required|string',
             'rulesUrl'                 => 'sometimes|string',
+            'policyUrl'                => 'sometimes|string',
             'redirectUrl'              => 'sometimes|string|url',
             'counter'                  => 'sometimes|nullable|integer|min:0',
             'payments_provider'        => ['nullable', new PaymentsProviderRule()],
@@ -79,6 +82,7 @@ class Create extends Component
             'full_price'               => $this->fullPrice,
             'description'              => $this->description,
             'rules_url'                => $this->rulesUrl,
+            'policy_url'                => $this->policyUrl,
             'redirect_url'             => $this->redirectUrl,
             'counter'                  => $this->counter,
             'payments_provider'        => $this->paymentsProvider,

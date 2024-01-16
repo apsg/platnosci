@@ -39,6 +39,7 @@ class Edit extends Component
             'sale.price'                    => 'required|numeric|min:0.01',
             'sale.full_price'               => 'nullable|numeric|min:0.01',
             'sale.rules_url'                => 'nullable|sometimes|string',
+            'sale.policy_url'               => 'nullable|sometimes|string',
             'sale.redirect_url'             => 'nullable|sometimes|string|url',
             'sale.counter'                  => 'nullable|sometimes|integer|min:0',
             'sale.payments_provider'        => ['nullable', new PaymentsProviderRule()],
