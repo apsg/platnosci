@@ -24,6 +24,16 @@ return [
         'secret'    => env('PAYU_SECRET_EI'),
         'md5'       => env('PAYU_MD5_EI'),
     ],
+    'payu_platnosci_inauka'    => [
+        'driver'    => PaymentsManager::PAYU,
+        'name'      => 'Payu Płatności iNauka',
+        'enabled'   => env('PAYU_POS_PLATNOSCI_ENABLED', true),
+        'env'       => PayuHelper::ENV_PROD,
+        'pos_id'    => env('PAYU_POS_ID_PIN'),
+        'client_id' => env('PAYU_CLIENT_ID_PIN'),
+        'secret'    => env('PAYU_SECRET_PIN'),
+        'md5'       => env('PAYU_MD5_PIN'),
+    ],
     'p24'     => [
         'driver' => PaymentsManager::P24,
         'name'   => 'P24 BI',

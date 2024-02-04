@@ -42,17 +42,17 @@ class PayuDriver extends AbstractPaymentsDriver
 
     public function getClientId()
     {
-        return config("payments.payu.{$this->provider}.client_id");
+        return config("payments.{$this->provider}.client_id");
     }
 
     public function getSecret()
     {
-        return config("payments.payu.{$this->provider}.secret");
+        return config("payments.{$this->provider}.secret");
     }
 
     public function getEnv()
     {
-        return config("payments.payu.{$this->provider}.env");
+        return config("payments.{$this->provider}.env");
     }
 
     public function forOrder(Order $order): self
@@ -81,12 +81,7 @@ class PayuDriver extends AbstractPaymentsDriver
 
     protected function getNotifyUrl(): string
     {
-        return route('payments.payu.ipn');
-    }
-
-    protected function getMerchantPosId(): string
-    {
-        return config('payments.payu.pos_id');
+        return route('payu.ipn');
     }
 
     protected function getCurrencyCode(): string
