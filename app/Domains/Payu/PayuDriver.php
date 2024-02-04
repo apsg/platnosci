@@ -69,6 +69,9 @@ class PayuDriver extends AbstractPaymentsDriver
         }
 
         $orderElement = new OrderElement($this->order);
+
+//        dd($orderElement->toArray(), $this->getDriverParameters());
+
         $response = OpenPayU_Order::create($orderElement->toArray() + $this->getDriverParameters());
 
         return $response->getResponse()->redirectUri;
@@ -95,7 +98,7 @@ class PayuDriver extends AbstractPaymentsDriver
             'continueUrl'   => $this->getContinueUrl(),
             'notifyUrl'     => $this->getNotifyUrl(),
             'customerIp'    => request()->ip(),
-            'merchantPosId' => config('payu.' . $this->provider . '.pos_id'),
+            'merchantPosId' => config('payments.' . $this->provider . '.pos_id'),
             'currencyCode'  => $this->getCurrencyCode(),
         ];
     }
