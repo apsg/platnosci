@@ -65,5 +65,12 @@ return [
             'lump_sum_tax' => '8,5',
             'description'  => 'Zwolnienie ze względu na nieprzekroczenie 200 000 PLN obrotu (art. 113 ust 1 i 9 ustawy o VAT)',
         ],
+        'itbt' => [
+            'name'          => 'IT&Business Training Mateusz Grabowski',
+            'department_id' => '480394',
+            'url'           => env('FAKTUROWNIA_URL_ITBT'),
+            'token'         => env('FAKTUROWNIA_TOKEN_ITBT'),
+            'tax'          => '23',
+        ],
     ],
 ];
