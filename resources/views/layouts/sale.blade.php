@@ -36,6 +36,10 @@
     @endif
     <main class="md:min-h-screen md:w-1/2 xl:w-2/3 flex flex-col  justify-center">
         <div class="px-24">
+            <div>
+                {{ $topright }}
+            </div>
+
             <div class="right-box">
                 {{ $slot }}
             </div>

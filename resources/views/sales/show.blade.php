@@ -68,6 +68,12 @@
         </div>
     </x-slot>
 
+    <x-slot name="topright">
+        <div class="mb-16">
+            <x-testimonials />
+        </div>
+    </x-slot>
+
     <div class="p-5">
         <livewire:order :sale="$sale"/>
     </div>
