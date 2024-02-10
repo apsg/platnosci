@@ -1,4 +1,26 @@
 <div>
+    <div class="mb-8">
+        <div class="flex justify-between mb-2">
+            <div class="text-xs content-start">
+                Dane zamówienia
+            </div>
+            <div class="text-xs content-end">
+                Płatność
+            </div>
+        </div>
+        <div class="flex">
+            <div class="color-cta font-size-5 pr-5">
+                &#11044;
+            </div>
+            <div class="w-full pt-1">
+                <div class="hr-cta" ></div>
+            </div>
+            <div class="text-gray-500 font-size-5 pl-5">
+                &#9711;
+            </div>
+        </div>
+    </div>
+
     <h2 class="text-2xl mb-5">
         Szczegóły zamówienia
     </h2>
@@ -23,12 +45,12 @@
         </div>
 
         <div class="mb-5">
-            <div class="rounded bg-blue-100 p-2 text-sm">
+            <div class="rounded bg-blue-50 p-4 text-sm">
                 <x-icon name="information-circle" class="w-5 h-5 inline"/>
-                Potrzebujesz fakturę? Po udanym zakupie otrzymasz link z instrukcją jak uzyskać fakturę.
+                <span class="font-bold"> Potrzebujesz fakturę?</span> Po udanym zakupie otrzymasz link z instrukcją jak uzyskać fakturę.
             </div>
         </div>
-        <div class="flex justify-between content-center">
+        <div class="">
             <div class="flex content-center">
                 <x-checkbox
                     wire:model="accept"
@@ -58,15 +80,19 @@
                     </div>
                 @endif
             </div>
-            <div>
-                <x-button
-                    positive
-                    icon="cash"
-                    wire:click="order"
-                    label="Zapłać {{ $sale->format('price') }} PLN"
-                />
-            </div>
         </div>
+        <div class="my-5" style="height: 65px">
+            <x-button
+                wire:click="order"
+                label="Zapłać {{ $sale->format('price') }} PLN"
+                class="pay-button"
+            />
+        </div>
+        @if(!empty($sale->omnibus_price))
+        <div class="text-xs">
+            {{ $sale->omnibus_price }} PLN - Najniższa cena z 30 dni przed obniżką
+        </div>
+        @endif
         <x-errors only="rules"/>
 
     </form>

@@ -5,3 +5,69 @@
 [x-cloak] {
     display: none;
 }
+body{
+    font-family: 'Sora', sans-serif;
+}
+
+.right-box {
+    border: 1px solid #BABABA;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 20px 30px #1413110D;
+    border: 1px solid #BABABA;
+    border-radius: 10px;
+    opacity: 1;
+}
+
+.left-box {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 10px;
+    opacity: 1;
+}
+
+.full-price{
+    color: #B91C1B;
+    font-size: 30px;
+}
+
+.price{
+    color: #03A73B;
+    font-size: 48px;
+}
+
+.descriptions{
+    font-size: 14px;
+    color: #141311;
+}
+
+.color-cta{
+    color: #FF481A;
+}
+
+.hr-cta{
+    background-color: #FF481A;
+    height: 4px;
+    border-radius: 13px;
+    margin-top: 2px;
+}
+
+.font-size-5{
+    font-size: 10px;
+}
+
+.pay-button{
+    width: 100%;
+    height: 60px;
+    transition: height 0.15s ease-out;
+    background-color: #FF481A;
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.pay-button:hover
+{
+    height: 65px;
+    transition: height 0.25s ease-in;
+    background-color: #FF481A;
+    color: #FFFFFF;
+}
