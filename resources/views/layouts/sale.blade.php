@@ -21,18 +21,21 @@
     @livewireStyles
 
 </head>
-<body class="w-full h-full bg-cover bg-center" style='background-image: url("{{ asset('/images/tlo-inauka-platnosc.png') }}")'>
+<body class="w-full h-full bg-cover bg-center" style='background: #FAFAFA 0% 0% no-repeat padding-box;'>
 <div class="md:min-h-screen md:flex">
     @if(isset($left))
-        <div class="md:min-h-screen bg-gray-200 md:w-1/2 p-6 flex flex-col justify-center flex">
-            <aside class="mx-auto">
+        <div class="md:min-h-screen md:w-1/2 p-6 flex flex-col justify-center flex px-24"
+             style="background: #FFF3F0 0% 0% no-repeat padding-box">
+            <aside class="left-box px-24 py-12">
                 {{ $left }}
             </aside>
         </div>
     @endif
-    <main class="md:min-h-screen md:w-3/4 xl:w-2/3 flex flex-col  justify-center">
-        <div class="sm:w-2/3 mx-auto md:mx-0 bg-gray-100 shadow rounded-r">
-            {{ $slot }}
+    <main class="md:min-h-screen md:w-1/2 xl:w-2/3 flex flex-col  justify-center">
+        <div class="px-24">
+            <div class="right-box">
+                {{ $slot }}
+            </div>
         </div>
     </main>
 </div>

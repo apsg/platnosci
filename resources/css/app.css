@@ -5,3 +5,19 @@
 [x-cloak] {
     display: none;
 }
+
+
+.right-box {
+    border: 1px solid #BABABA;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 20px 30px #1413110D;
+    border: 1px solid #BABABA;
+    border-radius: 10px;
+    opacity: 1;
+}
+
+.left-box {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 10px;
+    opacity: 1;
+}
