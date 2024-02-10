@@ -19,6 +19,19 @@
             >
         </div>
         <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
+                Tytuł (ten opis pokaże się klientowi jako tytuł sprzedaży).
+            </label>
+            <input
+                wire:model.debounce.500ms="title"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="title"
+                type="text"
+                placeholder="np. produkt..."
+                required
+            >
+        </div>
+        <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
                 Opis płatności (ten opis pokaże się klientowi jako produkt i będzie pozycją na fakturze).
             </label>
@@ -53,6 +66,19 @@
                 wire:model.debounce.500ms="fullPrice"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="full_price"
+                type="number"
+                step="0.01"
+                min="0.01"
+            >
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="omnibus_price">
+                Kwota z dyrektywy omnibus.
+            </label>
+            <input
+                wire:model.debounce.500ms="omnibusPrice"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="omnibus_price"
                 type="number"
                 step="0.01"
                 min="0.01"
@@ -105,6 +131,18 @@
                 wire:model.debounce.500ms="redirectUrl"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 id="redirect"
+                type="text"
+            >
+        </div>
+
+        <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="iconUrl">
+                Link do ikony
+            </label>
+            <input
+                wire:model.debounce.500ms="iconUrl"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="iconUrl"
                 type="text"
             >
         </div>

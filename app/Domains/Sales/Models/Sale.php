@@ -17,12 +17,15 @@ use Illuminate\Support\Collection;
  * @property int                              user_id
  * @property string                           hash
  * @property string                           name
+ * @property string|null                      title
  * @property string                           description
  * @property string|null                      rules_url
  * @property string|null                      policy_url
  * @property string|null                      redirect_url
+ * @property string|null                      icon_url
  * @property float                            price
  * @property float|null                       full_price
+ * @property float|null                       omnibus_price
  * @property int|null                         counter
  * @property string|null                      payments_provider
  * @property string|null                      default_invoice_provider
@@ -47,6 +50,9 @@ class Sale extends Model
         'payments_provider',
         'default_invoice_provider',
         'user_id',
+        'omnibus_price',
+        'icon_url',
+        'title'
     ];
 
     protected $casts = [
@@ -82,5 +88,10 @@ class Sale extends Model
     public function scopeForUser(Builder $builder, User $user): Builder
     {
         return $builder->where('user_id', $user->id);
+    }
+
+    public function hasIcon(): bool
+    {
+        return !empty($this->icon_url);
     }
 }

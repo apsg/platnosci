@@ -19,15 +19,21 @@ class Create extends Component
 
     public string $description = '';
 
+    public string $title = '';
+
     public ?float $price = null;
 
     public ?float $fullPrice = null;
+
+    public ?float $omnibusPrice = null;
 
     public ?string $rulesUrl = null;
 
     public ?string $policyUrl = null;
 
     public ?string $redirectUrl = null;
+
+    public ?string $iconUrl = null;
 
     public ?int $counter = null;
 
@@ -49,12 +55,15 @@ class Create extends Component
     {
         return [
             'name'                     => 'required|string',
+            'title'                    => 'sometimes|string',
             'price'                    => 'required|numeric|min:0.01',
             'fullPrice'                => 'sometimes|numeric|min:0.01',
+            'omnibusPrice'             => 'sometimes|numeric|min:0.01',
             'description'              => 'required|string',
             'rulesUrl'                 => 'sometimes|string',
             'policyUrl'                => 'sometimes|string',
             'redirectUrl'              => 'sometimes|string|url',
+            'iconUrl'                  => 'sometimes|string|url',
             'counter'                  => 'sometimes|nullable|integer|min:0',
             'payments_provider'        => ['nullable', new PaymentsProviderRule()],
             'default_invoice_provider' => ['nullable', new InvoiceProviderRule()],
@@ -78,12 +87,15 @@ class Create extends Component
         $sale = Sale::create([
             'user_id'                  => $user->id,
             'name'                     => $this->name,
+            'title'                    => $this->title,
             'price'                    => $this->price,
             'full_price'               => $this->fullPrice,
+            'omnibus_price'            => $this->omnibusPrice,
             'description'              => $this->description,
             'rules_url'                => $this->rulesUrl,
-            'policy_url'                => $this->policyUrl,
+            'policy_url'               => $this->policyUrl,
             'redirect_url'             => $this->redirectUrl,
+            'icon_url'                 => $this->iconUrl,
             'counter'                  => $this->counter,
             'payments_provider'        => $this->paymentsProvider,
             'default_invoice_provider' => $this->defaultInvoiceProvider,

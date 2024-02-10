@@ -30,6 +30,20 @@
         />
 
         <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
+                Tytuł sprzedaży
+            </label>
+            <input
+                wire:model.debounce.500ms="sale.title"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="title"
+                type="text"
+                placeholder="np. produkt..."
+                required
+            >
+            @error('sale.description') <span class="error text-red-700">{{ $message }}</span> @enderror
+        </div>
+        <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
                 Opis sprzedaży (ten opis pokaże się klientowi jako produkt i będzie pozycją na fakturze).
             </label>
@@ -73,6 +87,20 @@
             @error('sale.full_price') <span class="error text-red-700">{{ $message }}</span> @enderror
         </div>
 
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="omnibus_price">
+                Kwota z dyrektywy omnibus
+            </label>
+            <input
+                wire:model.debounce.500ms="sale.omnibus_price"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="omnibus_price"
+                type="number"
+                step="0.01"
+                min="0.01"
+            >
+            @error('sale.full_price') <span class="error text-red-700">{{ $message }}</span> @enderror
+        </div>
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="full_price">
                 Licznik w sekundach (pozostaw puste, jeśli licznik ma być wyłączony)
@@ -125,6 +153,25 @@
                 type="text"
             >
             @error('sale.redirect_url') <span class="error text-red-700">{{ $message }}</span> @enderror
+        </div>
+
+        <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="icon_url">
+                Link do ikony
+            </label>
+            <p class="text-sm">
+                Możesz tu użyć domyślnej ikony - skopiuj i wklej poniższy adres: <br/>
+            <code>
+                {{ url('/images/platnosci_inauka.png') }}
+            </code>
+            </p>
+            <input
+                wire:model.debounce.500ms="sale.icon_url"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="icon_url"
+                type="text"
+            >
+            @error('sale.icon_url') <span class="error text-red-700">{{ $message }}</span> @enderror
         </div>
 
         <div class="mb-6">
