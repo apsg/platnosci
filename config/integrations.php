@@ -63,6 +63,9 @@ return [
             'itbt' => [
                 'token' => env('MAILERLITE_TOKEN'),
             ],
+            'itbt_new' => [
+                'token' => env('MAILERLITE_TOKEN_ITBT_NEW'),
+            ]
         ],
     ],
 
