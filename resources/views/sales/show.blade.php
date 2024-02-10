@@ -70,7 +70,7 @@
 
     <x-slot name="topright">
         <div class="mb-16">
-            <x-testimonials />
+            <livewire:testimonials />
         </div>
     </x-slot>
 

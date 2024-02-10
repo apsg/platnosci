@@ -1,15 +1,14 @@
-<div>
+<div wire:poll.5s>
     <div class="border border-red-600 rounded bg-white px-6 py-4 w-5/6 mx-auto">
         <div class="flex">
             <div>
-                <div class="bg-green-400 rounded text-white text-2xl font-bold text-center w-10 h-10"
-                     style="line-height: 40px">
-                    M
+                <div class="rounded text-white text-2xl font-bold text-center w-10 h-10"
+                     style="line-height: 40px; background-color: {{ $color }}">
+                    {{ $letter }}
                 </div>
             </div>
             <div class="text-xs pl-6">
-                Fenomenalne materiały - cena promocyjna 150 zł a dostałem parę gb materiałów. Jestem w szoku!!
-                Niezależnie od poziomu warto kupić!
+                {{ $text }}
                 <br/>
             </div>
         </div>
@@ -21,7 +20,7 @@
             </div>
             <div class="pl-6">
                 <span class="font-bold text-sm">
-                    Maciej B.
+                    {{ $name }}
                 </span>
             </div>
         </div>
