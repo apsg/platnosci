@@ -1,5 +1,35 @@
 <div>
-    <div class="mb-8">
+    <div class="text-center block md:hidden">
+        <div class="pb-12 border-b border-gray-200 mb-12">
+            <img src="{{ \App\Images::logo() }}" class="mx-auto" style="max-width: 250px"/>
+        </div>
+        @if(!empty($sale->counter))
+            <div class="pb-3 md:pb-5 text-xl text-pink-600 font-bold">
+                <p>Promocja dostępna tylko przez</p>
+                <x-counter :counter="$sale->counter"></x-counter>
+            </div>
+        @endif
+        @if(!empty($sale->icon_url))
+            <img src="{{ $sale->icon_url }}" class="mb-5 max-h-20 mx-auto"/>
+        @endif
+        @if(!empty($sale->title))
+            <h1 class="text-2xl font-bold mb-5">
+                {{ $sale->title }}
+            </h1>
+        @endif
+        <p class="pb-5" style="color: #141311B2;">
+            {{ $sale->description }}
+        </p>
+        @if($sale->full_price)
+            <div class="line-through decoration-2 full-price font-semibold">
+                {{ $sale->format('full_price') }} PLN
+            </div>
+        @endif
+        <div class="price font-bold">
+            {{ $sale->format('price') }} PLN
+        </div>
+    </div>
+    <div class="mb-8 hidden md:block">
         <div class="flex justify-between mb-2">
             <div class="text-xs content-start">
                 Dane zamówienia
@@ -13,7 +43,7 @@
                 &#11044;
             </div>
             <div class="w-full pt-1">
-                <div class="hr-cta" ></div>
+                <div class="hr-cta"></div>
             </div>
             <div class="text-gray-500 font-size-5 pl-5">
                 &#9711;
@@ -47,7 +77,8 @@
         <div class="mb-5">
             <div class="rounded bg-blue-50 p-4 text-sm">
                 <x-icon name="information-circle" class="w-5 h-5 inline"/>
-                <span class="font-bold"> Potrzebujesz fakturę?</span> Po udanym zakupie otrzymasz link z instrukcją jak uzyskać fakturę.
+                <span class="font-bold"> Potrzebujesz fakturę?</span> Po udanym zakupie otrzymasz link z instrukcją jak
+                uzyskać fakturę.
             </div>
         </div>
         <div class="">
@@ -89,9 +120,9 @@
             />
         </div>
         @if(!empty($sale->omnibus_price))
-        <div class="text-xs">
-            {{ $sale->omnibus_price }} PLN - Najniższa cena z 30 dni przed obniżką
-        </div>
+            <div class="text-xs">
+                {{ $sale->omnibus_price }} PLN - Najniższa cena z 30 dni przed obniżką
+            </div>
         @endif
         <x-errors only="rules"/>
 

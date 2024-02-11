@@ -5,7 +5,7 @@
     </x-slot>
 
     <x-slot name="left">
-        <div class="min-h-[300px] flex-col justify-between">
+        <div class="min-h-[300px] flex-col justify-between ">
             <div>
                 <div class="pb-12 border-b border-gray-200 mb-12">
                     <img src="{{ \App\Images::logo() }}" class="mx-auto" style="max-width: 250px"/>
