@@ -3,6 +3,7 @@ namespace App\Http\Livewire\Admin\Action;
 
 use App\Domains\Actions\Models\Action;
 use Illuminate\Support\Arr;
+use MailerLiteApi\Common\Collection;
 use MailerLiteApi\MailerLite as MailerLiteApi;
 
 class Mailerlite extends ActionComponent
@@ -31,7 +32,7 @@ class Mailerlite extends ActionComponent
         $this->loadGroups();
 
         return view('livewire.admin.action.mailerlite')->with([
-            'groups' => $this->groups
+            'groups' => $this->groups,
         ]);
     }
 
@@ -58,14 +59,7 @@ class Mailerlite extends ActionComponent
             return;
         }
 
-        $response = (new MailerLiteApi($this->getProviderToken()))
-            ->groups()
-            ->get(['id', 'name'])
-            ->toArray();
-
-        if ($this->isError($response)) {
-            throw new \Exception('Mailerlite error: ' . $response[0]->error->message);
-        }
+        $response = $this->getGroupsInLoop();
 
         $this->groups = collect($response)
             ->map(function ($item) {
@@ -74,6 +68,33 @@ class Mailerlite extends ActionComponent
                     'name' => $item->name,
                 ];
             })->toArray();
+    }
+
+    protected function getGroupsInLoop(): array
+    {
+        $results = [];
+        $offset = 0;
+        $shouldRepeat = true;
+
+        $sdk = (new MailerLiteApi($this->getProviderToken()));
+
+        while ($shouldRepeat === true) {
+            $items = $sdk
+                ->groups()
+                ->limit(100)
+                ->offset($offset)
+                ->get();
+
+            if ($this->isError($items)) {
+                throw new \Exception('Mailerlite error: ' . $items[0]->error->message);
+            }
+
+            array_push($results, ...$items->toArray());
+            $offset += 100;
+            $shouldRepeat = $items->count() === 100;
+        }
+
+        return $results;
     }
 
     private function getProviderToken(): string
@@ -85,7 +106,7 @@ class Mailerlite extends ActionComponent
             . '.token');
     }
 
-    protected function isError(array $response): bool
+    protected function isError(array|Collection $response): bool
     {
         if (!isset($response[0])) {
             return false;
