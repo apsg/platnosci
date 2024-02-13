@@ -27,14 +27,14 @@
 <body class="w-full h-full bg-cover bg-center" style='background: #FAFAFA 0% 0% no-repeat padding-box;'>
 <div class="md:min-h-screen md:flex">
     @if(isset($left))
-        <div class="md:min-h-screen md:w-1/2 p-1 md:p-6 flex-col justify-center lg:px-12 xl:px-24  hidden md:flex"
+        <div class="md:min-h-screen w-2/3 xl:w-1/2 p-1 md:p-6 flex-col justify-center lg:px-12 xl:px-24  hidden md:flex"
              style="background: #FFF3F0 0% 0% no-repeat padding-box">
             <aside class="left-box px-5 lg:px-12 xl:px-24 py-12">
                 {{ $left }}
             </aside>
         </div>
     @endif
-    <main class="md:min-h-screen md:w-1/2 xl:w-2/3 flex flex-col justify-center">
+    <main class="md:min-h-screen md: w-1/3 xl:w-1/2 flex flex-col justify-center">
         <div class="px-5 lg:px-12 xl:px-24">
             <div class="hidden md:block">
                 {{ $topright }}

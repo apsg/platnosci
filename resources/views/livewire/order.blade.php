@@ -65,13 +65,37 @@
                 placeholder="Adres email"/>
         </div>
         <div class="mb-5">
-            <x-input
-                wire:model.debounce.1s="phone"
-                class="pr-28"
-                type="text"
-                label="Numer telefonu"
-                placeholder="Numer telefonu"
-            />
+            <div class="">
+                <div class="flex justify-between items-end mb-1">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-400"
+                           for="f7a42fe7211f98ac7a60a285ac3a9e87">
+                        Numer telefonu
+
+                        <button data-tooltip-target="tooltip-right"
+                                data-tooltip-placement="right"
+                                type="button"
+                                data-tooltip-style="light"
+                                class="ms-3 mb-2 md:mb-0 text-gray-900 w-4 h-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                            </svg>
+                        </button>
+
+                        <div id="tooltip-right" role="tooltip"
+                             class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip text-xs">
+                            Numer telefonu potrzebny nam jest w przypadku literówki<br /> w mailu i/lub potwierdzenia zakupu.
+                            <div class="tooltip-arrow" data-popper-arrow></div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="relative rounded-md  shadow-sm ">
+                    <input type="text" autocomplete="off"
+                           class="placeholder-secondary-400 dark:bg-secondary-800 dark:text-secondary-400 dark:placeholder-secondary-500 border border-secondary-300 focus:ring-primary-500 focus:border-primary-500 dark:border-secondary-600 form-input block w-full sm:text-sm rounded-md transition ease-in-out duration-100 focus:outline-none shadow-sm pr-28"
+                           wire:model.debounce.1s="phone" placeholder="Numer telefonu" name="phone"
+                           id="f7a42fe7211f98ac7a60a285ac3a9e87">
+                </div>
+            </div>
         </div>
 
         <div class="mb-5">
