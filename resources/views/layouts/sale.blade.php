@@ -34,7 +34,7 @@
             </aside>
         </div>
     @endif
-    <main class="md:min-h-screen md: w-1/3 xl:w-1/2 flex flex-col justify-center">
+    <main class="md:min-h-screen md:w-1/3 xl:w-1/2 flex flex-col justify-center">
         <div class="px-5 lg:px-12 xl:px-24">
             <div class="hidden md:block">
                 {{ $topright }}
