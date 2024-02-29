@@ -1,7 +1,6 @@
 <?php
 namespace App\Domains\Actions;
 
-use App\Domains\Actions\Jobs\MailerliteJob;
 use App\Domains\Actions\Models\Action;
 use App\Domains\Payments\Models\Order;
 use App\Domains\Sales\Models\Sale;

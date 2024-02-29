@@ -33,7 +33,7 @@ abstract class ActionJob implements ShouldQueue
         return Arr::get($this->parameters, 'provider');
     }
 
-    protected function incrementActionsCount()
+    protected function incrementActionsCount(): void
     {
         $this->order->update([
             'delivered_count' => $this->order->delivered_count + 1,

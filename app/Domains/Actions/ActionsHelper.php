@@ -1,6 +1,8 @@
 <?php
 namespace App\Domains\Actions;
 
+use App\Domains\Actions\Models\Action;
+use App\Domains\Payments\Models\Order;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -28,5 +30,14 @@ class ActionsHelper
     public static function emailToName(string $email): string
     {
         return Str::studly(str_replace(['.', '-', '_'], [' '], explode('@', $email)[0]));
+    }
+
+    public static function retry(Action $action, Order $order): void
+    {
+        call_user_func(
+            $action->job . '::dispatchSync',
+            $order,
+            $action->parameters
+        );
     }
 }

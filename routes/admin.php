@@ -29,6 +29,7 @@ Route::middleware(['auth:sanctum', 'verified'])
             ->as('actions.')
             ->group(function () {
                 Route::delete('/{action}', [SaleActionsController::class, 'destroy'])->name('destroy');
+                Route::get('/retry/{order}', [SaleActionsController::class, 'retry'])->name('retry');
             });
 
         Route::prefix('orders')

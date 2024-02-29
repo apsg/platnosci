@@ -46,6 +46,10 @@ class Index extends LivewireDatatable
             })
                 ->label('Status'),
 
+            Column::callback(['actions_count', 'delivered_count'], function ($actions_count, $delivered_count){
+                return view('livewire.admin.orders.tables.actions', compact('actions_count', 'delivered_count'));
+            })->label('Akcje'),
+
             Column::callback(['id'], function ($id) {
                 return view('livewire.admin.orders.tables.options', compact('id'));
             })
