@@ -29,7 +29,7 @@ class Index extends LivewireDatatable
                 ->format('Y-m-d H:i')
                 ->sortable(),
 
-            Column::name('sale.name')
+            Column::name('sales.name')
                 ->filterable($this->sales->pluck('name'))
                 ->label('Sprzedaż'),
 
