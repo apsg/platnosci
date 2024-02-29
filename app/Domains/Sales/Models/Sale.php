@@ -2,6 +2,7 @@
 namespace App\Domains\Sales\Models;
 
 use App\Domains\Actions\Models\Action;
+use App\Domains\Payments\Models\Order;
 use App\Models\User;
 use Carbon\Carbon;
 use Database\Factories\SaleFactory;
@@ -32,6 +33,7 @@ use Illuminate\Support\Collection;
  * @property Carbon                           created_at
  * @property Carbon                           updated_at
  * @property-read Collection<Action>|Action[] actions
+ * @property-read Collection<Order>           orders
  */
 class Sale extends Model
 {
@@ -52,7 +54,7 @@ class Sale extends Model
         'user_id',
         'omnibus_price',
         'icon_url',
-        'title'
+        'title',
     ];
 
     protected $casts = [
@@ -73,6 +75,11 @@ class Sale extends Model
     public function actions(): HasMany
     {
         return $this->hasMany(Action::class)->orderBy('job');
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
     }
 
     public static function newFactory(): SaleFactory

@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
+use TypeError;
 
 class DispatchSaleActionsListener implements ShouldQueue
 {
@@ -30,6 +31,12 @@ class DispatchSaleActionsListener implements ShouldQueue
                 Log::error($exception->getMessage(), [
                     'job'   => $jobClass,
                     'order' => $event->order,
+                ]);
+            } catch (TypeError $error) {
+                Log::error($error->getMessage(), [
+                    'job'        => $jobClass,
+                    'order'      => $event->order,
+                    'parameters' => $action->parameters,
                 ]);
             }
         }
