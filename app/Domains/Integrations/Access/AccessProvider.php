@@ -59,6 +59,15 @@ class AccessProvider
         ]);
     }
 
+    public function grantFullLifetimeAccess(string $email)
+    {
+        return $this->request([
+            'email'              => $email,
+            'is_full_access'     => true,
+            'is_lifetime_access' => true,
+        ]);
+    }
+
     protected function request(array $payload): PromiseInterface|Response
     {
         Log::info(__CLASS__, $payload);

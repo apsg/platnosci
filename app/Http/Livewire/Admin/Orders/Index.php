@@ -30,7 +30,6 @@ class Index extends LivewireDatatable
                 ->sortable(),
 
             Column::name('sale.name')
-                ->filterable($this->sales->pluck('name'))
                 ->label('Sprzedaż'),
 
             Column::name('email')
