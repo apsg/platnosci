@@ -1,5 +1,5 @@
 <x-card>
-    <h3 class="font-bold">Przyznaj pełen roczny dostęp do platformy</h3>
+    <h3 class="font-bold">Przyznaj pełen dożywotni dostęp do platformy</h3>
     <label>
         Platforma:
     </label>

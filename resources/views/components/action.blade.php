@@ -16,5 +16,8 @@
         @case(\App\Domains\Actions\Jobs\MailerliteJob::class)
             <livewire:admin.action.mailerlite :action="$action"/>
             @break
+        @case(\App\Domains\Actions\Jobs\LifetimeAccessJob::class)
+            <livewire:admin.action.lifetime :action="$action"/>
+            @break
     @endswitch
 </div>
