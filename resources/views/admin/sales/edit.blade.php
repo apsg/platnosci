@@ -27,7 +27,7 @@
                     @foreach(\App\Domains\Actions\ActionsHelper::list() as $action => $name)
                         <div class="p-5">
                             <a href="{{ route('admin.sales.add_action', [$sale, $action]) }}"
-                               class="p-3 border-gray-300 border rounded bg-gray-50 hover:bg-blue-100">
+                               class="p-3 border-gray-300 border rounded bg-gray-50 hover:bg-blue-100 block">
                                 <x-icon name="plus" class="w-5 h-5 inline"/> {{ $name }}
                             </a>
                         </div>
