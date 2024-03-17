@@ -22,7 +22,11 @@ return [
             'techniczni' => [
                 'url' => env('INTEGRATIONS_TECHNICZNI_URL', 'https://techniczni.pro'),
                 'key' => env('TECHNICZNI_KEY'),
-            ]
+            ],
+            'is' => [
+                'url' => env('INTEGRATIONS_IS_URL', 'https://internetowisprzedawcy.pl'),
+                'key' => env('IS_KEY'),
+            ],
         ],
     ],
 
@@ -41,6 +45,10 @@ return [
             'techniczni'    => [
                 'url' => env('INTEGRATIONS_INAUKA_URL', 'https://techniczni.pro'),
                 'key' => env('TECHNICZNI_KEY'),
+            ],
+            'is' => [
+                'url' => env('INTEGRATIONS_IS_URL', 'https://internetowisprzedawcy.pl'),
+                'key' => env('IS_KEY'),
             ],
         ],
     ],

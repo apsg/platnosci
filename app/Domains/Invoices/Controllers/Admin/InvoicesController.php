@@ -4,7 +4,10 @@ namespace App\Domains\Invoices\Controllers\Admin;
 use App\Domains\Invoices\Repositories\InvoicesRepository;
 use App\Domains\Payments\Models\InvoiceRequest;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Cache;
 
 class InvoicesController extends Controller
 {
@@ -24,9 +27,17 @@ class InvoicesController extends Controller
         return back();
     }
 
-    public function accept(InvoiceRequest $invoice, InvoicesRepository $repository)
+    public function accept(InvoiceRequest $invoice, InvoicesRepository $repository): RedirectResponse
     {
         $this->authorize('update', $invoice);
+
+        $cacheKey = 'invoice-debounce-' . $invoice->id;
+
+        if (Cache::get($cacheKey) > 0){
+            return back();
+        }
+
+        Cache::remember($cacheKey, Carbon::now()->addSeconds(30), function(){ return 1; });
 
         $repository->accept($invoice);
 
