@@ -34,6 +34,16 @@ return [
         'secret'    => env('PAYU_SECRET_PIN'),
         'md5'       => env('PAYU_MD5_PIN'),
     ],
+    'payu_is'    => [
+        'driver'    => PaymentsManager::PAYU,
+        'name'      => 'InternetowiSprzedawcy.pl',
+        'enabled'   => env('PAYU_POS_PLATNOSCI_ENABLED', true),
+        'env'       => PayuHelper::ENV_PROD,
+        'pos_id'    => env('PAYU_POS_ID_IS'),
+        'client_id' => env('PAYU_CLIENT_ID_IS'),
+        'secret'    => env('PAYU_SECRET_IS'),
+        'md5'       => env('PAYU_MD5_IS'),
+    ],
     'p24'     => [
         'driver' => PaymentsManager::P24,
         'name'   => 'P24 BI',
