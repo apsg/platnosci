@@ -75,7 +75,9 @@
 
     <x-slot name="topright">
         <div class="mb-16">
-            <livewire:testimonials/>
+            @if(!$sale->disable_comments)
+                <livewire:testimonials/>
+            @endif
         </div>
     </x-slot>
 

@@ -161,9 +161,9 @@
             </label>
             <p class="text-sm">
                 Możesz tu użyć domyślnej ikony - skopiuj i wklej poniższy adres: <br/>
-            <code>
-                {{ url('/images/platnosci_inauka.png') }}
-            </code>
+                <code>
+                    {{ url('/images/platnosci_inauka.png') }}
+                </code>
             </p>
             <input
                 wire:model.debounce.500ms="sale.icon_url"
@@ -179,7 +179,8 @@
                 Dolny opis
             </label>
             <p class="text-sm">
-                Opis pod ceną z ikonami na początku - możesz wkleić tu HTML i użyć ikon <a href="https://fontawesome.com/icons" target="_blank">FontAwesome</a>
+                Opis pod ceną z ikonami na początku - możesz wkleić tu HTML i użyć ikon <a
+                    href="https://fontawesome.com/icons" target="_blank">FontAwesome</a>
             </p>
             <textarea
                 wire:model.debounce.500ms="sale.secondary_description"
@@ -234,6 +235,21 @@
                     >{{ $system['name'] }}
                     </option>
                 @endforeach
+            </select>
+        </div>
+
+        <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="provider">
+                Wyłączone komentarze
+            </label>
+            <select
+                wire:model.debounce.500ms="sale.disable_comments"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="provider"
+                type="text"
+            >
+                <option value="0" @if(!$sale->disable_comments) selected @endif>Nie</option>
+                <option value="1" @if($sale->disable_comments) selected @endif>Tak</option>
             </select>
         </div>
 

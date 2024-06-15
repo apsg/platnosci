@@ -31,6 +31,7 @@ use Illuminate\Support\Collection;
  * @property string|null                      payments_provider
  * @property string|null                      default_invoice_provider
  * @property string|null                      secondary_description
+ * @property boolean                          disable_comments
  * @property Carbon                           created_at
  * @property Carbon                           updated_at
  * @property-read Collection<Action>|Action[] actions
@@ -57,11 +58,12 @@ class Sale extends Model
         'icon_url',
         'title',
         'secondary_description',
+        'disable_comments',
     ];
 
     protected $casts = [
-        'id'      => 'integer',
-        'user_id' => 'integer',
+        'id'               => 'integer',
+        'user_id'          => 'integer',
     ];
 
     public function user(): BelongsTo

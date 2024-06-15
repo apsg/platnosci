@@ -48,6 +48,7 @@ class Edit extends Component
             'sale.counter'                  => 'nullable|sometimes|integer|min:0',
             'sale.payments_provider'        => ['nullable', new PaymentsProviderRule()],
             'sale.default_invoice_provider' => ['nullable', new InvoiceProviderRule()],
+            'sale.disable_comments'         => 'required|boolean',
         ];
     }
 
