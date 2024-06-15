@@ -3,9 +3,9 @@ namespace App\Http\Livewire\Admin\Orders;
 
 use App\Domains\Payments\Models\Order;
 use App\Domains\Sales\Models\Sale;
+use App\Livewire\TimezonedDateColumn;
 use Illuminate\Support\Facades\Auth;
 use Mediconesystems\LivewireDatatables\Column;
-use Mediconesystems\LivewireDatatables\DateColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 use Mediconesystems\LivewireDatatables\NumberColumn;
 
@@ -24,7 +24,7 @@ class Index extends LivewireDatatable
             NumberColumn::name('id')
                 ->label('ID'),
 
-            DateColumn::name('orders.created_at')
+            TimezonedDateColumn::name('orders.created_at')
                 ->label('Data')
                 ->format('Y-m-d H:i')
                 ->sortable(),
