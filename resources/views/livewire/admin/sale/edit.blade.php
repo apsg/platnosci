@@ -175,6 +175,23 @@
         </div>
 
         <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="secondary_description">
+                Dolny opis
+            </label>
+            <p class="text-sm">
+                Opis pod ceną z ikonami na początku - możesz wkleić tu HTML i użyć ikon <a href="https://fontawesome.com/icons" target="_blank">FontAwesome</a>
+            </p>
+            <textarea
+                wire:model.debounce.500ms="sale.secondary_description"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="secondary_description"
+                type="text"
+                rows="10"
+            ></textarea>
+            @error('sale.secondary_description') <span class="error text-red-700">{{ $message }}</span> @enderror
+        </div>
+
+        <div class="mb-6">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="provider">
                 Konto systemu płatności
             </label>

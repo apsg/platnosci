@@ -30,6 +30,7 @@ use Illuminate\Support\Collection;
  * @property int|null                         counter
  * @property string|null                      payments_provider
  * @property string|null                      default_invoice_provider
+ * @property string|null                      secondary_description
  * @property Carbon                           created_at
  * @property Carbon                           updated_at
  * @property-read Collection<Action>|Action[] actions
@@ -55,6 +56,7 @@ class Sale extends Model
         'omnibus_price',
         'icon_url',
         'title',
+        'secondary_description',
     ];
 
     protected $casts = [
