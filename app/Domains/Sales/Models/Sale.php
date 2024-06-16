@@ -24,6 +24,7 @@ use Illuminate\Support\Collection;
  * @property string|null                      policy_url
  * @property string|null                      redirect_url
  * @property string|null                      icon_url
+ * @property string|null                      logo_url
  * @property float                            price
  * @property float|null                       full_price
  * @property float|null                       omnibus_price
@@ -59,11 +60,12 @@ class Sale extends Model
         'title',
         'secondary_description',
         'disable_comments',
+        'logo_url',
     ];
 
     protected $casts = [
-        'id'               => 'integer',
-        'user_id'          => 'integer',
+        'id'      => 'integer',
+        'user_id' => 'integer',
     ];
 
     public function user(): BelongsTo

@@ -175,6 +175,22 @@
         </div>
 
         <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="logo_url">
+                Link do logo (obrazek na samej górze strony)
+            </label>
+            <p class="text-sm">
+                Zostaw puste by ustawić domyślny
+            </p>
+            <input
+                wire:model.debounce.500ms="sale.logo_url"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="logo_url"
+                type="text"
+            >
+            @error('sale.logo_url') <span class="error text-red-700">{{ $message }}</span> @enderror
+        </div>
+
+        <div class="mb-6">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="secondary_description">
                 Dolny opis
             </label>
