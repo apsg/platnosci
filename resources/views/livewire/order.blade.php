@@ -1,7 +1,11 @@
 <div>
     <div class="text-center block md:hidden">
         <div class="pb-12 border-b border-gray-200 mb-12">
-            <img src="{{ \App\Images::logo() }}" class="mx-auto" style="max-width: 250px"/>
+            @if(!empty($sale->logo_url))
+                <img src="{{ $sale->logo_url }}" class="mx-auto" style="max-width: 250px"/>
+            @else
+                <img src="{{ \App\Images::logo() }}" class="mx-auto" style="max-width: 250px"/>
+            @endif
         </div>
         @if(!empty($sale->counter))
             <div class="pb-3 md:pb-5 text-xl text-pink-600 font-bold">
