@@ -20,10 +20,8 @@ class MailerliteJob extends ActionJob
 
         (new MailerLite($token))->groups()->addSubscriber($groupId, [
             'email' => $this->order->email,
-            [
-                'fields' => [
-                    'phone' => $this->order->phone,
-                ],
+            'fields' => [
+                'phone' => $this->order->phone,
             ],
         ]);
 
