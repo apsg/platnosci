@@ -36,7 +36,7 @@ class Edit extends Component
         return [
             'sale.name'                     => 'required|string',
             'sale.description'              => 'required|string',
-            'sale.secondary_description'    => 'sometimes|string',
+            'sale.secondary_description'    => 'nullable|string',
             'sale.title'                    => 'sometimes|string',
             'sale.price'                    => 'required|numeric|min:0.01',
             'sale.full_price'               => 'nullable|numeric|min:0.01',
