@@ -128,7 +128,7 @@ class Invoice
 
     public function sendByEmail(): self
     {
-        $this->client->sendInvoice($this->invoiceId);
+//        $this->client->sendInvoice($this->invoiceId);
 
         return $this;
     }
