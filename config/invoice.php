@@ -61,7 +61,7 @@ return [
             'token'           => env('FAKTUROWNIA_TOKEN_EI'),
             'tax'             => 'zw',
             'lump_sum_tax'    => '8,5',
-            'exempt_tax_kind' => "Zwolnienie ze względu na rodzaj prowadzonej działalności (art. 43 ust 1 ustawy o VAT)",
+            'exempt_tax_kind' => "Zwolnienie ze względu na rodzaj prowadzonej działalności (art. 43 ust. 1 pkt 26 ustawy o VAT)",
 
         ],
         'itbt'       => [
