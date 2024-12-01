@@ -19,7 +19,7 @@ select s.name, count(*) as c, SUM(o.price) as sum from orders o
 left join sales s on o.sale_id = s.id
 where o.confirmed_at >= ? and o.confirmed_at <= ?
 and s.user_id = ?
-group by o.sale_id
+group by s.name
 SQL;
 
     protected Carbon $from;
