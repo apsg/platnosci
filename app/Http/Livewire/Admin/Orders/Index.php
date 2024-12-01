@@ -45,7 +45,10 @@ class Index extends LivewireDatatable
             })
                 ->label('Status'),
 
-            Column::callback(['actions_count', 'delivered_count'], function ($actions_count, $delivered_count){
+            NumberColumn::name('price')
+                ->label('Kwota sprzedaży (PLN)'),
+
+            Column::callback(['actions_count', 'delivered_count'], function ($actions_count, $delivered_count) {
                 return view('livewire.admin.orders.tables.actions', compact('actions_count', 'delivered_count'));
             })->label('Akcje'),
 
