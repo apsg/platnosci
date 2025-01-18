@@ -46,6 +46,10 @@ jobs:
           REMOTE_USER: ${{ secrets.USER }}
           TARGET: ${{ secrets.TARGET }}
           EXCLUDE: "/node_modules/, /.idea/, /.git/, /vendor/, /.github/"
+        with:
+          REMOTE_HOST: ${{ secrets.HOST }}
+          REMOTE_USER: ${{ secrets.USER }}
+          SSH_PRIVATE_KEY: ${{ secrets.KEY }}
       - name: Composer and migrations
         uses: JimCronqvist/action-ssh@master
         with:
