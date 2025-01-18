@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Carbon      created_at
  * @property Carbon      updated_at
  * @property Carbon|null accepted_at
+ * @property Carbon|null date
  * @property-read Order  order
  *
  * @method static Builder pending()
@@ -36,10 +37,12 @@ class InvoiceRequest extends Model
         'provider',
         'postcode',
         'city',
+        'date',
     ];
 
     protected $dates = [
         'accepted_at',
+        'date',
     ];
 
     public function order(): BelongsTo

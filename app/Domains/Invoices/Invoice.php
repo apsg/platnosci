@@ -63,24 +63,24 @@ class Invoice
         $now = Carbon::now()->format('Y-m-d');
 
         $attributes = [
-            'kind'            => 'vat',
-            'number'          => null,
-            'sell_date'       => $this->request->order->created_at->format('Y-m-d'),
-            'issue_date'      => $now,
-            'payment_to'      => $this->request->order->created_at->format('Y-m-d'),
-            'buyer_name'      => $this->request->name,
-            'buyer_street'    => $this->request->address,
-            'buyer_post_code' => $this->request->postcode,
-            'buyer_city'      => $this->request->city,
-            'buyer_email'     => $this->request->order->email,
-            'buyer_tax_no'    => $this->request->nip,
-            'positions'       => $this->getPositions(),
-            'paid_date'       => $this->request->order->created_at->format('Y-m-d'),
-            'status'          => 'paid',
-            'gtu_codes'       => ['GTU_12'],
-        ] + $this->provider->getSellerData();
+                'kind'            => 'vat',
+                'number'          => null,
+                'sell_date'       => $this->request->order->created_at->format('Y-m-d'),
+                'issue_date'      => $now,
+                'payment_to'      => $this->request->order->created_at->format('Y-m-d'),
+                'buyer_name'      => $this->request->name,
+                'buyer_street'    => $this->request->address,
+                'buyer_post_code' => $this->request->postcode,
+                'buyer_city'      => $this->request->city,
+                'buyer_email'     => $this->request->order->email,
+                'buyer_tax_no'    => $this->request->nip,
+                'positions'       => $this->getPositions(),
+                'paid_date'       => $this->getPaidDate(),
+                'status'          => 'paid',
+                'gtu_codes'       => ['GTU_12'],
+            ] + $this->provider->getSellerData();
 
-        if (isset($attributes['department_id'])){
+        if (isset($attributes['department_id'])) {
             unset($attributes['seller_name']);
         }
 
@@ -131,5 +131,12 @@ class Invoice
         $this->client->sendInvoice($this->invoiceId);
 
         return $this;
+    }
+
+    protected function getPaidDate(): string
+    {
+        return $this->request->date !== null
+            ? $this->request->date->format('y-m-d')
+            : $this->request->order->created_at->format('Y-m-d');
     }
 }
