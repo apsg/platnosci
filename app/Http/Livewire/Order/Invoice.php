@@ -64,6 +64,7 @@ class Invoice extends Component
             'postcode' => $this->postcode,
             'city'     => $this->city,
             'provider' => $this->order->sale->default_invoice_provider,
+            'date'     => $this->order->created_at,
         ]);
 
         $this->isSent = true;
