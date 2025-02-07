@@ -1,5 +1,9 @@
 <div>
+    @if($days > 0)
     <h3 class="text-lg font-bold border-b-2 mt-3">Statystyki dla ostatnich {{ $days }} dni</h3>
+    @else
+        <h3 class="text-lg font-bold border-b-2 mt-3">Statystyki dzisiaj od początku dnia (00:00)</h3>
+    @endif
 
     <div>
         Liczba sprzedaży: <span class="font-bold text-green-700">{{ $stats['total']->c }}</span>

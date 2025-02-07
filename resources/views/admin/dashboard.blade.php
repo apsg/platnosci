@@ -10,6 +10,7 @@
             <div class="bg-white shadow-xl sm:rounded-lg">
 
                 <div class="p-2">
+                    <livewire:stats days="0" />
                     <livewire:stats days="1" />
                     <livewire:stats days="7" />
                     <livewire:stats days="30" />

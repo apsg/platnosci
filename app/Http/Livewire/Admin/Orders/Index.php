@@ -15,10 +15,12 @@ class Index extends LivewireDatatable
 
     public function builder()
     {
-        return Order::forUser(Auth::user())->orderBy('id', 'desc');
+        return Order::forUser(Auth::user())
+            ->leftJoin('sales', 'orders.sale_id', '=', 'sales.id')
+            ->orderBy('id', 'desc');
     }
 
-    public function columns()
+    public function columns(): array
     {
         return [
             NumberColumn::name('id')
@@ -30,7 +32,8 @@ class Index extends LivewireDatatable
                 ->sortable(),
 
             Column::name('sale.name')
-                ->label('Sprzedaż'),
+                ->label('Sprzedaż')
+                ->searchable(),
 
             Column::name('email')
                 ->label('Email')

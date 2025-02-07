@@ -23,7 +23,7 @@
         "livewire/livewire": "^2.5",
         "mailerlite/mailerlite-api-v2-php-sdk": "^0.3.2",
         "mattlibera/livewire-flash": "^0.6.0",
-        "mediconesystems/livewire-datatables": "dev-master",
+        "mediconesystems/livewire-datatables": "^v0.10.0",
         "mnastalski/przelewy24-php": "^0.1.1",
         "openpayu/openpayu": "^2.3",
         "psr/simple-cache": "^2.0",
