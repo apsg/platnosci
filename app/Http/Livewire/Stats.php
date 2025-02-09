@@ -11,7 +11,7 @@ class Stats extends Component
 
     public function mount()
     {
-        if ($this->days === 0){
+        if ($this->days === 0 || $this->days < 1){
             $this->stats = OrdersStats::today()->generate();
         }
 
