@@ -4,14 +4,17 @@ use App\Domains\Invoices\Controllers\Admin\InvoicesController;
 use App\Domains\Payments\Controllers\Admin\OrdersController;
 use App\Domains\Sales\Http\Controllers\Admin\SaleActionsController;
 use App\Domains\Sales\Http\Controllers\Admin\SalesController;
+use App\Http\Controllers\LoginAsUserController;
 use Illuminate\Support\Facades\Route;
+
+
+Route::get('/admin/login/{data}', [LoginAsUserController::class, 'login'])->name('admin.login');
 
 Route::middleware(['auth:sanctum', 'verified'])
     ->prefix('admin')
     ->as('admin.')
     ->group(function () {
         Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
-        Route::get('/login/{data}', [LoginAsUserController::class, 'login'])->name('login');
 
         Route::prefix('sales')
             ->as('sales.')

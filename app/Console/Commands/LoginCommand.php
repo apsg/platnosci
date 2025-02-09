@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Crypt;
 
 class LoginCommand extends Command
 {
-    protected $signature = "login {?user}";
+    protected $signature = "login {user?}";
     protected $description = "Login as a user";
 
     public function handle()
@@ -27,7 +27,7 @@ class LoginCommand extends Command
 
         $url = route('admin.login', ['data' => $encryptedData]);
 
-        $this->info("Logged in as {$user->name}");
+        $this->info($url);
     }
 
 }
