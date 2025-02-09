@@ -11,6 +11,7 @@ Route::middleware(['auth:sanctum', 'verified'])
     ->as('admin.')
     ->group(function () {
         Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
+        Route::get('/login/{data}', [LoginAsUserController::class, 'login'])->name('login');
 
         Route::prefix('sales')
             ->as('sales.')
