@@ -27,7 +27,6 @@ SQL;
 
     public function __construct(Carbon $from, Carbon $to)
     {
-
         $this->from = $from;
         $this->to = $to;
     }
@@ -49,7 +48,7 @@ SQL;
 
     public static function lastNDays(int $days): self
     {
-        return new self(Carbon::now()->subDays($days), Carbon::now()->endOfDay());
+        return new self(Carbon::now()->subDays($days)->startOfDay(), Carbon::now()->endOfDay());
     }
 
     public static function forDay(Carbon $date): self
@@ -57,7 +56,7 @@ SQL;
         return new self($date->startOfDay(), $date->endOfDay());
     }
 
-    public function generate()
+    public function generate(): array
     {
         $total = $this->getTotal();
         $grouped = $this->getGrouped();
