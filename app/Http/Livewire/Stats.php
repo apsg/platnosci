@@ -7,7 +7,7 @@ use Livewire\Component;
 class Stats extends Component
 {
     public array $stats;
-    public $days;
+    public int $days;
 
     public function mount()
     {
