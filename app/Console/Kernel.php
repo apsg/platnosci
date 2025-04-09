@@ -5,6 +5,7 @@ use App\Console\Commands\FixQueueOrdersCommand;
 use App\Console\Commands\TestOrderEventCommand;
 use App\Console\Commands\TestQueueCommand;
 use App\Domains\Actions\RetryActionCommand;
+use App\Domains\Actions\RetryFailedActionsCommand;
 use App\Domains\Invoices\Console\InvoiceCredentialsTestCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -17,11 +18,12 @@ class Kernel extends ConsoleKernel
         FixQueueOrdersCommand::class,
         InvoiceCredentialsTestCommand::class,
         RetryActionCommand::class,
+        RetryFailedActionsCommand::class,
     ];
 
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command(RetryFailedActionsCommand::class)->everyTenMinutes();
     }
 
     protected function commands()

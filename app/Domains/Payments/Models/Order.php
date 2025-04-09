@@ -27,6 +27,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property-read InvoiceRequest invoice_request
  *
  * @method static Builder forUser(User $user)
+ * @method static Builder paid()
+ * @method static Builder hasFailedActions()
  */
 class Order extends Model
 {
@@ -82,5 +84,15 @@ class Order extends Model
         return $builder->whereHas('sale', function (Builder $query) use ($user) {
             return $query->where('user_id', $user->id);
         });
+    }
+
+    public function scopePaid(Builder $builder): Builder
+    {
+        return $builder->whereNotNull('confirmed_at');
+    }
+
+    public function scopeHasFailedActions(Builder $builder): Builder
+    {
+        return $builder->whereRaw('delivered_count < actions_count');
     }
 }
