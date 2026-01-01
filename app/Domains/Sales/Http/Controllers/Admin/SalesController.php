@@ -4,6 +4,7 @@ namespace App\Domains\Sales\Http\Controllers\Admin;
 use App\Domains\Sales\Models\Sale;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\QueryException;
+
 use function view;
 
 class SalesController extends Controller

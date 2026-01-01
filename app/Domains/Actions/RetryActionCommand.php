@@ -25,8 +25,7 @@ class RetryActionCommand extends Command
 
         $choices = $sale->actions->mapWithKeys(function (Action $action) {
             return [
-                (string) $action->id =>
-                    $action->job . "({" . json_encode($action->parameters) . "})",
+                (string)$action->id => $action->job . '({' . json_encode($action->parameters) . '})',
             ];
         })->toArray();
 

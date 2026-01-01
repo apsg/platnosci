@@ -10,7 +10,7 @@ class ActionsRepository
     public function create(Sale $sale, string $action): Action
     {
         if (!ActionsHelper::isValidAction($action)) {
-            throw  new InvalidActionException($action);
+            throw new InvalidActionException($action);
         }
 
         return Action::create([

@@ -3,6 +3,4 @@ namespace App\Domains\Payu\Exceptions;
 
 use Exception;
 
-class MissingOrderException extends Exception
-{
-}
+class MissingOrderException extends Exception {}

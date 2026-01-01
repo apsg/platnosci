@@ -12,7 +12,7 @@ return [
         'name'      => 'Dostęp do kursu',
         'job'       => AccessJob::class,
         'providers' => [
-            'inauka'    => [
+            'inauka' => [
                 'url' => env('INTEGRATIONS_INAUKA_URL', 'https://inauka.pl'),
                 'key' => env('INAUKA_KEY'),
             ],
@@ -35,7 +35,7 @@ return [
         'name'      => 'Pełen roczny dostęp do platformy',
         'job'       => FullAccessJob::class,
         'providers' => [
-            'inauka'    => [
+            'inauka' => [
                 'url' => env('INTEGRATIONS_INAUKA_URL', 'https://inauka.pl'),
                 'key' => env('INAUKA_KEY'),
             ],
@@ -43,7 +43,7 @@ return [
                 'url' => env('INTEGRATIONS_PROJEKT30_URL', 'https://projekt30.pl'),
                 'key' => env('PROJEKT30_KEY'),
             ],
-            'techniczni'    => [
+            'techniczni' => [
                 'url' => env('INTEGRATIONS_INAUKA_URL', 'https://techniczni.pro'),
                 'key' => env('TECHNICZNI_KEY'),
             ],
@@ -58,7 +58,7 @@ return [
         'name'      => 'Pełen wieczysty dostęp do platformy',
         'job'       => LifetimeAccessJob::class,
         'providers' => [
-            'inauka'    => [
+            'inauka' => [
                 'url' => env('INTEGRATIONS_INAUKA_URL', 'https://inauka.pl'),
                 'key' => env('INAUKA_KEY'),
             ],
@@ -66,7 +66,7 @@ return [
                 'url' => env('INTEGRATIONS_PROJEKT30_URL', 'https://projekt30.pl'),
                 'key' => env('PROJEKT30_KEY'),
             ],
-            'techniczni'    => [
+            'techniczni' => [
                 'url' => env('INTEGRATIONS_INAUKA_URL', 'https://techniczni.pro'),
                 'key' => env('TECHNICZNI_KEY'),
             ],
@@ -97,7 +97,7 @@ return [
             ],
             'itbt_new' => [
                 'token' => env('MAILERLITE_TOKEN_ITBT_NEW'),
-            ]
+            ],
         ],
     ],
 

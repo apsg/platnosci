@@ -65,12 +65,12 @@ class PayuDriver extends AbstractPaymentsDriver
     public function getUrl(): string
     {
         if ($this->order === null) {
-            throw new MissingOrderException();
+            throw new MissingOrderException;
         }
 
         $orderElement = new OrderElement($this->order);
 
-//        dd($orderElement->toArray(), $this->getDriverParameters());
+        //        dd($orderElement->toArray(), $this->getDriverParameters());
 
         $response = OpenPayU_Order::create($orderElement->toArray() + $this->getDriverParameters());
 

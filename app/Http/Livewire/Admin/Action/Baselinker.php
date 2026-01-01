@@ -40,7 +40,7 @@ class Baselinker extends ActionComponent
         }
 
         $this->products = collect((new Products(
-            new Client(),
+            new Client,
             config($this->getProviderKey()))
         )
             ->getProductsList())

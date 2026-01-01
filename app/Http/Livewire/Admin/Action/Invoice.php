@@ -18,7 +18,7 @@ class Invoice extends ActionComponent
 
         $this->action->update([
             'parameters' => [
-                'provider'  => $this->selected,
+                'provider' => $this->selected,
             ],
         ]);
 

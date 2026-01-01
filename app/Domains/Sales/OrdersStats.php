@@ -7,14 +7,13 @@ use Illuminate\Support\Facades\DB;
 
 class OrdersStats
 {
-    const SQL_TOTAL = <<<SQL
+    const SQL_TOTAL = <<<'SQL'
 select count(*) as c, SUM(o.price) as sum from orders o
 left join sales s on o.sale_id = s.id
 where o.confirmed_at >= ? and o.confirmed_at <= ?
 and s.user_id = ?
 SQL;
-
-    const SQL_GROUPED = <<<SQL
+    const SQL_GROUPED = <<<'SQL'
 select s.name, count(*) as c, SUM(o.price) as sum from orders o
 left join sales s on o.sale_id = s.id
 where o.confirmed_at >= ? and o.confirmed_at <= ?
@@ -23,6 +22,7 @@ group by s.name
 SQL;
 
     protected Carbon $from;
+
     protected Carbon $to;
 
     public function __construct(Carbon $from, Carbon $to)

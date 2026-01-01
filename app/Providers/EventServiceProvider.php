@@ -15,14 +15,14 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 class EventServiceProvider extends ServiceProvider
 {
     protected $listen = [
-        Registered::class              => [
+        Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        OrderConfirmedEvent::class     => [
+        OrderConfirmedEvent::class => [
             SendOrderEmailListener::class,
             DispatchSaleActionsListener::class,
         ],
-        OrderCancelledEvent::class     => [
+        OrderCancelledEvent::class => [
         ],
         ResendOrderMailingEvent::class => [
             SendOrderEmailListener::class,

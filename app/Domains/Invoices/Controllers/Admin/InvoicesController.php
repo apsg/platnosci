@@ -33,11 +33,13 @@ class InvoicesController extends Controller
 
         $cacheKey = 'invoice-debounce-' . $invoice->id;
 
-        if (Cache::get($cacheKey) > 0){
+        if (Cache::get($cacheKey) > 0) {
             return back();
         }
 
-        Cache::remember($cacheKey, Carbon::now()->addSeconds(30), function(){ return 1; });
+        Cache::remember($cacheKey, Carbon::now()->addSeconds(30), function () {
+            return 1;
+        });
 
         $repository->accept($invoice);
 

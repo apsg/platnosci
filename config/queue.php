@@ -55,7 +55,7 @@ return [
                     'verify_peer' => env('RABBITMQ_SSL_VERIFY_PEER', true),
                     'passphrase'  => env('RABBITMQ_SSL_PASSPHRASE', null),
                 ],
-                'queue'       => [
+                'queue' => [
                     'job' => VladimirYuldashev\LaravelQueueRabbitMQ\Queue\Jobs\RabbitMQJob::class,
                 ],
             ],
@@ -63,7 +63,7 @@ return [
             /*
              * Set to "horizon" if you wish to use Laravel Horizon.
              */
-            'worker'  => env('RABBITMQ_WORKER', 'default'),
+            'worker' => env('RABBITMQ_WORKER', 'default'),
         ],
 
         'database' => [

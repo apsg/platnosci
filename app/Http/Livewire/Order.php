@@ -22,8 +22,8 @@ class Order extends Component
     {
         return [
             'email'  => 'required|email',
-            'phone'  => ['required', new PhoneRule()],
-            'accept' => ['required', 'boolean', new AcceptedBoolRule()],
+            'phone'  => ['required', new PhoneRule],
+            'accept' => ['required', 'boolean', new AcceptedBoolRule],
         ];
     }
 

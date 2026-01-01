@@ -29,24 +29,24 @@ abstract class ActionParameters implements CastsAttributes
     {
         return $this->parameters->toArray();
     }
-//
-//    public function offsetExists(mixed $offset) : bool
-//    {
-//        return $this->parameters->offsetExists($offset);
-//    }
-//
-//    public function offsetGet(mixed $offset)
-//    {
-//        return $this->parameters->get($offset);
-//    }
-//
-//    public function offsetSet(mixed $offset, mixed $value) : void
-//    {
-//        $this->parameters->offsetSet($offset, $value);
-//    }
-//
-//    public function offsetUnset(mixed $offset) : void
-//    {
-//        $this->parameters->offsetUnset($offset);
-//    }
+    //
+    //    public function offsetExists(mixed $offset) : bool
+    //    {
+    //        return $this->parameters->offsetExists($offset);
+    //    }
+    //
+    //    public function offsetGet(mixed $offset)
+    //    {
+    //        return $this->parameters->get($offset);
+    //    }
+    //
+    //    public function offsetSet(mixed $offset, mixed $value) : void
+    //    {
+    //        $this->parameters->offsetSet($offset, $value);
+    //    }
+    //
+    //    public function offsetUnset(mixed $offset) : void
+    //    {
+    //        $this->parameters->offsetUnset($offset);
+    //    }
 }

@@ -10,6 +10,7 @@ use App\Rules\PaymentsProviderRule;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+
 use function redirect;
 use function view;
 
@@ -65,8 +66,8 @@ class Create extends Component
             'redirectUrl'              => 'sometimes|string|url',
             'iconUrl'                  => 'sometimes|string|url',
             'counter'                  => 'sometimes|nullable|integer|min:0',
-            'payments_provider'        => ['nullable', new PaymentsProviderRule()],
-            'default_invoice_provider' => ['nullable', new InvoiceProviderRule()],
+            'payments_provider'        => ['nullable', new PaymentsProviderRule],
+            'default_invoice_provider' => ['nullable', new InvoiceProviderRule],
         ];
     }
 

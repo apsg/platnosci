@@ -47,8 +47,8 @@ class Edit extends Component
             'sale.icon_url'                 => 'nullable|sometimes|string|url',
             'sale.logo_url'                 => 'nullable|sometimes|string|url',
             'sale.counter'                  => 'nullable|sometimes|integer|min:0',
-            'sale.payments_provider'        => ['nullable', new PaymentsProviderRule()],
-            'sale.default_invoice_provider' => ['nullable', new InvoiceProviderRule()],
+            'sale.payments_provider'        => ['nullable', new PaymentsProviderRule],
+            'sale.default_invoice_provider' => ['nullable', new InvoiceProviderRule],
             'sale.disable_comments'         => 'required|boolean',
         ];
     }

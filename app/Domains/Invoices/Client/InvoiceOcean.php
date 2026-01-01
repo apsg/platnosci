@@ -6,7 +6,6 @@ namespace App\Domains\Invoices\Client;
  *
  * API class to communicate with the InvoiceOcean API
  *
- * @abstract
  *
  * @author Chris Schalenborgh <chris@schalenborgh.be>
  *
@@ -26,9 +25,6 @@ abstract class InvoiceOcean
      */
     private $_api_url;
 
-    /**
-     * @var
-     */
     private $_api_token;
 
     /**
@@ -36,10 +32,10 @@ abstract class InvoiceOcean
      */
     private $_api_methods = [
         // clients
-        'getClient'     => 'clients/[ID].json',
-        'addClient'     => 'clients.json',
-        'updateClient'  => 'clients/[ID].json',
-        'getClients'    => 'clients.json',
+        'getClient'    => 'clients/[ID].json',
+        'addClient'    => 'clients.json',
+        'updateClient' => 'clients/[ID].json',
+        'getClients'   => 'clients.json',
 
         // invoices
         'getInvoice'    => 'invoices/[ID].json',
@@ -56,7 +52,7 @@ abstract class InvoiceOcean
     ];
 
     /**
-     * @param $username - InvoiceOcean username
+     * @param $username  - InvoiceOcean username
      * @param $api_token - InvoiceOcean API token
      */
     protected function __construct(string $url, string $api_token)
@@ -132,7 +128,6 @@ abstract class InvoiceOcean
     /**
      * Function to check if valid json.
      *
-     * @param $string
      * @return bool
      */
     private function isJson($string)
@@ -210,7 +205,7 @@ abstract class InvoiceOcean
             $code = curl_getinfo($handle, CURLINFO_HTTP_CODE);
 
             return [
-                'api'           => [
+                'api' => [
                     'location' => $location,
                     'method'   => $http_method,
                     'token'    => $this->getApiToken(),

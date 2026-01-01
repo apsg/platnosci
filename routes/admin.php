@@ -7,7 +7,6 @@ use App\Domains\Sales\Http\Controllers\Admin\SalesController;
 use App\Http\Controllers\LoginAsUserController;
 use Illuminate\Support\Facades\Route;
 
-
 Route::get('/admin/login/{data}', [LoginAsUserController::class, 'login'])->name('admin.login');
 
 Route::middleware(['auth:sanctum', 'verified'])

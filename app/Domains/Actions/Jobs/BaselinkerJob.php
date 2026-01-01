@@ -11,7 +11,7 @@ class BaselinkerJob extends ActionJob
 {
     public function handle(): void
     {
-        (new Orders(new Client(), $this->getProviderKey()))
+        (new Orders(new Client, $this->getProviderKey()))
             ->addOrder($this->getOrderPayload());
 
         $this->incrementActionsCount();
@@ -34,8 +34,8 @@ class BaselinkerJob extends ActionJob
                     'name'         => $this->order->sale->name,
                 ],
             ],
-            'date_add'         => $this->order->confirmed_at->timestamp ?? now()->timestamp,
-            'order_status_id'  => Orders::NEW_ORDER_STATUS,
+            'date_add'        => $this->order->confirmed_at->timestamp ?? now()->timestamp,
+            'order_status_id' => Orders::NEW_ORDER_STATUS,
         ];
     }
 

@@ -25,10 +25,10 @@ class Invoice extends Component
     public function rules()
     {
         return [
-            'nip'      => ['required', new NipRule()],
+            'nip'      => ['required', new NipRule],
             'name'     => ['required', 'string', 'min:3'],
             'address'  => ['required', 'string', 'min:3'],
-            'postcode' => ['required', new ZipRule()],
+            'postcode' => ['required', new ZipRule],
             'city'     => ['required', 'string', 'min:3'],
         ];
     }

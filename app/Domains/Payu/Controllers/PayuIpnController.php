@@ -22,9 +22,9 @@ class PayuIpnController extends Controller
                 'verification' => $verifySignature,
             ]);
 
-//        if ($verifySignature !== true) {
-//            throw new SignatureMismatchException($request->getContent());
-//        }
+        //        if ($verifySignature !== true) {
+        //            throw new SignatureMismatchException($request->getContent());
+        //        }
 
         $extOrderId = $request->externalId();
         $order = $repository->findByHash($request->hash());

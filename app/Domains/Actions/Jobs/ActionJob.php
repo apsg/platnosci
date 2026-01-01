@@ -17,6 +17,7 @@ abstract class ActionJob implements ShouldQueue
     use SerializesModels;
 
     public int $tries = 5;
+
     public int $retryAfter = 120;
 
     protected array $parameters;

@@ -19,7 +19,7 @@ class MailerliteJob extends ActionJob
         $groupId = Arr::get($this->parameters, 'group_id');
 
         (new MailerLite($token))->groups()->addSubscriber($groupId, [
-            'email' => $this->order->email,
+            'email'  => $this->order->email,
             'fields' => [
                 'phone' => $this->order->phone,
             ],

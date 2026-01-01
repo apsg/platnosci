@@ -7,8 +7,8 @@ use Illuminate\Queue\SerializesModels;
 
 abstract class BaseOrderEvent
 {
-    use SerializesModels;
     use Dispatchable;
+    use SerializesModels;
 
     public Order $order;
 

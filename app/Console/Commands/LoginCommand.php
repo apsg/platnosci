@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Console\Commands;
 
 use App\Models\User;
@@ -9,8 +8,9 @@ use Illuminate\Support\Facades\Crypt;
 
 class LoginCommand extends Command
 {
-    protected $signature = "login {user?}";
-    protected $description = "Login as a user";
+    protected $signature = 'login {user?}';
+
+    protected $description = 'Login as a user';
 
     public function handle()
     {
@@ -29,5 +29,4 @@ class LoginCommand extends Command
 
         $this->info($url);
     }
-
 }

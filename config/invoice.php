@@ -36,21 +36,21 @@ return [
             'tax'          => 'zw',
             'lump_sum_tax' => '8,5',
         ],
-        'imd'        => [
+        'imd' => [
             'name'          => 'IMD Dariusz Skórniewski',
             'department_id' => '755066',
-//            'nip'          => '9691395217',
-//            'address'      => 'Brzozowa 10/3',
-//            'postcode'     => '44-177',
-//            'city'         => 'Paniówki',
-//            'place'        => 'Paniówki',
-            'url'           => env('FAKTUROWNIA_URL_IMD'),
-            'token'         => env('FAKTUROWNIA_TOKEN_IMD'),
-            'tax'           => 'zw',
-            'lump_sum_tax'  => '8,5',
-//            'bank_account' => '21 1050 1298 1000 0097 4030 0059',
+            //            'nip'          => '9691395217',
+            //            'address'      => 'Brzozowa 10/3',
+            //            'postcode'     => '44-177',
+            //            'city'         => 'Paniówki',
+            //            'place'        => 'Paniówki',
+            'url'          => env('FAKTUROWNIA_URL_IMD'),
+            'token'        => env('FAKTUROWNIA_TOKEN_IMD'),
+            'tax'          => 'zw',
+            'lump_sum_tax' => '8,5',
+            //            'bank_account' => '21 1050 1298 1000 0097 4030 0059',
         ],
-        'eduinf'     => [
+        'eduinf' => [
             'name'            => 'Edukacja Informatyczna Sp. z o.o.',
             'nip'             => '6351867012',
             'address'         => 'ul. Rynek 2',
@@ -61,10 +61,9 @@ return [
             'token'           => env('FAKTUROWNIA_TOKEN_EI'),
             'tax'             => 'zw',
             'lump_sum_tax'    => '8,5',
-            'exempt_tax_kind' => "Zwolnienie ze względu na rodzaj prowadzonej działalności (art. 43 ust. 1 pkt 26 ustawy o VAT)",
-
+            'exempt_tax_kind' => 'Zwolnienie ze względu na rodzaj prowadzonej działalności (art. 43 ust. 1 pkt 26 ustawy o VAT)',
         ],
-        'itbt'       => [
+        'itbt' => [
             'name'          => 'IT&Business Training Mateusz Grabowski',
             'department_id' => '480394',
             'url'           => env('FAKTUROWNIA_URL_ITBT'),
