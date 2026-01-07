@@ -26,6 +26,7 @@ Route::middleware(['auth:sanctum', 'verified'])
                 Route::delete('/{sale}', [SalesController::class, 'delete'])->name('delete');
                 Route::get('/{sale}/addaction/{action}', [SaleActionsController::class, 'create'])
                     ->name('add_action');
+                Route::post('/{sale}/toggle', [SalesController::class, 'toggle'])->name('toggle');
             });
 
         Route::prefix('actions')

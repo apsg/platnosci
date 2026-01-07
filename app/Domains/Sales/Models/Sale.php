@@ -32,7 +32,8 @@ use Illuminate\Support\Collection;
  * @property string|null                      payments_provider
  * @property string|null                      default_invoice_provider
  * @property string|null                      secondary_description
- * @property bool                          disable_comments
+ * @property bool                             disable_comments
+ * @property bool                             is_active
  * @property Carbon                           created_at
  * @property Carbon                           updated_at
  * @property-read Collection<Action>|Action[] actions
@@ -61,6 +62,7 @@ class Sale extends Model
         'secondary_description',
         'disable_comments',
         'logo_url',
+        'is_active',
     ];
 
     protected $casts = [

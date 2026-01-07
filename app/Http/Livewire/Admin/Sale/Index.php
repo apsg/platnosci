@@ -38,6 +38,12 @@ class Index extends LivewireDatatable
             NumberColumn::name('full_price')
                 ->label('Cena przed obniżką'),
 
+            Column::callback(['id', 'is_active'], function ($id, $isActive) {
+                return view('livewire.admin.sale.tables._active', compact('id', 'isActive'));
+            })
+                ->label('Aktywna')
+                ->unsortable(),
+
             Column::callback(['id'], function ($id) {
                 return view('livewire.admin.sale.tables._options', compact('id'));
             })

@@ -4,6 +4,7 @@
         {{ $sale->description }}
     </x-slot>
 
+    @if($sale->is_active)
     <x-slot name="left">
         <div class="min-h-[300px] flex-col justify-between ">
             <div>
@@ -88,5 +89,15 @@
     <div class="p-5">
         <livewire:order :sale="$sale"/>
     </div>
-
+    @else
+        <x-slot name="left">
+            <div class="min-h-[300px] flex-col justify-between ">
+                <div>
+                    <h1 class="text-2xl font-bold mb-5">
+                        Przepraszamy, ten produkt jest chwilowo niedostępny
+                    </h1>
+                </div>
+            </div>
+        </x-slot>
+    @endif
 </x-sale-layout>

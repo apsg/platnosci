@@ -47,4 +47,15 @@ class SalesController extends Controller
 
         return redirect(route('admin.sales.index'));
     }
+
+    public function toggle(Sale $sale)
+    {
+        $this->authorize('update', $sale);
+
+        $sale->update([
+            'is_active' => !$sale->is_active,
+        ]);
+
+        return back();
+    }
 }
