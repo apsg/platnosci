@@ -29,6 +29,10 @@ class RequirementsRule implements Rule
 
         $data = json_decode($checkResult->body(), true);
 
+        if (!is_array($data)) {
+            return false;
+        }
+
         if ($this->sale->requirements == 2 && $data['has_full_access'] == false) {
             return false;
         }

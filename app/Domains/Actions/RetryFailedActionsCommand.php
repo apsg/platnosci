@@ -27,7 +27,7 @@ class RetryFailedActionsCommand extends Command
             foreach ($order->sale->actions as $action) {
                 try {
                     $this->retryAction($action, $order);
-                } catch (\Exception $exception) {
+                } catch (\Throwable $exception) {
                     Log::error('Failed to retry action: ' . $action->id . ' for order: ' . $order->id);
                     Log::error($exception->getMessage());
                 }
