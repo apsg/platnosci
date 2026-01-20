@@ -56,6 +56,7 @@ class Edit extends Component
             'sale.default_invoice_provider' => ['nullable', new InvoiceProviderRule],
             'sale.disable_comments'         => 'required|boolean',
             'sale.requirements'             => 'required|integer|min:0',
+            'sale.requirements_provider'    => 'required_if:sale.requirements|string',
         ];
     }
 
