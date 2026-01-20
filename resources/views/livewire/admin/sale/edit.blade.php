@@ -285,21 +285,25 @@
             </select>
         </div>
         @if($sale->requirements > 0)
-        <div>
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="provider">
-                Wybierz serwis ograniczeń dostępu
-            </label>
-            <select
-                wire:model.debounce.500ms="sale.requirements_provider"
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                id="provider"
-                type="text"
-            >
-                @foreach($providers as $provider)
-                    <option value="{{ $provider }}">{{ $provider }}</option>
-                @endforeach
-            </select>
-        </div>
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="provider">
+                    Wybierz serwis ograniczeń dostępu
+                </label>
+                <select
+                    wire:model.debounce.500ms="sale.requirements_provider"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    id="provider"
+                    type="text"
+                >
+                    <option value="">--</option>
+                    @foreach($providers as $provider)
+                        <option
+                            @if($sale->requirements_provider == $provider) selected @endif
+                        value="{{ $provider }}"
+                        >{{ $provider }}</option>
+                    @endforeach
+                </select>
+            </div>
         @endif
 
         <div class="flex items-center justify-between">
