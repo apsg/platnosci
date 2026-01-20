@@ -6,6 +6,7 @@ use App\Domains\Payments\Repositories\OrdersRepository;
 use App\Domains\Sales\Models\Sale;
 use App\Rules\AcceptedBoolRule;
 use App\Rules\PhoneRule;
+use App\Rules\RequirementsRule;
 use Livewire\Component;
 
 class Order extends Component
@@ -21,7 +22,7 @@ class Order extends Component
     public function rules(): array
     {
         return [
-            'email'  => 'required|email',
+            'email'  => ['required', 'email', new RequirementsRule($this->sale)],
             'phone'  => ['required', new PhoneRule],
             'accept' => ['required', 'boolean', new AcceptedBoolRule],
         ];

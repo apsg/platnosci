@@ -71,6 +71,7 @@ class AccessProvider
 
     public function checkUser(string $email): PromiseInterface|Response
     {
+
         return Http::baseUrl($this->baseUrl)
             ->withHeaders([
                 static::HEADER_NAME => $this->getHeaderKey(),
