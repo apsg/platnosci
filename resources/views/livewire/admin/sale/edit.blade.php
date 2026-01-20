@@ -269,6 +269,39 @@
             </select>
         </div>
 
+        <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="provider">
+                Ograniczenia dostępu do sprzedaży
+            </label>
+            <select
+                wire:model.debounce.500ms="sale.requirements"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="provider"
+                type="text"
+            >
+                <option value="0" @if($sale->requirements == 0) selected @endif>Brak</option>
+                <option value="1" @if($sale->requirements == 1) selected @endif>Wymagaj konta</option>
+                <option value="2" @if($sale->requirements == 2) selected @endif>Wymagaj konta i pełnego dostępu</option>
+            </select>
+        </div>
+        @if($sale->requirements > 0)
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="provider">
+                Wybierz serwis ograniczeń dostępu
+            </label>
+            <select
+                wire:model.debounce.500ms="sale.requirements_provider"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="provider"
+                type="text"
+            >
+                @foreach($providers as $provider)
+                    <option value="{{ $provider }}">{{ $provider }}</option>
+                @endforeach
+            </select>
+        </div>
+        @endif
+
         <div class="flex items-center justify-between">
             <button
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"

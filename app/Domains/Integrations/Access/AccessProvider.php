@@ -14,6 +14,7 @@ class AccessProvider
     const COURSE_LIST = '/api/courses';
     const ACCESS_URL = '/api/access';
     const HEADER_NAME = 'X-INAUKA-KEY';
+    const CHECK_USER_URL = '/api/user';
 
     protected string $provider;
 
@@ -66,6 +67,22 @@ class AccessProvider
             'is_full_access'     => true,
             'is_lifetime_access' => true,
         ]);
+    }
+
+    public function checkUser(string $email): PromiseInterface|Response
+    {
+        return Http::baseUrl($this->baseUrl)
+            ->withHeaders([
+                static::HEADER_NAME => $this->getHeaderKey(),
+            ])
+            ->get(static::CHECK_USER_URL, ['email' => $email])
+            ->onError(function (Response $error) use ($email) {
+                Log::error(__CLASS__, [
+                    'provider' => $this->provider,
+                    'payload'  => $email,
+                    'error'    => $error->json(),
+                ]);
+            });
     }
 
     protected function request(array $payload): PromiseInterface|Response

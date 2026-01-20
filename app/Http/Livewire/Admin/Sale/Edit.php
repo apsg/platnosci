@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Livewire\Admin\Sale;
 
+use App\Domains\Actions\ActionsHelper;
+use App\Domains\Actions\Models\Action;
 use App\Domains\Invoices\InvoicesManager;
 use App\Domains\Payments\PaymentsManager;
 use App\Domains\Sales\Models\Sale;
@@ -18,10 +20,13 @@ class Edit extends Component
 
     public array $invoiceSystems;
 
+    public array $providers = [];
+
     public function mount()
     {
         $this->paymentSystems = PaymentsManager::listAvailableSystems();
         $this->invoiceSystems = InvoicesManager::listAvailableSystems();
+        $this->providers = ActionsHelper::getProviders(Action::ACTION_FULLACCESS);
     }
 
     public function render()
@@ -50,6 +55,7 @@ class Edit extends Component
             'sale.payments_provider'        => ['nullable', new PaymentsProviderRule],
             'sale.default_invoice_provider' => ['nullable', new InvoiceProviderRule],
             'sale.disable_comments'         => 'required|boolean',
+            'sale.requirements'             => 'required|integer|min:0',
         ];
     }
 
