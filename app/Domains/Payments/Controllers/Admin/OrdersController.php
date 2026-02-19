@@ -18,4 +18,9 @@ class OrdersController extends Controller
 
         return back();
     }
+
+    public function pending()
+    {
+        return view('admin.orders.pending');
+    }
 }

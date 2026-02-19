@@ -27,6 +27,10 @@
                                     :active="request()->routeIs('admin.invoices.index')">
                         Faktury
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('admin.orders.pending') }}"
+                                    :active="request()->routeIs('admin.orders.pending')">
+                        Porzucone
+                    </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('admin.sales.create') }}"
                                     :active="request()->routeIs('admin.sales.create')">
                         <span

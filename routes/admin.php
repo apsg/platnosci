@@ -40,6 +40,7 @@ Route::middleware(['auth:sanctum', 'verified'])
             ->as('orders.')
             ->group(function () {
                 Route::get('/', [OrdersController::class, 'index'])->name('index');
+                Route::get('/pending', [OrdersController::class, 'pending'])->name('pending');
                 Route::get('/{order}/resend', [OrdersController::class, 'resend'])->name('resend');
                 Route::delete('/{order}', [OrdersController::class, 'destroy'])->name('delete');
             });
