@@ -17,6 +17,7 @@ class Index extends LivewireDatatable
     {
         return Order::forUser(Auth::user())
             ->leftJoin('sales', 'orders.sale_id', '=', 'sales.id')
+            ->leftJoin('invoice_requests', 'orders.id', '=', 'invoice_requests.order_id')
             ->orderBy('id', 'desc');
     }
 
@@ -50,6 +51,18 @@ class Index extends LivewireDatatable
 
             NumberColumn::name('price')
                 ->label('Kwota sprzedaży (PLN)'),
+
+            Column::callback([
+                'invoice_requests.accepted_at',
+                'invoice_requests.external_id',
+                'invoice_requests.provider',
+            ], function ($acceptedAt, $externalId, $provider) {
+                return view(
+                    'livewire.admin.orders.tables.invoice',
+                    compact('acceptedAt', 'externalId', 'provider')
+                );
+            })
+                ->label('Faktura'),
 
             Column::callback(['actions_count', 'delivered_count'], function ($actions_count, $delivered_count) {
                 return view('livewire.admin.orders.tables.actions', compact('actions_count', 'delivered_count'));

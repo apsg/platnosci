@@ -27,9 +27,11 @@ class InvoicesController extends Controller
         return back();
     }
 
-    public function accept(InvoiceRequest $invoice, InvoicesRepository $repository): RedirectResponse
+    public function accept(InvoiceRequest $invoice, AcceptInvoiceRequest $request, InvoicesRepository $repository): RedirectResponse
     {
-        $this->authorize('update', $invoice);
+        if (InvoiceRequest::whereNotNull('accepted_at')->where('order_id', $invoice->order_id)->count() >= 1) {
+            return back()->withErrors(['error' => 'Invoice already accepted']);
+        }
 
         $cacheKey = 'invoice-debounce-' . $invoice->id;
 

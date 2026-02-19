@@ -45,6 +45,10 @@ class Order extends Model
         'delivered_count',
     ];
 
+    protected $appends = [
+        'invoice_info',
+    ];
+
     public function sale(): BelongsTo
     {
         return $this->belongsTo(Sale::class);
@@ -94,5 +98,15 @@ class Order extends Model
     public function scopeHasFailedActions(Builder $builder): Builder
     {
         return $builder->whereRaw('delivered_count < actions_count');
+    }
+
+    public function getInvoiceInfoAttribute(): string
+    {
+        if ($this->invoice_request === null) {
+            return '';
+        }
+
+        return "{$this->invoice_request->accepted_at}" . PHP_EOL
+            . "#{$this->invoice_request->external_id} w {$this->invoice_request->provider}";
     }
 }
