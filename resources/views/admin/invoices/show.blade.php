@@ -1,0 +1,19 @@
+<x-app-layout>
+    <x-slot name="title">Edycja faktury</x-slot>
+
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Edycja faktury
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-full mx-auto sm:px-6 lg:px-8">
+            <div class="mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                    <livewire:admin.invoices.show :invoice="$invoice" />
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>

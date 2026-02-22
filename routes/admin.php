@@ -34,6 +34,8 @@ Route::middleware(['auth:sanctum', 'verified'])
             ->group(function () {
                 Route::delete('/{action}', [SaleActionsController::class, 'destroy'])->name('destroy');
                 Route::get('/retry/{order}', [SaleActionsController::class, 'retry'])->name('retry');
+                Route::get('/{order}/manual_invoice', [InvoicesController::class, 'manual'])
+                    ->name('manual_invoice');
             });
 
         Route::prefix('orders')
@@ -49,7 +51,7 @@ Route::middleware(['auth:sanctum', 'verified'])
             ->as('invoices.')
             ->group(function () {
                 Route::get('/', [InvoicesController::class, 'index'])->name('index');
-                Route::get('/{invoice{', [InvoicesController::class, 'show'])->name('show');
+                Route::get('/{invoice}', [InvoicesController::class, 'show'])->name('show');
                 Route::delete('/{invoice}', [InvoicesController::class, 'destroy'])->name('delete');
                 Route::get('/{invoice}/accept', [InvoicesController::class, 'accept'])->name('accept');
             });

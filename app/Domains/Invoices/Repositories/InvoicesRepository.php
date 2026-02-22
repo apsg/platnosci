@@ -3,6 +3,7 @@ namespace App\Domains\Invoices\Repositories;
 
 use App\Domains\Invoices\Invoice;
 use App\Domains\Payments\Models\InvoiceRequest;
+use App\Domains\Payments\Models\Order;
 
 class InvoicesRepository
 {
@@ -21,5 +22,16 @@ class InvoicesRepository
         }
 
         return $invoiceId;
+    }
+
+    public function createManualFor(Order $order): InvoiceRequest
+    {
+        $invoiceRequest = $order->invoice_request()->create([
+            'name'    => 'uzupełnij',
+            'address' => 'uzupełnij',
+            'nip'     => '00000000',
+        ]);
+
+        return $invoiceRequest;
     }
 }

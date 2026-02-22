@@ -1,6 +1,7 @@
 <?php
 namespace App\Providers;
 
+use App\Domains\Payments\Events\DeleteOtherUnfinishedOrdersListener;
 use App\Domains\Payments\Events\DispatchSaleActionsListener;
 use App\Domains\Payments\Events\OrderCancelledEvent;
 use App\Domains\Payments\Events\OrderConfirmedEvent;
@@ -15,14 +16,15 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 class EventServiceProvider extends ServiceProvider
 {
     protected $listen = [
-        Registered::class => [
+        Registered::class              => [
             SendEmailVerificationNotification::class,
         ],
-        OrderConfirmedEvent::class => [
+        OrderConfirmedEvent::class     => [
             SendOrderEmailListener::class,
             DispatchSaleActionsListener::class,
+            DeleteOtherUnfinishedOrdersListener::class,
         ],
-        OrderCancelledEvent::class => [
+        OrderCancelledEvent::class     => [
         ],
         ResendOrderMailingEvent::class => [
             SendOrderEmailListener::class,

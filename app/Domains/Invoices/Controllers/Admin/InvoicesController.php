@@ -3,6 +3,7 @@ namespace App\Domains\Invoices\Controllers\Admin;
 
 use App\Domains\Invoices\Repositories\InvoicesRepository;
 use App\Domains\Payments\Models\InvoiceRequest;
+use App\Domains\Payments\Models\Order;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
@@ -27,8 +28,11 @@ class InvoicesController extends Controller
         return back();
     }
 
-    public function accept(InvoiceRequest $invoice, AcceptInvoiceRequest $request, InvoicesRepository $repository): RedirectResponse
-    {
+    public function accept(
+        InvoiceRequest $invoice,
+        AcceptInvoiceRequest $request,
+        InvoicesRepository $repository
+    ): RedirectResponse {
         if (InvoiceRequest::whereNotNull('accepted_at')->where('order_id', $invoice->order_id)->count() >= 1) {
             return back()->withErrors(['error' => 'Invoice already accepted']);
         }
@@ -53,5 +57,14 @@ class InvoicesController extends Controller
         $this->authorize('view', $invoice);
 
         return view('admin.invoices.show')->with(compact('invoice'));
+    }
+
+    public function manual(Order $order, InvoicesRepository $repository)
+    {
+        if ($order->invoice_request === null) {
+            $repository->createManualFor($order);
+        }
+
+        return redirect()->route('admin.invoices.show', $order->invoice_request);
     }
 }

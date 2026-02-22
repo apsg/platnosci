@@ -68,8 +68,8 @@ class Index extends LivewireDatatable
                 return view('livewire.admin.orders.tables.actions', compact('actions_count', 'delivered_count'));
             })->label('Akcje'),
 
-            Column::callback(['id'], function ($id) {
-                return view('livewire.admin.orders.tables.options', compact('id'));
+            Column::callback(['id', 'confirmed_at'], function ($id, $confirmedAt) {
+                return view('livewire.admin.orders.tables.options', compact('id', 'confirmedAt'));
             })
                 ->label('Opcje')
                 ->unsortable(),
