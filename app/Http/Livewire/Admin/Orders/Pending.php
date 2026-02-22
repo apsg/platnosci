@@ -16,7 +16,7 @@ class Pending extends LivewireDatatable
     public function builder()
     {
         return Order::forUser(Auth::user())
-            ->isNotFinalized()
+//            ->isNotFinalized()
             ->whereNull('confirmed_at')
             ->leftJoin('sales', 'orders.sale_id', '=', 'sales.id')
             ->orderBy('id', 'desc');
@@ -24,7 +24,6 @@ class Pending extends LivewireDatatable
 
     public function columns(): array
     {
-
         return [
             NumberColumn::name('id')
                 ->label('ID'),
