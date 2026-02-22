@@ -29,6 +29,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @method static Builder forUser(User $user)
  * @method static Builder paid()
  * @method static Builder hasFailedActions()
+ * @method static Builder isNotFinalized()
  */
 class Order extends Model
 {
@@ -108,5 +109,10 @@ class Order extends Model
 
         return "{$this->invoice_request->accepted_at}" . PHP_EOL
             . "#{$this->invoice_request->external_id} w {$this->invoice_request->provider}";
+    }
+
+    public function scopeIsNotFinalized(Builder $builder): Builder
+    {
+        return $builder->whereRaw('(select count(*) from orders o where o.email = orders.email and o.sale_id = orders.sale_id and o.confirmed_at is NOT null) = 0');
     }
 }
