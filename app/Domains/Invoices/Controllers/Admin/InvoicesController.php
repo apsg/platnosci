@@ -62,9 +62,9 @@ class InvoicesController extends Controller
     public function manual(Order $order, InvoicesRepository $repository)
     {
         if ($order->invoice_request === null) {
-            $repository->createManualFor($order);
+            $invoiceRequest = $repository->createManualFor($order);
         }
 
-        return redirect()->route('admin.invoices.show', $order->invoice_request);
+        return redirect()->route('admin.invoices.show', $invoiceRequest);
     }
 }
