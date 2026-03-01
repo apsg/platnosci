@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property-read Order  order
  *
  * @method static Builder pending()
+ * @method static Builder accepted()
  */
 class InvoiceRequest extends Model
 {
@@ -53,6 +54,11 @@ class InvoiceRequest extends Model
     public function scopePending(Builder $builder): Builder
     {
         return $builder->whereNull('accepted_at');
+    }
+
+    public function scopeAccepted(Builder $builder): Builder
+    {
+        return $builder->whereNotNull('accepted_at');
     }
 
     public function hasInvoice(): bool

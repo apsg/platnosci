@@ -14,12 +14,21 @@ class Index extends LivewireDatatable
 {
     public $model = InvoiceRequest::class;
 
+    public int $showAccepted = 0;
+
     public function builder(): Builder
     {
-        return InvoiceRequest::forUser(Auth::user())
+        $query = InvoiceRequest::forUser(Auth::user())
             ->with(['order.sale'])
-            ->orderBy('invoice_requests.created_at', 'desc')
-            ->pending();
+            ->orderBy('invoice_requests.created_at', 'desc');
+
+        if ($this->showAccepted) {
+            $query->accepted();
+        } else {
+            $query->pending();
+        }
+
+        return $query;
     }
 
     public function columns(): array
@@ -60,19 +69,25 @@ class Index extends LivewireDatatable
                 ->label('Data sprzedaży')
                 ->editable(),
 
-            Column::callback(['id', 'external_id', 'provider'], function (int $id, $externalId, ?string $provider) {
-                return view(
-                    'livewire.admin.invoices.tables.accept',
-                    compact('id', 'externalId', 'provider')
-                );
-            })
-                ->label('Zatwierdzanie'),
+            $this->showAccepted ?
+                Column::name('external_id')
+                    ->label('ID faktury') :
+                Column::callback(['id', 'external_id', 'provider'], function (int $id, $externalId, ?string $provider) {
+                    return view(
+                        'livewire.admin.invoices.tables.accept',
+                        compact('id', 'externalId', 'provider')
+                    );
+                })
+                    ->label('Zatwierdzanie'),
 
-            Column::callback(['id'], function ($id) {
-                return view('livewire.admin.invoices.tables.options', compact('id'));
-            })
-                ->label('Opcje')
-                ->unsortable(),
+            $this->showAccepted ?
+            Column::name('provider')
+                ->label('Konto') :
+                Column::callback(['id'], function ($id) {
+                    return view('livewire.admin.invoices.tables.options', compact('id'));
+                })
+                    ->label('Opcje')
+                    ->unsortable(),
         ];
     }
 
