@@ -5,8 +5,10 @@ use App\Domains\Payments\PaymentsManager;
 use App\Domains\Payments\Repositories\OrdersRepository;
 use App\Domains\Sales\Models\Sale;
 use App\Rules\AcceptedBoolRule;
+use App\Rules\PeselRule;
 use App\Rules\PhoneRule;
 use App\Rules\RequirementsRule;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class Order extends Component
@@ -19,12 +21,20 @@ class Order extends Component
 
     public bool $accept = false;
 
+    public bool $isPesel = false;
+
+    public ?string $pesel = null;
+
     public function rules(): array
     {
         return [
-            'email'  => ['required', 'email', new RequirementsRule($this->sale)],
-            'phone'  => ['required', new PhoneRule],
-            'accept' => ['required', 'boolean', new AcceptedBoolRule],
+            'email'   => ['required', 'email', new RequirementsRule($this->sale)],
+            'phone'   => ['required', new PhoneRule],
+            'accept'  => ['required', 'boolean', new AcceptedBoolRule],
+            'isPesel' => ['required', 'boolean'],
+            'pesel'   => Rule::when($this->isPesel,
+                ['required', 'string', 'required_if:isPesel,true', new PeselRule]
+            ),
         ];
     }
 
@@ -33,6 +43,7 @@ class Order extends Component
         'email.email'     => 'Niepoprawny format adresu email.',
         'phone.required'  => 'Podaj numer telefonu.',
         'accept.required' => 'Wymagana jest akceptacja regulaminu',
+        'pesel'           => 'Podaj poprawny numer PESEL',
     ];
 
     public function updated($propertyName): void
@@ -76,4 +87,25 @@ class Order extends Component
 
         return redirect($url);
     }
+
+    public function getPriceFinalProperty(): float
+    {
+        $price = $this->sale->price;
+        if (!$this->isPesel) {
+            $price = 1.23 * $price;
+        }
+
+        return number_format($price, 2);
+    }
+
+    public function getFullPriceFinalProperty(): float
+    {
+        $price = $this->sale->full_price;
+        if (!$this->isPesel) {
+            $price = 1.23 * $price;
+        }
+
+        return number_format($price, 2);
+    }
+
 }

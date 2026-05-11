@@ -99,9 +99,15 @@ class Sale extends Model
         return SaleFactory::new();
     }
 
-    public function format(string $parameter): string
+    public function format(string $parameter, bool $isAddVat = false): string
     {
-        return number_format($this->getAttribute($parameter), 2);
+        $price = $this->getAttribute($parameter);
+
+        if ($isAddVat) {
+            $price = 1.23 * $price;
+        }
+
+        return number_format($price, 2);
     }
 
     public function scopeForUser(Builder $builder, User $user): Builder

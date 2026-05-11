@@ -26,11 +26,11 @@
         </p>
         @if($sale->full_price)
             <div class="line-through decoration-2 full-price font-semibold">
-                {{ $sale->format('full_price') }} PLN
+                {{ $this->fullPriceFinal }} PLN
             </div>
         @endif
         <div class="price font-bold">
-            {{ $sale->format('price') }} PLN
+            {{ $this->priceFinal }} PLN
         </div>
     </div>
     <div class="mb-8 hidden md:block">
@@ -80,24 +80,28 @@
                                 type="button"
                                 data-tooltip-style="light"
                                 class="ms-3 mb-2 md:mb-0 text-gray-900 w-4 h-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
+                                 stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round"
+                                      d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"/>
                             </svg>
                         </button>
 
                         <div id="tooltip-right" role="tooltip"
                              class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip text-xs">
-                            Numer telefonu potrzebny nam jest w przypadku literówki<br /> w mailu i/lub potwierdzenia zakupu.
+                            Numer telefonu potrzebny nam jest w przypadku literówki<br/> w mailu i/lub potwierdzenia
+                            zakupu.
                             <div class="tooltip-arrow" data-popper-arrow></div>
                         </div>
                     </label>
                 </div>
 
-                <div class="relative rounded-md  shadow-sm ">
-                    <input type="text" autocomplete="off"
-                           class="placeholder-secondary-400 dark:bg-secondary-800 dark:text-secondary-400 dark:placeholder-secondary-500 border border-secondary-300 focus:ring-primary-500 focus:border-primary-500 dark:border-secondary-600 form-input block w-full sm:text-sm rounded-md transition ease-in-out duration-100 focus:outline-none shadow-sm pr-28"
-                           wire:model.debounce.1s="phone" placeholder="Numer telefonu" name="phone"
-                           id="f7a42fe7211f98ac7a60a285ac3a9e87">
+                <div class="relative rounded-md  shadow-sm">
+                    <x-input
+                        wire:model.debounce.1s="phone"
+                        class="pr-28"
+                        type="text"
+                        placeholder="Numer telefonu"/>
                 </div>
             </div>
         </div>
@@ -108,6 +112,26 @@
                 <span class="font-bold"> Potrzebujesz fakturę?</span> Po udanym zakupie otrzymasz link z instrukcją jak
                 uzyskać fakturę.
             </div>
+            <div class="flex mt-2">
+                <x-checkbox
+                    wire:model="isPesel"
+                    label=""
+                    value="1"
+                />
+                <div class="ml-3">
+                    Chcę certyfikat MEN (podając PESEL, co obniża o podatek VAT)
+                </div>
+            </div>
+            @if($isPesel)
+                <div class="relative rounded-md shadow-sm ">
+                    <x-input
+                        wire:model.debounce.1s="pesel"
+                        class="pr-28"
+                        type="text"
+                        label="PESEL"
+                        placeholder="PESEL"/>
+                </div>
+            @endif
         </div>
         <div class="">
             <div class="flex content-center">
@@ -143,13 +167,13 @@
         <div class="my-5" style="height: 65px">
             <x-button
                 wire:click="order"
-                label="Zapłać {{ $sale->format('price') }} PLN"
+                label="Zapłać {{ $this->priceFinal }} PLN"
                 class="pay-button"
             />
         </div>
         @if(!empty($sale->omnibus_price))
             <div class="text-xs">
-                {{ $sale->omnibus_price }} PLN - Najniższa cena z 30 dni przed obniżką
+                {{ $sale->omnibus_price }} PLN - Najniższa cena netto z 30 dni przed obniżką
             </div>
         @endif
         <x-errors only="rules"/>

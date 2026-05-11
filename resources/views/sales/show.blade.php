@@ -40,6 +40,7 @@
                 <div class="price font-bold">
                     {{ $sale->format('price') }} PLN
                 </div>
+                <p>Kwota netto bez VAT</p>
 
                 <div class="border-t border-gray-200 mt-5 pt-5 ">
                     @if(!empty($sale->secondary_description))

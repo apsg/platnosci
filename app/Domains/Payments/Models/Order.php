@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string              hash
  * @property string              email
  * @property string|null         phone
+ * @property string|null         pesel
  * @property int                 sale_id
  * @property float               price
  * @property string|null         external_id
@@ -44,6 +45,7 @@ class Order extends Model
         'cancelled_at',
         'actions_count',
         'delivered_count',
+        'pesel',
     ];
 
     protected $appends = [
