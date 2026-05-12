@@ -10,14 +10,17 @@ use Illuminate\Support\Str;
 
 class OrdersRepository
 {
-    public function create(Sale $sale, string $email, ?string $phone = null): Order
+    public function create(Sale $sale, string $email, ?string $phone = null, ?string $pesel = null): Order
     {
+        $price = empty($pesel) ? 1.23 * $sale->price : $sale->price;
+
         return Order::create([
             'sale_id' => $sale->id,
             'email'   => $email,
             'phone'   => $phone,
-            'price'   => $sale->price,
+            'price'   => $price,
             'hash'    => Str::random(16),
+            'pesel'   => $pesel,
         ]);
     }
 
