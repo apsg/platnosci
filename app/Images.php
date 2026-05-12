@@ -4,6 +4,7 @@ namespace App;
 class Images
 {
     const LOGOS = [
+        '127.0.0.1'     => '/images/logo_inauka.svg',
         'platnosci.local'     => '/images/logo_inauka.svg',
         'platnosci.inauka.pl' => '/images/logo_inauka.svg',
         'exceledukacja.local' => '/images/png-edukacja.png',
