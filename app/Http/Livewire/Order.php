@@ -89,7 +89,7 @@ class Order extends Component
         return redirect($url);
     }
 
-    public function getPriceFinalProperty(): float
+    public function getPriceFinalProperty(): string
     {
         $price = $this->sale->price;
         if (!$this->isPesel) {
@@ -99,7 +99,7 @@ class Order extends Component
         return number_format($price, 2);
     }
 
-    public function getFullPriceFinalProperty(): float
+    public function getFullPriceFinalProperty(): string
     {
         $price = $this->sale->full_price;
         if (!$this->isPesel) {
