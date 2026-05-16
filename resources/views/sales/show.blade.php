@@ -34,13 +34,13 @@
                 </p>
                 @if($sale->full_price)
                     <div class="line-through decoration-2 full-price font-semibold">
-                        {{ $sale->format('full_price') }} PLN
+                        {{ $sale->format('full_price', true) }} PLN
                     </div>
                 @endif
                 <div class="price font-bold">
-                    {{ $sale->format('price') }} PLN
+                    {{ $sale->format('price', true) }} PLN
                 </div>
-                <p>Kwota netto bez VAT</p>
+                <p>Kwota brutto z VAT</p>
 
                 <div class="border-t border-gray-200 mt-5 pt-5 ">
                     @if(!empty($sale->secondary_description))

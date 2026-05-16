@@ -86,7 +86,14 @@ class Order extends Component
         $this->validate();
 
         $order = app(OrdersRepository::class)
-            ->create($this->sale, $this->email, $this->phone, $this->pesel, $this->firstname, $this->lastname);
+            ->create(
+                $this->sale,
+                $this->email,
+                $this->phone,
+                $this->isPesel ? $this->pesel : null,
+                $this->isPesel ? $this->firstname : null,
+                $this->isPesel ? $this->lastname : null
+            );
 
         $url = PaymentsManager::resolve($this->sale->payments_provider)
             ->forOrder($order)
