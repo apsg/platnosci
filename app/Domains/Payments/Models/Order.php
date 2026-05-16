@@ -24,6 +24,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property Carbon              updated_at
  * @property int|null            actions_count
  * @property int|null            delivered_count
+ * @property string|null         firstname
+ * @property string|null         lastname
  * @property-read Sale           sale
  * @property-read InvoiceRequest invoice_request
  *
@@ -46,6 +48,8 @@ class Order extends Model
         'actions_count',
         'delivered_count',
         'pesel',
+        'firstname',
+        'lastname',
     ];
 
     protected $appends = [

@@ -230,6 +230,15 @@
                 @endforeach
             </select>
         </div>
+        <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="has_pesel">
+                Sprzedaż oferuje zniżkę o VAT po podaniu PESELu?
+            </label>
+            <x-checkbox
+                wire:model.debounce.500ms="sale.has_pesel"
+                id="has_pesel"
+            >  </x-checkbox>sprzedaż ze zniżką na PESEL
+        </div>
 
         <div class="mb-6">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="provider">

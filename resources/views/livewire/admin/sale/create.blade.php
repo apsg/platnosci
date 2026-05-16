@@ -148,6 +148,17 @@
         </div>
 
         <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="iconUrl">
+                Sprzedaż oferuje zniżkę o VAT po podaniu PESELu?
+            </label>
+            <x-checkbox
+                wire:model.debounce.500ms="has_pesel"
+                id="has_pesel"
+            > sprzedaż ze zniżką na PESEL </x-checkbox>
+        </div>
+
+
+        <div class="mb-6">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="provider">
                 Konto systemu płatności
             </label>
@@ -162,7 +173,7 @@
                     <option
                         value="{{ $system['provider'] }}"
                         @if($paymentsProvider === $system['provider'])
-                        selected
+                            selected
                         @endif
                     >{{ $system['name'] }} ({{ $system['driver'] }})
                     </option>

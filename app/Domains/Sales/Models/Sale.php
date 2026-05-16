@@ -34,6 +34,7 @@ use Illuminate\Support\Collection;
  * @property string|null                      secondary_description
  * @property bool                             disable_comments
  * @property bool                             is_active
+ * @property bool                             has_pesel
  * @property int                              requirements
  * @property string|null                      requirements_provider
  * @property Carbon                           created_at
@@ -67,11 +68,14 @@ class Sale extends Model
         'is_active',
         'requirements',
         'requirements_provider',
+        'has_pesel',
     ];
 
     protected $casts = [
-        'id'      => 'integer',
-        'user_id' => 'integer',
+        'id'        => 'integer',
+        'user_id'   => 'integer',
+        'has_pesel' => 'boolean',
+        'is_active' => 'boolean',
     ];
 
     public function user(): BelongsTo

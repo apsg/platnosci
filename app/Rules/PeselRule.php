@@ -21,7 +21,7 @@ class PeselRule implements Rule
 
         $intSum = (10 - $sum % 10) % 10;
 
-        return $intSum === (int) $digits[10];
+        return $intSum === (int)$digits[10];
     }
 
     public function message(): string

@@ -46,6 +46,8 @@ class Create extends Component
 
     public array $invoiceSystems;
 
+    public bool $hasPesel = false;
+
     public function mount()
     {
         $this->paymentSystems = PaymentsManager::listAvailableSystems();
@@ -68,6 +70,7 @@ class Create extends Component
             'counter'                  => 'sometimes|nullable|integer|min:0',
             'payments_provider'        => ['nullable', new PaymentsProviderRule],
             'default_invoice_provider' => ['nullable', new InvoiceProviderRule],
+            'has_pesel'                => 'required|boolean',
         ];
     }
 
@@ -100,6 +103,7 @@ class Create extends Component
             'counter'                  => $this->counter,
             'payments_provider'        => $this->paymentsProvider,
             'default_invoice_provider' => $this->defaultInvoiceProvider,
+            'has_pesel'                => $this->hasPesel,
         ]);
 
         return redirect(route('admin.sales.edit', $sale));

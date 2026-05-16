@@ -106,33 +106,52 @@
             </div>
         </div>
 
-        <div class="mb-5">
-            <div class="rounded bg-blue-50 p-4 text-sm">
-                <x-icon name="information-circle" class="w-5 h-5 inline"/>
-                <span class="font-bold"> Potrzebujesz fakturę?</span> Po udanym zakupie otrzymasz link z instrukcją jak
-                uzyskać fakturę.
-            </div>
-            <div class="flex mt-2">
-                <x-checkbox
-                    wire:model="isPesel"
-                    label=""
-                    value="1"
-                />
-                <div class="ml-3">
-                    Chcę certyfikat MEN (podając PESEL, co obniża o podatek VAT)
+        @if($sale->has_pesel)
+            <div class="mb-5">
+                <div class="rounded bg-blue-50 p-4 text-sm">
+                    <x-icon name="information-circle" class="w-5 h-5 inline"/>
+                    <span class="font-bold"> Potrzebujesz fakturę?</span> Po udanym zakupie otrzymasz link z instrukcją
+                    jak
+                    uzyskać fakturę.
                 </div>
-            </div>
-            @if($isPesel)
-                <div class="relative rounded-md shadow-sm ">
-                    <x-input
-                        wire:model.debounce.1s="pesel"
-                        class="pr-28"
-                        type="text"
-                        label="PESEL"
-                        placeholder="PESEL"/>
+                <div class="flex mt-2">
+                    <x-checkbox
+                        wire:model="isPesel"
+                        label=""
+                        value="1"
+                    />
+                    <div class="ml-3">
+                        Chcę certyfikat MEN (podając PESEL, co obniża o podatek VAT)
+                    </div>
                 </div>
-            @endif
-        </div>
+                @if($isPesel)
+                    <div class="relative rounded-md shadow-sm ">
+                        <x-input
+                            wire:model.debounce.1s="pesel"
+                            class="pr-28"
+                            type="text"
+                            label="PESEL"
+                            placeholder="PESEL"/>
+                    </div>
+                    <div class="relative rounded-md shadow-sm ">
+                        <x-input
+                            wire:model.debounce.1s="firstname"
+                            class="pr-28"
+                            type="text"
+                            label="Imię"
+                            placeholder="Imię"/>
+                    </div>
+                    <div class="relative rounded-md shadow-sm ">
+                        <x-input
+                            wire:model.debounce.1s="lastname"
+                            class="pr-28"
+                            type="text"
+                            label="Nazwisko"
+                            placeholder="Nazwisko"/>
+                    </div>
+                @endif
+            </div>
+        @endif
         <div class="">
             <div class="flex content-center">
                 <x-checkbox

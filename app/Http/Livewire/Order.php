@@ -25,16 +25,22 @@ class Order extends Component
 
     public ?string $pesel = null;
 
+    public ?string $firstname = null;
+
+    public ?string $lastname = null;
+
     public function rules(): array
     {
         return [
-            'email'   => ['required', 'email', new RequirementsRule($this->sale)],
-            'phone'   => ['required', new PhoneRule],
-            'accept'  => ['required', 'boolean', new AcceptedBoolRule],
-            'isPesel' => ['required', 'boolean'],
-            'pesel'   => Rule::when($this->isPesel,
+            'email'     => ['required', 'email', new RequirementsRule($this->sale)],
+            'phone'     => ['required', new PhoneRule],
+            'accept'    => ['required', 'boolean', new AcceptedBoolRule],
+            'isPesel'   => ['required', 'boolean'],
+            'pesel'     => Rule::when($this->isPesel,
                 ['required', 'string', 'required_if:isPesel,true', new PeselRule]
             ),
+            'firstname' => ['required_if:isPesel,true', 'string'],
+            'lastname'  => ['required_if:isPesel,true', 'string'],
         ];
     }
 
@@ -80,7 +86,7 @@ class Order extends Component
         $this->validate();
 
         $order = app(OrdersRepository::class)
-            ->create($this->sale, $this->email, $this->phone, $this->pesel);
+            ->create($this->sale, $this->email, $this->phone, $this->pesel, $this->firstname, $this->lastname);
 
         $url = PaymentsManager::resolve($this->sale->payments_provider)
             ->forOrder($order)
@@ -108,5 +114,4 @@ class Order extends Component
 
         return number_format($price, 2);
     }
-
 }

@@ -57,6 +57,7 @@ class Edit extends Component
             'sale.disable_comments'         => 'required|boolean',
             'sale.requirements'             => 'required|integer|min:0',
             'sale.requirements_provider'    => 'nullable|sometimes|string',
+            'sale.has_pesel'                => 'required|boolean',
         ];
     }
 
