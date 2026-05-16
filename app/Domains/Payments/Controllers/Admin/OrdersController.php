@@ -39,8 +39,6 @@ class OrdersController extends Controller
         header('Content-Type: application/csv');
         header('Content-Disposition: attachment; filename="export.csv";');
 
-        // open the "output" stream
-        // see http://www.php.net/manual/en/wrappers.php.php#refsect2-wrappers.php-unknown-unknown-unknown-descriptioq
         $f = fopen('php://output', 'w');
 
         fputcsv($f, [
