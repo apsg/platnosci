@@ -39,8 +39,10 @@ class Order extends Component
             'pesel'     => Rule::when($this->isPesel,
                 ['required', 'string', 'required_if:isPesel,true', new PeselRule]
             ),
-            'firstname' => ['required_if:isPesel,true', 'string'],
-            'lastname'  => ['required_if:isPesel,true', 'string'],
+            'firstname' => Rule::when($this->isPesel,
+                ['required', 'string']),
+            'lastname'  => Rule::when($this->isPesel,
+                ['required', 'string']),
         ];
     }
 
