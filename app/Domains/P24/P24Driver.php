@@ -3,6 +3,7 @@ namespace App\Domains\P24;
 
 use App\Domains\Payments\AbstractPaymentsDriver;
 use App\Domains\Payments\Models\Order;
+use Illuminate\Support\Facades\Log;
 use Przelewy24\Przelewy24;
 
 class P24Driver extends AbstractPaymentsDriver
@@ -29,8 +30,14 @@ class P24Driver extends AbstractPaymentsDriver
 
     public function getUrl(): string
     {
+        $transactionData = $this->getTransactionData();
+
+        Log::info(__CLASS__ . ' - creating transaction', [
+            'transaction_data' => $transactionData,
+        ]);
+
         return $this->client
-            ->transaction($this->getTransactionData())
+            ->transaction($transactionData)
             ->redirectUrl();
     }
 
