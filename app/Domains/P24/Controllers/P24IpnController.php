@@ -30,6 +30,10 @@ class P24IpnController extends Controller
                 'amount'     => $request->input('p24_amount', $order->getPriceInCents()),
             ]);
 
+            $order->update([
+                'price' => $request->input('p24_amount', $order->getPriceInCents()) / 100,
+            ]);
+
             $repository->confirm($order, $externalId);
         } catch (ApiResponseException $exception) {
             Log::error('Verification failed', [
