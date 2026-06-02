@@ -57,7 +57,7 @@ class PayuDriver extends AbstractPaymentsDriver
 
     public function forOrder(Order $order): self
     {
-        $this->order = $order;
+        $this->order = $order->fresh();
 
         return $this;
     }
@@ -69,8 +69,6 @@ class PayuDriver extends AbstractPaymentsDriver
         }
 
         $orderElement = new OrderElement($this->order);
-
-        //        dd($orderElement->toArray(), $this->getDriverParameters());
 
         $response = OpenPayU_Order::create($orderElement->toArray() + $this->getDriverParameters());
 

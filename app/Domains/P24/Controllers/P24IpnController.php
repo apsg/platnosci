@@ -27,7 +27,7 @@ class P24IpnController extends Controller
             $p24Client->verify([
                 'session_id' => $sessionId,
                 'order_id'   => $webhook->orderId(),   // przelewy24 order id
-                'amount'     => $order->getPriceInCents(),
+                'amount'     => $request->input('p24_amount', $order->getPriceInCents()),
             ]);
 
             $repository->confirm($order, $externalId);
