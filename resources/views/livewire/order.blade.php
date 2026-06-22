@@ -121,7 +121,7 @@
                         value="1"
                     />
                     <div class="ml-3">
-                        Chcę certyfikat MEN (podając PESEL, co obniża o podatek VAT)
+                        Chcę certyfikat MEN (podając PESEL, co obniża koszta)
                     </div>
                 </div>
                 @if($isPesel)
