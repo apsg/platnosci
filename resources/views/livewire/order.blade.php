@@ -119,6 +119,7 @@
                         wire:model="isPesel"
                         label=""
                         value="1"
+                        wire:change="peselChanged"
                     />
                     <div class="ml-3">
                         Chcę certyfikat MEN (podając PESEL, co obniża koszta)

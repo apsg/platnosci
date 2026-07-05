@@ -29,6 +29,12 @@ class Order extends Component
 
     public ?string $lastname = null;
 
+    public function mount()
+    {
+        $this->isPesel = $this->sale->has_pesel;
+        $this->peselChanged();
+    }
+
     public function rules(): array
     {
         return [
@@ -122,5 +128,10 @@ class Order extends Component
         }
 
         return number_format($price, 2);
+    }
+
+    public function peselChanged(): void
+    {
+        $this->emit('price-changed', $this->getPriceFinalProperty());
     }
 }

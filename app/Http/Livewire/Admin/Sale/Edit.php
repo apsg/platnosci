@@ -3,6 +3,7 @@ namespace App\Http\Livewire\Admin\Sale;
 
 use App\Domains\Actions\ActionsHelper;
 use App\Domains\Actions\Models\Action;
+use App\Domains\Invoices\ExemptionReasonEnum;
 use App\Domains\Invoices\InvoicesManager;
 use App\Domains\Payments\PaymentsManager;
 use App\Domains\Sales\Models\Sale;
@@ -22,11 +23,14 @@ class Edit extends Component
 
     public array $providers = [];
 
+    public array $exemptionReasons;
+
     public function mount()
     {
         $this->paymentSystems = PaymentsManager::listAvailableSystems();
         $this->invoiceSystems = InvoicesManager::listAvailableSystems();
         $this->providers = ActionsHelper::getProviders(Action::ACTION_FULLACCESS);
+        $this->exemptionReasons = ExemptionReasonEnum::toArray();
     }
 
     public function render()
@@ -58,6 +62,7 @@ class Edit extends Component
             'sale.requirements'             => 'required|integer|min:0',
             'sale.requirements_provider'    => 'nullable|sometimes|string',
             'sale.has_pesel'                => 'required|boolean',
+            'sale.exemption_reason'         => 'nullable|sometimes|integer',
         ];
     }
 
@@ -65,6 +70,10 @@ class Edit extends Component
     {
         if (Auth::user()->cannot('update', $this->sale)) {
             throw new AuthorizationException('Nie możesz tego zrobić');
+        }
+
+        if ($this->sale->exemption_reason == 0) {
+            $this->sale->exemption_reason = null;
         }
 
         $this->validate();

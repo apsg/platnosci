@@ -43,6 +43,12 @@
             <div class="right-box">
                 {{ $slot }}
             </div>
+
+            @if(isset($bottom))
+                <div class="right-box mt-3">
+                    {{ $bottom }}
+                </div>
+            @endif
         </div>
     </main>
 </div>

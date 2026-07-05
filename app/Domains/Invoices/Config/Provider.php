@@ -17,7 +17,7 @@ class Provider
         return Arr::get($this->data, 'lump_sum_tax');
     }
 
-    public function getSellerData(): array
+    public function getSellerData(?string $overrideExemptTaxKind = null): array
     {
         return array_filter([
             'seller_name'         => Arr::get($this->data, 'name'),
@@ -38,10 +38,5 @@ class Provider
     public function getTaxRate(): int|string
     {
         return Arr::get($this->data, 'tax', 23);
-    }
-
-    public function getExcemptKind(): ?string
-    {
-        return Arr::get($this->data, 'exempt_tax_kind');
     }
 }

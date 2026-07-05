@@ -1,0 +1,3 @@
+<div>
+    {{ $price }} PLN
+</div>

@@ -83,6 +83,10 @@ class Invoice
             'gtu_codes'         => ['GTU_12'],
         ] + $this->provider->getSellerData();
 
+        if ($this->request->order->sale->exemption_reason?->value > 0) {
+            $attributes['exempt_tax_kind'] = $this->request->order->sale->exemption_reason->reasonDescription();
+        }
+
         if (isset($attributes['department_id'])) {
             unset($attributes['seller_name']);
         }

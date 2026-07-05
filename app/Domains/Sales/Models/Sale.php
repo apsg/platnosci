@@ -2,6 +2,7 @@
 namespace App\Domains\Sales\Models;
 
 use App\Domains\Actions\Models\Action;
+use App\Domains\Invoices\ExemptionReasonEnum;
 use App\Domains\Payments\Models\Order;
 use App\Models\User;
 use Carbon\Carbon;
@@ -35,6 +36,7 @@ use Illuminate\Support\Collection;
  * @property bool                             disable_comments
  * @property bool                             is_active
  * @property bool                             has_pesel
+ * @property int|null                         exemption_reason
  * @property int                              requirements
  * @property string|null                      requirements_provider
  * @property Carbon                           created_at
@@ -69,13 +71,15 @@ class Sale extends Model
         'requirements',
         'requirements_provider',
         'has_pesel',
+        'exemption_reason',
     ];
 
     protected $casts = [
-        'id'        => 'integer',
-        'user_id'   => 'integer',
-        'has_pesel' => 'boolean',
-        'is_active' => 'boolean',
+        'id'               => 'integer',
+        'user_id'          => 'integer',
+        'has_pesel'        => 'boolean',
+        'is_active'        => 'boolean',
+        'exemption_reason' => ExemptionReasonEnum::class,
     ];
 
     public function user(): BelongsTo
